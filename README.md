@@ -21,11 +21,11 @@ From IGB, go to the “**plug-ins**” tab and launch the app manager. Add the G
 Then select the SimSearch plugin and press “**install**”. A new tab will appear in the tab panel in IGB.
 
 ### Add the SimSearch Quickload server
-In order to make it easy to test the SimSearch app, we have compiled a Quickload repository with public data (mostly from ENCODE and Roadmap projects) for the human hg19 genome. To access this repository go to "data access", "configure", "add...", and add the repository:
-name: "SimSearch"
-url: "http://cru.genomics.iit.it/simsearch-quickload/"
+In order to make it easy to test the SimSearch app, we have compiled a Quickload repository with public data (mostly from ENCODE and Roadmap projects) for the human hg19 genome. To access this repository go to "**data access**", "**configure**", "**add...**", and add the repository:
+name: "**SimSearch**"
+url: "**http://cru.genomics.iit.it/simsearch-quickload/**"
 
-Remember to select species "Homo sapiens", version "H_sapiens_Feb_2009" in order to see the datasets.
+Remember to select species "**Homo sapiens**", version "**H_sapiens_Feb_2009**" in order to see the datasets.
 
 
 
