@@ -1,0 +1,267 @@
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<style type="text/css">
+html body {
+	background-color: #eee;
+}
+
+#content {
+	min-height: 100%;
+	height: auto !important;
+	/* This line and the next line are not necessary unless you need IE6 support */
+	height: 100%;
+	margin: 0 auto -4em; /* margin: 0 auto -155px;  */
+	/* the bottom margin is the negative value of the footer's height */
+	padding: 35px;
+	font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Droid Sans', sans-serif; */
+	background-color: white;
+	color: #333;
+	height: 100%;
+	font-size: 16px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 864px;
+}
+
+h2 {
+	margin-top: 55px;
+	color: #004466;
+}
+
+h1, h3 {
+	color: #004466;
+}
+
+hr {
+	margin-top: 55px;
+}
+</style>
+</head>
+<body>
+	<div id="content">
+		<h1>
+			<img style="position: relative; width: 350px"
+				src="http://gendata.weebly.com/uploads/6/2/9/4/6294462/header_images/1364295842.jpg" />
+			SimSearch: an IGB plugin to identify and compare occurrences of
+			(epi)genomics feature patterns in multiple genome browser tracks.
+		</h1>
+
+		<h2>Search of Patterns in Genomic Sequences</h2>
+		<h3>Background</h3>
+		<p>Nowadays, the available amount of genomic data is huge and it
+			is growing thanks to the Next Generation Sequencing (NGS) technology.
+			Reading and sequencing the human genome is becoming a relatively fast
+			and inexpensive process. The corresponding potential for data
+			analysis and querying is not a problem equally faced and it poses an
+			important open challenge to the data management community. At the
+			current state-of-art, NGS data are managed in physical formats and
+			standards that are strongly influenced by the data production process
+			of sequencing machines, and do not offer any high-level view to
+			queried or analyzed. Most of the work in this area is carried out
+			manually by biologists and it can take an enormous amount of time
+			producing poor results. In addition, biologists' observations and
+			analyses are usually limited to specific portions of the genome which
+			are the target of each biological or medical experiment. These are
+			incredible limitations to the discovery of new interesting biological
+			phenomena (e.g., new promising regions of the genome, or new
+			correlations between biological features) that can not be achieved at
+			a small experiment scale.</p>
+		<h3>GenData 2020</h3>
+		<p>
+			The <a href="http://gendata.weebly.com/">GenData2020 research
+				project</a> was born to address this challenge, enabling an efficient
+			and effective query and analysis process of genomic data.
+			GenData2020, a framework for NGS data storage, management, query, and
+			analysis, is currently under design and development. The two main
+			elements used by this system are a Genometric Data Model (GDM), which
+			encodes experiment results in a format that takes into account the
+			organization of the genome, and specifically its separation into
+			genomic regions, and a Genometric Query Language (GMQL), that uses
+			those as the main data abstractions for extracting regions of
+			interest from experiments and for computing their properties, with
+			high-level operations for manipulating regions and for measuring
+			their distances.
+		<h3>Pattern searching in genome browsers:</h3>
+		<p>
+			Our main contribution to the project is aimed to the design and
+			implementation of a pattern-search algorithm which provides
+			biologists with the ability, once they identify an interesting
+			genomic pattern, to look for similar occurrences in the data, thus
+			facilitating genomic data access and use. We have implemented this
+			algorithm as a plugin for the <a href="http://bioviz.org/igb">Integrated
+				Genome Browser (IGB)</a>, that allows biologists to use our algorithm in
+			collaboration with IGB (Integrated Genome Browser), a visualization
+			tool used to observe genomic data sets.
+		</p>
+
+		<p style="text-align: center;">
+			<img alt="plugin.png" src="images/overview.png"
+				style="width: 100%; margin:10px"
+				title="" />
+			<span style="color: grey; font-size: 80%">Overview of the plugin: pattern can be either imported from an external file, from a selection 
+			of regions directly in the genome browser or generated from the tracks available (green arrows).
+			It is possible to see the regions matching the pattern both at the chromosome level, or by 
+			zooming on the specific region of a particular match (red arrows).</span>  
+		</p>
+		<h2>Installation:</h2>
+		<h3>Install the Integrated Genome Browser (IGB)</h3>
+		<p>
+			The Integrated Genome Browser can be downloaded from <a class="c3"
+				href="http://bioviz.org/igb/">http://bioviz.org/igb/</a>
+		</p>
+
+		<h3>Add the GenData repository:</h3>
+		<p>From IGB, go to the &ldquo;plug-ins&rdquo; tab and launch the
+			app manager.</p>
+		<p style="text-align: center;">
+			<img style="width: 350px" alt="app-manager.png"
+				src="images/image03.png" title="" />
+		</p>
+
+
+		<p>Add the GenData repository: press the &ldquo;add&rdquo; button,
+			and insert &ldquo;GenData&rdquo; for name, and the url:
+			http://cru.genomics.iit.it/igb/plugins-simsearch/</p>
+		<p style="text-align: center;">
+			<img alt="repository.png" src="images/image05.png"
+				style="width: 465.50px; height: 309.20px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+				title="" />
+		</p>
+
+		<p>Then select the PatternSearch plugin and press
+			&ldquo;install&rdquo;. A new tab will appear in the tab panel in IGB.</p>
+		<p style="text-align: center;">
+			<img alt="plugin.png" src="images/image06.png"
+				style="width: 624.00px; height: 142.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+				title="" />
+		</p>
+		<hr />
+		<h2>Using the plugin:</h2>
+		<h3>Load data:</h3>
+		<p>
+			Select a genome version in IGB (rigth panel), for instance <b>Homo
+				sapiens</b>, version <b>H_sapiens_feb_2009</b>
+		</p>
+		<p>
+			Go to "<b>file</b>" -> "<b>open URL</b>" and add the URL: <b>http://www-db.disi.unibo.it/research/GenData/SimSearch/data/enhancer_discovery_input_tracks/CTCF_DATA_ALL.gtf.gz</b>.
+		</p>
+		<p>
+			Repeat for all files available at <a
+				href="data/enhancer_discovery_input_tracks">data/enhancer_discovery_input_tracks/</a>:
+		
+		<ul>
+			<li>http://www-db.disi.unibo.it/research/GenData/SimSearch/data/enhancer_discovery_input_tracks/CTCF_DATA_ALL.gtf.gz</li>
+			<li>http://www-db.disi.unibo.it/research/GenData/SimSearch/data/enhancer_discovery_input_tracks/DHS_DATA_ALL.gtf.gz</li>
+			<li>http://www-db.disi.unibo.it/research/GenData/SimSearch/data/enhancer_discovery_input_tracks/H3K27ac_DATA_ALL.gtf.gz</li>
+			<li>http://www-db.disi.unibo.it/research/GenData/SimSearch/data/enhancer_discovery_input_tracks/H3K4me1_DATA_ALL.gtf.gz</li>
+			<li>http://www-db.disi.unibo.it/research/GenData/SimSearch/data/enhancer_discovery_input_tracks/H3K4me3_DATA_ALL.gtf.gz</li>
+			<li>http://www-db.disi.unibo.it/research/GenData/SimSearch/data/enhancer_discovery_input_tracks/P300_DATA_ALL.gtf.gz</li>
+			<li>http://www-db.disi.unibo.it/research/GenData/SimSearch/data/enhancer_discovery_input_tracks/PolR2A_DATA_ALL.gtf.gz</li>
+			<li>http://www-db.disi.unibo.it/research/GenData/SimSearch/data/enhancer_discovery_input_tracks/TSS.gtf.gz</li>
+		</ul>
+		<p>
+			In alternative, you can <b>download</b> and <b>extract</b> the
+			package which contains all the files <a
+				href="data/enhancer_discovery_input_tracks.tgz">enhancer_discovery_input_tracks.tgz</a>,
+			and load them all at once by pressing the &ldquo;open data&rdquo;
+			button and select the files in several format available.
+		</p>
+
+		<h3>Load a pattern:</h3>
+
+		<p>A pattern can be selected in three different ways:</p>
+
+		<h4>Load pattern from a file:</h4>
+		<p>A pattern can be described in a file, like in the example
+			bellow:
+		<pre style="color: grey; border: 1px solid grey; margin: 15px">PERFECT	H3K4me1	chr1	0	0	+	JaccardIndex "1.0";
+PERFECT	H3K27ac	chr1	0	0	+	JaccardIndex "1.0";
+PARTIAL	DHS	chr1	0	0	+	JaccardIndex "1.0";
+PARTIAL	P300	chr1	0	0	+	JaccardIndex "1.0";
+PARTIAL	CTCF	chr1	0	0	+	JaccardIndex "1.0";
+PARTIAL	Pol2	chr1	0	0	+	JaccardIndex "1.0";
+NEGATIVE	H3K4me3
+NEGATIVE	TSS
+	</pre>
+		<p>
+			You can download for example the pattern file available at <a
+				href="data/patterns/enhancer_discovery_pattern.txt">enhancer_discovery_pattern.txt</a>.
+			Press the &ldquo;<b>From file</b>&rdquo; button in the SimSearch section of
+			IGB and select the file. The pattern will be automatically loaded in
+			the Search tab, including the dataset names, type, and distance. You
+			should then select the tracks on which each dataset should be
+			searched (see bellow).
+		</p>
+
+		<h4>Load Pattern from a selection:</h4>
+		<p>When the user browses the tracks of the genome browser, either looking at her/his own 
+		results or at external data, like the one generated by the ENCODE or Roadmap Epigenomics project, he/she may identify 
+		interesting combinations of peaks (or any other regions). It is possible to select the region with the mouse, 
+		and import them as a new pattern in the SimSearch search tab by pressing the &ldquo;<b>From
+				selection</b>&rdquo; button. The dataset IDs and distances will be
+			automatically filled. By default, the type is set to perfect match,
+			but this can be changed independently for each dataset (see bellow). Similarly, 
+			the track assigned to each dataset is the one from which the pattern
+			has been selected, but this can be changed manually.
+		</p>
+		<p style="text-align: center;">
+			<img alt="select.png" src="images/image04.png"
+				style="width: 100%; margin: 10px;"
+				title="" />
+		</p>
+		<h4>Generate a pattern from available tracks:</h4>
+		<p>
+			By pressing the &ldquo;<b>from tracks</b>&rdquo; button, a pattern is
+			automatically generated, for which each available track is
+			transferred as a dataset. For instance if five tracks are available for five different histone marks, 
+			a pattern of 5 datasets will we created. Each dataset will be associated to its respective track by default, and the type of match will be set to "perfect".
+			Nevertheless, this can be changed, for instance to search in different tracks representing different tissues or conditions (see bellow).
+		</p>
+		<p style="text-align: center;">
+			<img alt="from-tracks.png" src="images/image02.png"
+				style="width: 100%; margin: 10px;"
+				title="" />
+		</p>
+
+		<h3>Tune the pattern:</h3>
+	
+		<p>A pattern is composed of several datasets (one for each row in the table). For each dataset, it is possible to define:
+		<ul>
+		<li><b>The type of match:</b> perfect (the region has to be present in target track), partial (a region may be present in the target track), 
+			negative (no region should be present in teh target track). It is also possible to ignore this dataset by selecting "off".</li>
+		<li><b>The distance:</b> relative distance between the intervals of each dataset. This can be a single number (considering the center of the interval), an interval, or a list of interval (separated by ";") if more than one interval should be match for this dataset.</li>
+		<li><b>The associated track:</b> select the track on which to find a matching interval for this dataset.</li>		
+		</ul>		
+		</p>
+
+		<h3>Submit the search:</h3>
+		<p>Press the submit button to access an additional option panel and start the search.</p>
+		<p>Once the search is over, a new table with the results is created (bottom part in the figure bellow), and a new track is added
+		 (<span style="color: red">red track</span> named "SimSearch1" in the figure).</p>
+
+		<p>The new tab provides a summary of all the matches found,
+			ordered by score. If the user click on any result, the respective
+			region will be automatically displayed in the genome browser.</p>
+		<p style="text-align: center;">
+			<img alt="results-zoom.png" src="images/image00.png"
+				style="width: 100%; margin: 10px;" title="" />
+		</p>
+
+		<p>On the new automatically generated track (track with orange background bellow), the
+			position of each match is indicated (red bars inthe figure), allowing to rapidly identify
+			where on the genome the matches have been identified.</p>
+		<p style="text-align: center;">
+			<img alt="result-track.png" src="images/simsearch-track.png"
+				style="width: 100%; margin: 10px;"
+				title="" />
+		</p>
+
+		<p>The Pattern identified can be selected and used for a new
+			query.</p>
+	</div>
+</body>
+</html>
