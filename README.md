@@ -25,6 +25,11 @@ url: "**http://cru.genomics.iit.it/simsearch-quickload/**"
 
 Remember to select species "**Homo sapiens**", version "**H_sapiens_Feb_2009**" in order to see the datasets.
 
+## Video: 
+
+Have a look at https://www.youtube.com/watch?v=jW65ope1h1o to see the SimSearch app in action.
+
+
 
 
 
