@@ -5,25 +5,30 @@ overview: true
 
 		<h1>SimSearch: an IGB plugin to identify and compare occurrences
 			of (epi)genomics feature patterns in multiple genome browser tracks.</h1>
-		<p>SimSearch is a pattern-search algorithm that provides
+		<p><b>SimSearch</b> is a pattern-search algorithm that provides
 			biologists with the ability, once they identify an interesting
 			genomic pattern, to look for similar occurrences in the data, thus
 			facilitating genomic data access and use. For example, such patterns
-			can describe gene expression regulatory DNA areas including
-			heterogeneous (epi)genomic features (e.g. histone modification and/or
-			different transcription factor binding regions). It is possible to
-			define complex patterns based on perfect matches in genome tracks
-			(regions that must match), partial matches (regions that are allowed
-			to be absent), and negative matches (for instance to search for
+			can describe <b>gene expression regulatory DNA areas</b> including
+			heterogeneous (epi)genomic features (e.g. <b>histone modification</b> and/or
+			different <b>transcription factor binding regions</b>). It is possible to
+			define complex patterns based on <b>perfect matches</b> in genome tracks
+			(regions that must match), <b>partial matches</b> (regions that are allowed
+			to be absent), and <b>negative matches</b> (for instance to search for
 			regions distant from transcription start sites).</p>
 		<p>The SimSearch algorithm has been developed for the <a href="http://gendata.weebly.com/">GenData
 			project</a> as a collaboration between
 			University of Bologna and Politecnico di Milano. The SimSearch App
 			for IGB is developped by @arnaudceol for the Istituto Italiano di
-			Tecnologia.</p>
+			Tecnologia. It is now part of the <a href="http://www.bioinformatics.deib.polimi.it/geco/">DATA-DRIVEN GENOMIC COMPUTING
+(GeCo) <img width="35px" src="http://www.bioinformatics.deib.polimi.it/geco/imgs/logo-geco.png"/></a> project.</p>
 		<p>
 			Project URL: <a
 				href="http://www-db.disi.unibo.it/research/GenData/SimSearch ">http://www-db.disi.unibo.it/research/GenData/SimSearch</a>
+				</p>
+		
+		<img src="images/figure1.png"/>
+		<!-- ----------------------------------------------------------------------------------  -->
 		
 		<h2>Installation</h2>
 
@@ -32,29 +37,164 @@ overview: true
 		that can be downloaded from <a href="http://bioviz.org/igb/">http://bioviz.org/igb/</a>;</p>
 
 		<h3>Add the GenData repository:</h3>
-		<p>From IGB, go to the “<b>plug-ins</b>” tab and launch the app manager. Add
-		the GenData repository: press the “<b>add</b>” button, and insert
-		“<b>SimSearch</b>” for name, and the url:
+		<p>From IGB, go to the "<b>plug-ins</b>" tab and launch the app manager.</p> 
+				
+		<img src="images/app-manager.png"/>
+		
+		<p>Add the GenData repository: press the "<b>add</b>" button, and insert
+		"<b>SimSearch</b>" for name, and the url:
 		<b>https://arnaudceol.github.io/simsearch/plugins/</b>. Then select the
-		SimSearch plugin and press “<b>install</b>”. A new tab will appear in the
-		tab panel in IGB.</p>
+		SimSearch plugin and press "<b>install</b>". A new tab will appear in the
+		tab panel in IGB.
+		</p>
 
 		<h3>Add the SimSearch Quickload server</h3>
 		<p>In order to make it easy to test the SimSearch app, we have compiled a
 		Quickload repository with public data (mostly from ENCODE and Roadmap
-		projects) for the human hg19 genome. To access this repository go to
+		projects) for the human hg19 genome. </p> 
+				
+		<img src="images/quickload.png"/>
+		
+		<p>To access this repository go to
 		"<b>data access</b>", "<b>configure</b>", "<b>add...</b>", and add the
 		repository: name: "<b>SimSearch</b>" url:
 		"<b>http://cru.genomics.iit.it/simsearch-quickload/</b>" Remember to
 		select species "<b>Homo sapiens</b>", version "<b>H_sapiens_Feb_2009</b>" in
 		order to see the datasets.</p>
 
+		<!-- ----------------------------------------------------------------------------------  -->
+
 		<h2>Video:</h2>
 
 		<p>Have a look at <a href="https://www.youtube.com/watch?v=jW65ope1h1o">https://www.youtube.com/watch?v=jW65ope1h1o</a>
-		to see the SimSearch app in action.</p>
+		to see the SimSearch app in action: </p><p>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/jW65ope1h1o" frameborder="0" allowfullscreen></iframe>
+		</p>
+
+		<!-- ----------------------------------------------------------------------------------  -->
+	
+		<h2>Annotation of the results:</h2>
+		<p>In order to to facilitate the analyses of the results, it is possible to annotate them automatically with different sets of information:</p>
+		<table>
+		<tr><th>Type</th><th>Description</th></tr>
+		<tr><td>Closest gene</td><td>Gene whose TSS is closer to the center of the matching region of the first perfect match dataset, or to the TSS if it has been selected as one dataset of type "perfect match". </td></tr>
+		<tr><td>Functional annotations</td><td>Use Pantherdb web service to see if the genes identified in the results (closest genes) are enriched in a particular pathway or biological process. </td></tr>
+		<tr><td>Annotation from tracks</td><td>Use annotations from a track loaded in IGB and see if the region that overlap with the results are enriched in a particular annotation. For instance, it is possible to load the genome segmentation from ChromHMM or Segway to see if the results are associated to a particular chromatin state.</td></tr>
+		<tr><td>Pattern combinations</td><td>When a search involved several partial match, retrieve the dataset that are found more often together.</td></tr>
+		</table>
+		
+ 
+		
+		<!-- ----------------------------------------------------------------------------------  -->
+		
+		<h2>Usage:</h2>
+		<h3>Main panel</h3>
+		<h4>Build panel</h4>
+		
+		<img src="images/menu.png"/>
+		
+		<ul>
+		<li><b>Selection:</b> </li>
+		<li><b>Dataset type:</b> </li>
+		<li><b>Align:</b> </li>
+		<li><b>Motif:</b> </li>
+		<li><b>TSS: </b> </li>
+		<li><b>Clear:</b> </li>
+		<li><b>All tracks:</b> </li>
+		</ul>
+				
+				
+		<h4>Misc.</h4>
+		<ul>
+		<li><b>Load pre-defined pattern:</b> </li>
+		<li><b>Use attributes: </b> </li>
+		<li><b>Advanced parameters: </b>
+			<ul>
+			<li><b>Minimum similarity score of results:</b> </li>
+			<li><b>Minimum alignment score for perfect match:</b> </li>
+			<li><b>Score for missing partial match:</b> </li>
+			<li><b>Distance between regions based on: </b> </li>
+			<li><b>distance mismatch computed using:</b> </li>
+			<li><b>Alignment score sigmoid midpoint:</b> </li>
+			<li><b>Aligment score sigmoid slope:</b> </li>
+			<li><b>Use diversity:</b> </li>
+			<li><b>Is region length relevant for computing region similarity:</b> </li>
+			</ul>
+		</li>
+		</ul>
+		
+		<img src="images/igb-enhancer-searchtab.png"/>
+		
+		
+		<h4>Output</h4>
+		<ul>
+		<li><b>Label:</b> </li>
+		<li><b>Track color:</b> </li>
+		<li><b>Max results:</b>
+		</ul>
+
+		<h4>Submit</h4>
+		<ul>
+		<li><b>View pattern</b> </li>
+		<li><b>Submit:</b> </li>
+		</ul>
+		
+		<h3>Result panel</h3>
+		<h4>Pattern summary</h4>
+		<p></p>
+		
+		<h4>Result table</h4>
+		<p></p>
+		
+		
+		<img src="images/enhancer-results-table.png"/>
+		
+		<ul>
+		<li><b>Result index:</b></li>
+		<li><b>Score:</b> </li>
+		<li><b>Position:</b> </li>
+		<li><b>Length:</b> </li>
+		<li><b>Closest gene:</b> </li>
+		<li><b>Distance:</b> </li>
+		<li><b>Up/down stream:</b> </li>
+		<li><b>Similarity scores:</b> </li>
+		<li><b>Alignment snapshot:</b> </li>
+		</ul>
+	
+		<h4>Actions:</h4> 
+		
+		<ul>
+		<li><b>Save:</b> </li>
+		<li><b>Functional annotations:</b>
+			<p></p>
+			<ul>
+			
+			<li><b>Name:</b></li>
+			<li><b>p-value:</b> </li>
+			<li><b>Number of genes:</b> </li>
+			<li><b>Gene list:</b> </li>
+			</ul>
+			
+		</li>
+		<li><b>Track annotations:</b> </li>
+		<li><b>Summary:</b>
+			<b></b> 
+			<ul>
+			<li><b>Datasets:</b> </li>
+			<li><b>Pattern:</b> </li>
+			</ul>
+		</li>
+		</ul>
+	
+		
+ 
+ 
 
 
 
 
-
+ 
+ 
+ 
+		
+		
