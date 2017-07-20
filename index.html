@@ -117,13 +117,23 @@ overview: true
 			<ul>
 			<li><b>Minimum similarity score of results:</b> </li>
 			<li><b>Minimum alignment score for perfect match:</b> </li>
-			<li><b>Score for missing partial match:</b> </li>
-			<li><b>Distance between regions based on: </b> </li>
-			<li><b>distance mismatch computed using:</b> </li>
-			<li><b>Alignment score sigmoid midpoint:</b> </li>
-			<li><b>Aligment score sigmoid slope:</b> </li>
-			<li><b>Use diversity:</b> </li>
-			<li><b>Is region length relevant for computing region similarity:</b> </li>
+			<li><b>Score for missing partial match:</b> score assigned when a partial dataset is missing.
+			The lower the score, the more penalyzed will be the result for the absence of the dataset.</li>
+			<li><b>Distance between regions based on: </b> used to decide whether to take into consideration 
+			the distance between the centers of the region, or the distance between the right end of the 
+			first region and the start of the second region. Normalized centroid distance is similar to the centroid distance except it divides it by half the length 
+			of the region. It permits to avoid loosing information with large regions which may overlap although their centers are distant.
+			</li>
+			<li><b>distance mismatch computed using:</b> choose between L1 (Manhattan distance, uses the absolute value of the distance)
+			 and L2 (Euclidian distance, uses the square of the distance).</li>
+			<li><b>Alignment score sigmoid midpoint:</b> The sigmoid is the function used to calculate a similarity 
+			score between 0 (big distance) and 1 (distance = 0). The midpoint sets for which distance the similarity is equals to 0.5.</li>
+			<li><b>Aligment score sigmoid slope:</b>
+			 </li>
+			<li><b>Use diversity:</b> when calculating the similarity; it is possible to take in consideration the 
+			attributes of the genomic regions (e.g. fold enrichment).</li>
+			<li><b>Is region length relevant for computing region similarity:</b> If true, the matching regions should have similar length 
+			to give a high score.</li>
 			</ul>
 		</li>
 		</ul>
@@ -133,20 +143,22 @@ overview: true
 		
 		<h4>Output</h4>
 		<ul>
-		<li><b>Label:</b> </li>
-		<li><b>Track color:</b> </li>
-		<li><b>Max results:</b>
+		<li><b>Label:</b> name given to the tab and the new track.</li>
+		<li><b>Track color:</b> color for the new track created.</li>
+		<li><b>Max results:</b> maximum number of results.</li>
 		</ul>
 
 		<h4>Submit</h4>
 		<ul>
-		<li><b>View pattern</b> </li>
-		<li><b>Submit:</b> </li>
+		<li><b>View pattern:</b> display a graphical representation of the pattern.</li>
+		<li><b>Submit:</b> Submit the query.</li>
 		</ul>
 		
 		<h3>Result panel</h3>
 		<h4>Pattern summary</h4>
-		<p></p>
+		<p>This panel shows a summary of each dataset selected and its type.
+		A color is associated randomly to each dataset, the same color will be used in the result table. 
+		</p>
 		
 		<h4>Result table</h4>
 		<p></p>
@@ -155,7 +167,7 @@ overview: true
 		<a href="images/enhancer-results-table.png"><img src="images/enhancer-results-table.png"/></a>
 		
 		<ul>
-		<li><b>Result index:</b></li>
+		<li><b>Result index:</b> </li>
 		<li><b>Score:</b> </li>
 		<li><b>Position:</b> </li>
 		<li><b>Length:</b> </li>
