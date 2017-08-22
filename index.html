@@ -1,296 +1,33 @@
----
-layout: default
-overview: true
+--- 
+layout: default 
+overview: true 
 ---
 
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script>
 
 
-	
-		<p><b>SimSearch</b> is a pattern-search algorithm that provides
-			biologists with the ability, once they identify an interesting
-			genomic pattern, to look for similar occurrences in the data, thus
-			facilitating genomic data access and use. For example, such patterns
-			can describe <b>gene expression regulatory DNA areas</b> including
-			heterogeneous (epi)genomic features (e.g. <b>histone modification</b> and/or
-			different <b>transcription factor binding regions</b>). It is possible to
-			define complex patterns based on <b>perfect matches</b> in genome tracks
-			(regions that must match), <b>partial matches</b> (regions that are allowed
-			to be absent), and <b>negative matches</b> (for instance to search for
-			regions distant from transcription start sites).</p>
-			<a data-fancybox="gallery" href="images/figure1.png"><img style="width: 250px; vertical-align: center" src="images/figure1.png"></a>
-		<p>The SimSearch algorithm has been developed for the <a href="http://gendata.weebly.com/">GenData
-			project</a> as a collaboration between
-			University of Bologna and Politecnico di Milano. The SimSearch App
-			for IGB is developped by @arnaudceol for the Istituto Italiano di
-			Tecnologia. It is now part of the <a href="http://www.bioinformatics.deib.polimi.it/geco/">DATA-DRIVEN GENOMIC COMPUTING
-(GeCo) <img width="35px" src="http://www.bioinformatics.deib.polimi.it/geco/imgs/logo-geco.png"/></a> project.</p>
-		<p>
-			Project URL: <a
-				href="http://www-db.disi.unibo.it/research/GenData/SimSearch ">http://www-db.disi.unibo.it/research/GenData/SimSearch</a>
-				</p>
-		
-		
-		
-		<!-- ----------------------------------------------------------------------------------  -->
-		
-		<h2>Installation</h2>
+<div style="text-align: center">
+	<a data-fancybox="gallery" href="images/figure1.png"><img
+		style="width: 50%; float: right" src="images/figure1.png"></a>
+</div>
+<p>
+	<b>SimSearch</b> is a pattern-search algorithm that provides biologists
+	with the ability, once they identify an interesting genomic pattern, to
+	look for similar occurrences in the data, thus facilitating genomic
+	data access and use.</p>
+<p>For example, such patterns can describe <b>gene
+		expression regulatory DNA areas</b> including heterogeneous (epi)genomic
+	features (e.g. <b>histone modification</b> and/or different <b>transcription
+		factor binding regions</b>).</p> 
+<p>It is possible to define complex patterns
+	based on <b>perfect matches</b> in genome tracks (regions that must
+	match), <b>partial matches</b> (regions that are allowed to be absent),
+	and <b>negative matches</b> (for instance to search for regions distant
+	from transcription start sites).
+</p>
 
-		<h3>Install the Integrated Genome Browser (IGB)</h3>
-		<p>The SimSearch App is a plugin for the Integrated Genome Browser (IGB)
-		that can be downloaded from <a href="http://bioviz.org/igb/">http://bioviz.org/igb/</a>;</p>
-
-		<h3>Add the GenData repository:</h3>
-		<p>From IGB, go to the "<b>plug-ins</b>" tab and launch the app manager.</p> 
-				
-		<a data-fancybox="gallery"  href="images/app-manager.png"><img src="images/app-manager.png"/></a>
-		
-		<a data-fancybox="gallery" href="images/figure1.png"><img src="images/figure1.png"></a>
-		
-		<p>Add the GenData repository: press the "<b>add</b>" button, and insert
-		"<b>SimSearch</b>" for name, and the url:
-		<b>https://arnaudceol.github.io/simsearch/plugins/</b>. Then select the
-		SimSearch plugin and press "<b>install</b>". A new tab will appear in the
-		tab panel in IGB.
-		</p>
-
-		<h3>Add the SimSearch Quickload server</h3>
-		<p>In order to make it easy to test the SimSearch app, we have compiled a
-		Quickload repository with public data (mostly from ENCODE and Roadmap
-		projects) for the human hg19 genome. </p> 
-				
-		<a data-fancybox="gallery"  href="images/quickload.png"><img src="images/quickload.png"/></a>
-		
-		<p>To access this repository go to
-		"<b>data access</b>", "<b>configure</b>", "<b>add...</b>", and add the
-		repository: name: "<b>SimSearch</b>" url:
-		"<b>http://cru.genomics.iit.it/simsearch-quickload/</b>" Remember to
-		select species "<b>Homo sapiens</b>", version "<b>H_sapiens_Feb_2009</b>" in
-		order to see the datasets.</p>
-
-		<!-- ----------------------------------------------------------------------------------  -->
-
-		<h2>Video:</h2>
-
-		<p>Have a look at <a href="https://www.youtube.com/watch?v=jW65ope1h1o">https://www.youtube.com/watch?v=jW65ope1h1o</a>
-		to see the SimSearch app in action: </p><p>
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/jW65ope1h1o" frameborder="0" allowfullscreen></iframe>
-		</p>
-
-		<!-- ----------------------------------------------------------------------------------  -->
-	
-		<h2>Annotation of the results:</h2>
-		<p>In order to to facilitate the analyses of the results, it is possible to annotate them automatically with different sets of information:</p>
-		<table>
-		<tr><th>Type</th><th>Description</th></tr>
-		<tr><td>Closest gene</td><td>Gene whose TSS is closer to the center of the matching region of the first perfect match dataset, or to the TSS if it has been selected as one dataset of type "perfect match". </td></tr>
-		<tr><td>Functional annotations</td><td>Use Pantherdb web service to see if the genes identified in the results (closest genes) are enriched in a particular pathway or biological process. </td></tr>
-		<tr><td>Annotation from tracks</td><td>Use annotations from a track loaded in IGB and see if the region that overlap with the results are enriched in a particular annotation. For instance, it is possible to load the genome segmentation from ChromHMM or Segway to see if the results are associated to a particular chromatin state.</td></tr>
-		<tr><td>Pattern combinations</td><td>When a search involved several partial match, retrieve the dataset that are found more often together.</td></tr>
-		</table>
-		
- 
-		
-		<!-- ----------------------------------------------------------------------------------  -->
-		
-		<h2>Usage:</h2>
-		<h3>Main panel</h3>
-		<h4>Build panel</h4>
-		
-		<a data-fancybox="gallery"  href="images/menu.png"><img src="images/menu.png"/></a>
-		
-		<ul>
-		<li><b>+ Selection:</b> Add selected elements to the pattern. It can be one or more regions
-		selected in the browser, or one or more tracks (select the track name on the left of the browser).</li>
-		<li><b>Dataset type:</b> Select wether the datasets added should be of type perfect match, partial math, negative match or 
-		any other type. This can be changed later in the pattern table.</li>
-		<li><b>Align:</b> Use to align all the selected datasets. This is useful is the user has selected
-		the datasets from different parts of the browser, but want them to be found at th esame position.</li>
-		<li><b>Motif:</b> Search for DNA motif, for instance a known transcription factor motif such as the e-box. 
-		The motif should be entered as a string (only nucleotide letter: A, C, G ant T). Note that this will only work 
-		if the DNA sequence has already been loaded in the browser.</li>
-		<li><b>TSS: add the transcription start sites as a dataset.</b> </li>
-		<li><b>Clear:</b> Remove all datasets from the pattern.</li>
-		<li><b>All tracks:</b> Add all tracks as datasets, for instance if all the histone marks ChIP-seq tracks have been loaded.
-		The datasets can be individually edited or removed later.</li>
-		</ul>
-				
-				
-		<h4>Misc.</h4>
-		<ul>
-		<li><b>Load pre-defined pattern:</b> load a predefined pattern (chromatine states inferred 
-		from the results of ChromHMM and Segway). The app will try to associate each dataset to a track according to 
-		both names. The user should verify that the mapping is correct.</li>
-		<li><b>Use attributes:</b> use attributes of the target tracks when searching from the best match. 
-		The attributes are selected individually for each track (see below: edit button).</li>
-		<li><b>Advanced parameters: </b>
-			<ul>
-			<li><b>Minimum similarity score of results:</b> results with a lower score will be discarded</li>
-			<li><b>Minimum alignment score for perfect match:</b> individual datasett alignments with a score below
-			this threshold will be discarded. We usually select a low threshold (e.g. 0.01), to avoid matching regions 
-			too distant ones from the others.</li>
-			<li><b>Score for missing partial match:</b> Score assigned when a partial dataset is missing.
-			The lower the score, the more penalyzed will be the result for the absence of the dataset.</li>
-			<li><b>Distance between regions based on: </b> used to decide whether to take into consideration 
-			the distance between the centers of the region, or the distance between the right end of the 
-			first region and the start of the second region. Normalized centroid distance is similar to the centroid distance except it divides it by half the length 
-			of the region. It permits to avoid loosing information with large regions which may overlap although their centers are distant.
-			</li>
-			<li><b>Distance mismatch computed using:</b> choose between L1 (Manhattan distance, uses the absolute value of the distance)
-			 and L2 (Euclidian distance, uses the square of the distance).</li>
-			<li><b>Alignment score sigmoid midpoint:</b> The sigmoid is the function used to calculate a similarity 
-			score between 0 (big distance) and 1 (distance = 0). The midpoint sets for which distance the similarity is equals to 0.5.</li>
-			<li><b>Aligment score sigmoid slope:</b>
-			 </li>
-			<li><b>Use diversity:</b> when calculating the similarity; it is possible to take in consideration the 
-			attributes of the genomic regions (e.g. fold enrichment).</li>
-			<li><b>Is region length relevant for computing region similarity:</b> If true, the matching regions should have similar length 
-			to give a high score.</li>
-			</ul>
-		</li>
-		</ul>
-		
-		<a data-fancybox="gallery"  href="images/igb-enhancer-searchtab.png"><img src="images/igb-enhancer-searchtab.png"/></a>
-		
-		
-		<h4>Output</h4>
-		<ul>
-		<li><b>Label:</b> name given to the tab and the new track.</li>
-		<li><b>Track color:</b> color for the new track created.</li>
-		<li><b>Max results:</b> maximum number of results.</li>
-		</ul>
-
-		<h4>Submit</h4>
-		<ul>
-		<li><b>View pattern:</b> display a graphical representation of the pattern.</li>
-		<li><b>Submit:</b> Submit the query.</li>
-		</ul>
-		
-		<h3>Result panel</h3>
-		<h4>Pattern summary</h4>
-		<p>This panel shows a summary of each dataset selected and its type.
-		A color is associated randomly to each dataset, the same color will be used in the result table. 
-		</p>
-		
-		<h4>Result table</h4>
-		<p></p>
-		
-		
-		<a data-fancybox="gallery"  href="images/enhancer-results-table.png"><img src="images/enhancer-results-table.png"/></a>
-		
-		<ul>
-		<li><b>Score:</b> Similarity score fo the match.</li>
-		<li><b>Position:</b> Position of the match: chromosome: center of the lefter dataset - sequence of the righter dataset.</li>
-		<li><b>Length:</b> distance between the centers of the lefter dataset and righter dataset.</li>
-		<li><b>Closest gene:</b> Gene which TSS is closest to the center of the root dataset, i.e. the first perfect match. If the TSS is 
-		itself a dataset, then its gene is selected.</li>
-		<li><b>Distance:</b> Distance between the center of the root dataset and the TSS.</li>
-		<li><b>Up/down stream:</b> Indicate if the match is up- or down-strem of the closest gene.</li>
-		<li><b>Similarity scores:</b> Each dataset is represented by a colored square, whose height is 
-		proportional to the score: a perfect match with a score of 1 is represented by a perfect square,
-		 while a match with a score of 0.5 is half its height, and an empty space indicates that no
-		 match was found.</li>
-		<li><b>Alignment snapshot:</b> a graphical representation of the pattern matching is displayed. 
-		The regions of the query pattern are displayed in red, the matching regions in blue. 
-		This allows to an immediate understanding of which regions are present or missing,
-		 and whether the regions are well aligned to the query pattern. </li>
-		</ul>
-	
-		<h4>Actions:</h4> 
-		
-		<ul>
-		<li><b>Save:</b> save the results in a tab delimited file.</li>
-		<li><b>Functional annotations:</b>
-			<p>Query <a href="http://pantherdb.org/">Pantherdb</a> to see if the genes 
-			identified in the results (closest genes) are enriched in a 
-			particular pathway or biological process.</p>
-			<ul>
-			
-			<li><b>Name:</b> Name of the pathway or biological process.</li>
-			<li><b>p-value:</b> P-value assigned to this enrichment.</li>
-			<li><b>Number of genes:</b> Number of genes from the results
-			associated to this term.</li>
-			<li><b>Gene list:</b> List of genes in the results associated to this term.</li>
-			</ul>
-			
-		</li>
-		<li><b>Track annotations:</b> It is possible to select the annotations from one of the 
-		tracks loaded in the browser (for instance chromatine states identified by ChrommHMM or Segway,
-		available from the SimSearch quickload server). The app counts the annotations that overlap with the results,
-		and perform a Fisher exact test to assess the significance of this association (the total number of annotations
-		of the same type is used as background).
-		
-		</li>
-		<li><b>Summary:</b>
-			Show a summary of the results, i.e. the different "partial match" datasets which match together, and how many
-			time they match together. Each individual combination can be selected to automatically
-			create a new pattern that can be searched and analyzed. For a matter of clarity, smaller
-			 combinations are only displayed if they are found more often that more complex ones (for instance, if 100 instances of A + B + C and 100 instances of A + B are found, only A+ B + C is displayed).
-		</li>
-		</ul>
-
-
-
-		
-		<!-- ----------------------------------------------------------------------------------  -->
-		
-		<h2>Examples:</h2>
-
-		<h3>Distal enhancer:</h3>
-		
-		<p>In this example, we will look for distal enhancers (enhancers distant from the TSS), based on a pattern 
-		inferred from the results of Segway. We have already installed IGB, the SimSearch App and the SimSearch 
-		Quicklod server (see the installation page if you haven't yet).</p>
-		
-		<h4>Select the right genome</h4>
-		<a data-fancybox="gallery"  href="images/ex1-genome.PNG"><img src="images/ex1-genome.PNG"/></a>
- 		<p>The data we will use has been aligned on the human genome build Hg19, also called NCBI17, or Feb 2009. We select 
- 		the species Homo sapiens and the genome version H_sapiens_Feb_2019 in the right panel of IGB.</p>
-
-		<h4>Load tracks</h4>
-		<a data-fancybox="gallery"  href="images/ex1-tracks.PNG"><img src="images/ex1-tracks.PNG"/></a>
- 		<p>We will load in new tracks the results of ChIP-seq experiments from ENCODE that are available
- 		from the SimSearch quickload server. We select this server in the data panel (bottom panel in IGB), and open the 
- 		ans select the Histone Marks available for the K562 cell line, as well as CTCF binding regions.</p>
- 
-
- 
- 		<h4>Select the enhancer pattern</h4>
-		<a data-fancybox="gallery"  href="images/ex1-select-predefined-pattern.PNG"><img src="images/ex1-select-predefined-pattern.PNG"/></a>
- 		<p>Now we select an Enhancer pattern from the pre-defined pattern list. We choose the pattern named 
- 		04_ENC_Strong_Enhancer, which is inferred from the results of ChromHMM based on the data from ENCODE.</p>
- 
- 		<h4>Add TSS</h4>
-		<img src="images/ex1-tss.PNG"/>
- 		<p>Because we want a distal enhancer, we will add the TSS dataset, by pressing the TSS button in the "Build pattern" area of
- 		the Search tab.</p>
-		<img src="images/ex1-rm-tss-edit.PNG"/>
- 		<p>We can edit this dataset: first we specify that we want it to be a negative dataset (we don't want the results
- 		to contain a TSS), second we change the distance to 20000, to ensure that the results will be distant at least
- 		20000 bases from the TSS.</p>
- 
- 
-		<h4>Browsing the results</h4>
- 		<p>We are now ready to start the pattern search. The processing time depends on the number and complexity of the tracks, 
- 		as well as the internet connection (remember that you can also use local files or a local quickload repository).</p>
- 		
-		<a data-fancybox="gallery"  href="images/ex1-chromhmm-zoom.PNG"><img src="images/ex1-chromhmm-zoom.PNG"/></a>
- 		<p>The results are displayed in a table. If we click on any row (here row 1998), the app will autoimatically 
- 		zoom into the corresponding region in the browser (See the region name Enhancer-2Topk1998), and display on the 
- 		right the regions associated to each dataset (blue) and how they aligned to the original pattern (red).</p>
- 
-		<h4>Analyzing the results</h4>
-		<p>It is possible to browse the results, inspect them visually in the browser, and also to run additional analyzes
-		directly from the app.</p>
-		<a data-fancybox="gallery"  href="images/ex1-chmmannots.PNG"><img src="images/ex1-chmmannots.PNG"/></a>
- 		<p>We choose to compare our results to those of the original ChromHMM annotations. We load the results from ChromHMM 
- 		from the SimSearch Quickload server, in the annotation section of the K562 section. From the result panel, we select 
- 		this track and press the "annotations from track" button.</p>
- 		<img src="images/ex1-chromhmm-annotations.PNG"/>
- 		<p>The result table shows, as expected, an enrichment for enhancer regions.</p>
- 				
-				
-		

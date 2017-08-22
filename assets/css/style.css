@@ -1,0 +1,289 @@
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/*******************************************************************************
+Theme Styles
+*******************************************************************************/
+body {
+  box-sizing: border-box;
+  color: #333333;
+  background: white;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: "Open Sans";
+  -webkit-font-smoothing: antialiased; }
+
+/* h1, h2, h3, h4, h5, h6 {
+  margin: 10px 0;
+  font-weight: 700;
+  color: #222222;
+  font-family: "Open Sans";
+  letter-spacing: -1px; }
+ */
+img {
+  position: relative;
+  max-width: 739px;
+  padding: 5px;  
+  border: 1px solid #ebebeb;
+  box-shadow: 0 0 5px #ebebeb;
+  -webkit-box-shadow: 0 0 5px #ebebeb;
+  -moz-box-shadow: 0 0 5px #ebebeb;
+  -o-box-shadow: 0 0 5px #ebebeb;
+  -ms-box-shadow: 0 0 5px #ebebeb;
+ }
+
+img.icon  { 
+  width: 15px;
+  border: none;
+  padding: 0px;
+  margin: 0px;  
+  box-shadow: none;
+ }
+
+
+table {
+  border: 1px solid #373737;
+  margin-bottom: 20px;
+  text-align: left; }
+
+th {
+  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 10px;
+  background: #373737;
+  color: #fff; }
+
+td {
+  padding: 10px;
+  border: 1px solid #373737; }
+
+p {
+  margin: 10px 0 15px 0; }
+
+
+
+/*******************************************************************************
+Full-Width Styles
+*******************************************************************************/
+.outer {
+  width: 100%; }
+
+.inner {
+  position: relative;
+  max-width: 840px;
+  padding: 20px 10px;
+  margin: 0 auto; }
+
+#forkme_banner {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  z-index: 10;
+  padding: 10px 50px 10px 10px;
+  color: #fff;
+  background: url("../images/blacktocat.png") #0090ff no-repeat 95% 50%;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px; }
+
+#header_wrap {
+  background: white;
+  }
+
+#header_wrap .inner {
+  padding: 10px 10px 10px 10px; }
+
+#project_title {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 700;
+}
+
+#project_tagline {
+  color: #333333;
+  font-size: 22px;
+  font-weight: 300;
+  background: none;
+   }
+
+#downloads {
+  position: absolute;
+  width: 210px;
+  z-index: 10;
+  bottom: -40px;
+  right: 0;
+  height: 70px;
+  background: url("../images/icon_download.png") no-repeat 0% 90%; }
+
+.zip_download_link {
+  display: block;
+  float: right;
+  width: 90px;
+  height: 70px;
+  text-indent: -5000px;
+  overflow: hidden;
+  background: url(../images/sprite_download.png) no-repeat bottom left; }
+
+.tar_download_link {
+  display: block;
+  float: right;
+  width: 90px;
+  height: 70px;
+  text-indent: -5000px;
+  overflow: hidden;
+  background: url(../images/sprite_download.png) no-repeat bottom right;
+  margin-left: 10px; }
+
+.zip_download_link:hover {
+  background: url(../images/sprite_download.png) no-repeat top left; }
+
+.tar_download_link:hover {
+  background: url(../images/sprite_download.png) no-repeat top right; }
+
+#main_content {
+  padding-top: 0px; }
+
+#footer_wrap {
+  background: #212121; }
+
+
+a {
+  text-decoration: none;
+  color: #007edf;
+  text-shadow: none;
+  transition: color 0.5s ease;
+  transition: text-shadow 0.5s ease;
+  -webkit-transition: color 0.5s ease;
+  -webkit-transition: text-shadow 0.5s ease;
+  -moz-transition: color 0.5s ease;
+  -moz-transition: text-shadow 0.5s ease;
+  -o-transition: color 0.5s ease;
+  -o-transition: text-shadow 0.5s ease;
+  -ms-transition: color 0.5s ease;
+  -ms-transition: text-shadow 0.5s ease; }
+
+a:hover, a:focus {
+  text-decoration: underline; }
+
+
+#main_content {
+  padding-top: 25px; }
+
+
+/*******************************************************************************
+Small Device Styles
+*******************************************************************************/
+@media screen and (max-width: 992px) {
+  img {
+    max-width: 100%; } }
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 14px; }
+
+  #downloads {
+    display: none; }
+
+  .inner {
+    min-width: 320px;
+    max-width: 480px; }
+
+  #project_title {
+    font-size: 32px; }
+
+  h1 {
+    font-size: 28px; }
+
+  h2 {
+    font-size: 24px; }
+
+  h3 {
+    font-size: 21px; }
+
+  h4 {
+    font-size: 18px; }
+
+  h5 {
+    font-size: 14px; }
+
+  h6 {
+    font-size: 12px; }
+
+  code, pre {
+    min-width: 320px;
+    max-width: 480px;
+    font-size: 11px; } }
+    
+#navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0px;
+  overflow: hidden;
+  color: #FFF;
+  font-style: bold;
+  font-weight: bold;  
+}
+
+#navbar-hr {
+	border-bottom: 2px solid #546B73;
+}
+
+#navbar li {
+  float: right; }
+
+#navbar li a {
+  display: block;
+  color: #333333;
+  text-align: center;
+  margin: 0px;
+  padding: 8px 16px 8px 0px;
+  text-decoration: none; }
+
+#navbar a:hover:not(.active) {
+  color: #AAAAAA; }
+
+#navbar active {
+  color: #AAAAAA; }
+    
+  
+/************************************************************************************************* 
+ Adapted from http://www.456bereastreet.com/archive/201105/styling_ordered_list_numbers/
+ *************************************************************************************************/
+
+ol {
+	counter-reset:li; /* Initiate a counter */	
+	margin-left:0; /* Remove the default left margin */
+	padding-left:0; /* Remove the default left padding */
+}
+ol > li {
+	position:relative; /* Create a positioning context */
+	margin:0 0 6px 2em; /* Give each list item a left margin to make room for the numbers */
+	padding:4px 8px; /* Add some spacing around the content */
+	list-style:none; /* Disable the normal item numbering */
+	border-top:2px dotted #546B73;	
+}
+ol > li:before {
+	content:counter(li); /* Use the counter as content */
+	counter-increment:li; /* Increment the counter by 1 */
+	/* Position and style the number */
+	position:absolute;
+	top:-2px;
+	left:-2em;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	width:2em;
+	/* Some space between the number and the content in browsers that support
+	   generated content but not positioning it (Camino 2 is one example) */
+	margin-right:8px;	
+	padding:4px;
+	border-top:2px solid #546B73;	
+	font-weight:bold;
+	text-align:center;
+}
+li ol,
+li ul {margin-top:6px;}
+ol ol li:last-child {margin-bottom:0;}
+  

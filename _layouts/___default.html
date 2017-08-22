@@ -1,0 +1,36 @@
+---
+layout: compress
+---
+<!DOCTYPE html>
+<html lang="en">
+{% include head.html %}
+<body>
+<header>
+<div id="mySidenav" style="width: 250px" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+  {% include menu-links.html %}
+</div>
+
+<!-- Use any element to open the sidenav -->
+<span id="slid" onclick="openNav()"><i class="fa fa-align-left" aria-hidden="true"></i></span>
+<a href="{{site.baseurl}}/"><h1 class="header-title">{{site.title}}</h1></a>
+<h2 class="header-tagline">An IGB plugin to identify and compare occurrences of (epi)genomics feature patterns in multiple genome browser tracks.</h2>
+</header>
+<div id="content">
+
+
+
+
+{{content}}
+
+
+
+{% include footer.html %}
+
+</div>
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" type="text/css"> 
+{% include analytics.html %}
+</body>
+</html>
