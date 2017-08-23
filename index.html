@@ -1,6 +1,6 @@
 --- 
 layout: default 
-overview: true 
+title: Home
 ---
 
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -11,12 +11,18 @@ overview: true
 	src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script>
 
 
+<div class="newsfeed">
+<b>News:</b><br/>
+{% for post in site.posts %}	
+   <div style="margin-bottom: 15px; margin-top:15px"><b>{{ post.date | date: "%B %e, %Y" }}</b><br/><a href="{{ post.url }}">{{ post.description }}</a></div>			
+{% endfor %}	
+</div>
+
+
 <h1>An IGB plugin to identify and compare occurrences of (epi)genomics feature patterns in multiple genome browser tracks.</h1>
 
-<div style="text-align: center">
-	<a data-fancybox="gallery" href="images/figure1.png"><img
-		style="width: 50%; float: right" src="images/figure1.png"></a>
-</div>
+
+
 <p>
 	<b>SimSearch</b> is a pattern-search algorithm that provides biologists
 	with the ability, once they identify an interesting genomic pattern, to
@@ -26,10 +32,14 @@ overview: true
 		expression regulatory DNA areas</b> including heterogeneous (epi)genomic
 	features (e.g. <b>histone modification</b> and/or different <b>transcription
 		factor binding regions</b>).</p> 
+<a data-fancybox="gallery" href="images/figure1.png"><img
+		style="width: 40%; float: left; margin:0px 15px 15px 0px;" src="images/figure1.png"></a>
+
 <p>It is possible to define complex patterns
 	based on <b>perfect matches</b> in genome tracks (regions that must
 	match), <b>partial matches</b> (regions that are allowed to be absent),
 	and <b>negative matches</b> (for instance to search for regions distant
 	from transcription start sites).
 </p>
+
 

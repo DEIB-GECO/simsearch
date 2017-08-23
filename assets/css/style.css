@@ -286,4 +286,17 @@ ol > li:before {
 li ol,
 li ul {margin-top:6px;}
 ol ol li:last-child {margin-bottom:0;}
+
+
+.newsfeed {
+	width: 240px;
+	float:right;
+	margin: 15px;
+	padding: 15px;
+	vertical-align: top;
+	background: #eee
+}
+
+
+
   

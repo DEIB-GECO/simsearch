@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Barcelona NGS 2017"
+description: "The SimSearch app presented at the ISCB NGS workshop in Barcelona."
+image: https://pbs.twimg.com/media/C8FmmyZWsAI4Q9J.jpg
+published: true
+---
+
+The SimSearch App is presented in a poster at the [ISCB NGS workshop](https://www.iscb.org/ngs2017) in Barcelona. 
+
+![NGS 2017 poster]({{ site.baseurl }}/images/ngs2017-poster.jpg "NGS 2017 poster")

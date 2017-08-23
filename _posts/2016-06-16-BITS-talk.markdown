@@ -1,0 +1,10 @@
+---
+layout: post
+title: "BITS 2016"
+description: "Discovering similar (epi)genomics feature patterns in multiple genome browser tracks, oral presentation at BITS 2016"
+image: https://pbs.twimg.com/media/C8FmmyZWsAI4Q9J.jpg
+published: true
+---
+
+Marco Masserolli talks about **Discovering similar (epi)genomics feature patterns in multiple genome browser tracks** 
+at the 13th Annual Meeting of the Bioinformatics Italian Society in Salerno (Italy). Extended abstract available [here](http://bits2016.bioinformatics.it/oral.html#montanari).

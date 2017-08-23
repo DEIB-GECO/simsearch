@@ -1,0 +1,10 @@
+---
+layout: post
+title: "ISMB 2016"
+description: "Searching patterns in genomic feature regions, oral presentation at ISMB 2016"
+image: https://pbs.twimg.com/media/C8FmmyZWsAI4Q9J.jpg
+published: true
+---
+
+Ilaria Bartolini presents the algorithm behing the SimSearch App at the [Intelligent Systems for Molecular Biology (ISMB) meeting](https://www.iscb.org/ismb2016) in Orlando. The talk, **Searching patterns in genomic feature regions**, is available [here](https://www.iscb.org/ismb-mm/media-ismb2016).
+
