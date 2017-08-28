@@ -8,90 +8,200 @@ overview: true
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script>
 
-<p>We describe here the <b>Main Panel</b>, used to define a pattern to search and choose the options and parameters
-to use, and teh <b>Result panel</b>, form which it is possible to browse and analyse the results. We also list the 
-<b>annotations</b> available directly from this app.</p>
+<p>We describe here the <b><a href="#main">Main Panel</a></b>, used to define a pattern to search and choose the options and parameters
+to use, how to <b><a href="#edit">edit</a></b> the pattern, and the <b><a href="#result">Result panel</a></b>, form which it is possible 
+to browse and analyse the results. We also list the 
+<b><a href="#annotations">annotations</a></b> available directly from this app.</p>
 
 <ol>
-		<li><h2>Main panel</h2>
-		<h3>Build panel</h3>
-		
-		<a data-fancybox="gallery"  href="images/menu.png"><img src="images/menu.png"/></a>
-		
+	<li id="main"><h2>Main panel</h2>
+		<h3>Build panel</h3> <a data-fancybox="gallery" href="images/menu.png"><img
+			src="images/menu.png" /></a>
+
 		<ul>
-		<li><b>+ Selection:</b> Add selected elements to the pattern. It can be one or more regions
-		selected in the browser, or one or more tracks (select the track name on the left of the browser).</li>
-		<li><b>Dataset type:</b> Select wether the datasets added should be of type perfect match, partial math, negative match or 
-		any other type. This can be changed later in the pattern table.</li>
-		<li><b>Align:</b> Use to align all the selected datasets. This is useful is the user has selected
-		the datasets from different parts of the browser, but want them to be found at th esame position.</li>
-		<li><b>Motif:</b> Search for DNA motif, for instance a known transcription factor motif such as the e-box. 
-		The motif should be entered as a string (only nucleotide letter: A, C, G ant T). Note that this will only work 
-		if the DNA sequence has already been loaded in the browser.</li>
-		<li><b>TSS: add the transcription start sites as a dataset.</b> </li>
-		<li><b>Clear:</b> Remove all datasets from the pattern.</li>
-		<li><b>All tracks:</b> Add all tracks as datasets, for instance if all the histone marks ChIP-seq tracks have been loaded.
-		The datasets can be individually edited or removed later.</li>
+			<li><b>+ Selection:</b> Add selected elements to the pattern. It
+				can be one or more regions selected in the browser, or one or more
+				tracks (select the track name on the left of the browser).</li>
+			<li><b>Dataset type:</b> Select wether the datasets added should
+				be of type perfect match, partial math, negative match or any other
+				type. This can be changed later in the pattern table.</li>
+			<li><b>Align:</b> Use to align all the selected datasets. This
+				is useful is the user has selected the datasets from different parts
+				of the browser, but want them to be found at th esame position.</li>
+			<li><b>Motif:</b> Search for DNA motif, for instance a known
+				transcription factor motif such as the e-box. The motif should be
+				entered as a string (only nucleotide letter: A, C, G ant T). Note
+				that this will only work if the DNA sequence has already been loaded
+				in the browser. Example: search for the E-box, canonical motif = CACGTG</li>
+			<li><b>TSS: add the transcription start sites as a dataset.</b>
+			</li>
+			<li><b>Clear:</b> Remove all datasets from the pattern.</li>
+			<li><b>All tracks:</b> Add all tracks as datasets, for instance
+				if all the histone marks ChIP-seq tracks have been loaded. The
+				datasets can be individually edited or removed later.</li>
 		</ul>
-				
-				
+
 		<h3>Misc.</h3>
 		<ul>
-		<li><b>Load pre-defined pattern:</b> load a predefined pattern (chromatine states inferred 
-		from the results of ChromHMM and Segway). The app will try to associate each dataset to a track according to 
-		both names. The user should verify that the mapping is correct.</li>
-		<li><b>Use attributes:</b> use attributes of the target tracks when searching from the best match. 
-		The attributes are selected individually for each track (see below: edit button).</li>
-		<li><b>Advanced parameters: </b>
-			<ul>
-			<li><b>Minimum similarity score of results:</b> results with a lower score will be discarded</li>
-			<li><b>Minimum alignment score for perfect match:</b> individual datasett alignments with a score below
-			this threshold will be discarded. We usually select a low threshold (e.g. 0.01), to avoid matching regions 
-			too distant ones from the others.</li>
-			<li><b>Score for missing partial match:</b> Score assigned when a partial dataset is missing.
-			The lower the score, the more penalyzed will be the result for the absence of the dataset.</li>
-			<li><b>Distance between regions based on: </b> used to decide whether to take into consideration 
-			the distance between the centers of the region, or the distance between the right end of the 
-			first region and the start of the second region. Normalized centroid distance is similar to the centroid distance except it divides it by half the length 
-			of the region. It permits to avoid loosing information with large regions which may overlap although their centers are distant.
-			</li>
-			<li><b>Distance mismatch computed using:</b> choose between L1 (Manhattan distance, uses the absolute value of the distance)
-			 and L2 (Euclidian distance, uses the square of the distance).</li>
-			<li><b>Alignment score sigmoid midpoint:</b> The sigmoid is the function used to calculate a similarity 
-			score between 0 (big distance) and 1 (distance = 0). The midpoint sets for which distance the similarity is equals to 0.5.</li>
-			<li><b>Aligment score sigmoid slope:</b>
-			 </li>
-			<li><b>Use diversity:</b> when calculating the similarity; it is possible to take in consideration the 
-			attributes of the genomic regions (e.g. fold enrichment).</li>
-			<li><b>Is region length relevant for computing region similarity:</b> If true, the matching regions should have similar length 
-			to give a high score.</li>
-			</ul>
-		</li>
+			<li><b>Load pre-defined pattern:</b> load a predefined pattern
+				(chromatine states inferred from the results of ChromHMM and
+				Segway). The app will try to associate each dataset to a track
+				according to both names. The user should verify that the mapping is
+				correct. <a data-fancybox="gallery"
+				href="images/igb-enhancer-searchtab.png"><img
+					src="images/igb-enhancer-searchtab.png" /></a></li>
+			<li><b>Use attributes:</b> use attributes of the target tracks
+				when searching from the best match. The attributes are selected
+				individually for each track (see below: edit button).</li>
+			<li><b>Advanced parameters: </b>
+				<ul>
+					<li><b>Minimum similarity score of results:</b> results with a
+						lower score will be discarded</li>
+					<li><b>Minimum alignment score for perfect match:</b>
+						individual datasett alignments with a score below this threshold
+						will be discarded. We usually select a low threshold (e.g. 0.01),
+						to avoid matching regions too distant ones from the others.</li>
+					<li><b>Score for missing partial match:</b> Score assigned
+						when a partial dataset is missing. The lower the score, the more
+						penalyzed will be the result for the absence of the dataset.</li>
+					<li><b>Distance between regions based on: </b> used to decide
+						whether to take into consideration the distance between the
+						centers of the region, or the distance between the right end of
+						the first region and the start of the second region. Normalized
+						centroid distance is similar to the centroid distance except it
+						divides it by half the length of the region. It permits to avoid
+						loosing information with large regions which may overlap although
+						their centers are distant.</li>
+					<li><b>Distance mismatch computed using:</b> choose between L1
+						(Manhattan distance, uses the absolute value of the distance) and
+						L2 (Euclidian distance, uses the square of the distance).</li>
+					<li><b>Alignment score sigmoid midpoint:</b> The sigmoid is
+						the function used to calculate a similarity score between 0 (big
+						distance) and 1 (distance = 0). The midpoint sets for which
+						distance the similarity is equals to 0.5.</li>
+					<li><b>Aligment score sigmoid slope:</b></li>
+					<li><b>Use diversity:</b> when calculating the similarity; it
+						is possible to take in consideration the attributes of the genomic
+						regions (e.g. fold enrichment).</li>
+					<li><b>Is region length relevant for computing region
+							similarity:</b> If true, the matching regions should have similar
+						length to give a high score.</li>
+				</ul></li>
 		</ul>
-		
-		<a data-fancybox="gallery"  href="images/igb-enhancer-searchtab.png"><img src="images/igb-enhancer-searchtab.png"/></a>
-		
-		
+
+
 		<h3>Output</h3>
 		<ul>
-		<li><b>Label:</b> name given to the tab and the new track.</li>
-		<li><b>Track color:</b> color for the new track created.</li>
-		<li><b>Max results:</b> maximum number of results.</li>
+			<li><b>Label:</b> name given to the tab and the new track.</li>
+			<li><b>Track color:</b> color for the new track created.</li>
+			<li><b>Max results:</b> maximum number of results.</li>
 		</ul>
 
 		<h3>Submit</h3>
 		<ul>
-		<li><b>View pattern:</b> display a graphical representation of the pattern.</li>
-		<li><b>Submit:</b> Submit the query.</li>
+			<li><b>View pattern:</b> display a graphical representation of
+				the pattern.</li>
+			<li><b>Submit:</b> Submit the query.</li>
 		</ul>
 		
+		
+	</li>
+	<li id="edit">
+		<h2 >Edit the pattern</h2>
+		<ul>
+			<li><b>Dataset buttons: </b>Remove the dataset, Edit the dataset
+				attribute mapping (only if the option "Use attributes" is selected).</li>
+			<li><b>Dataset ID: </b>It is possible to edit the name of the
+				dataset.</li>
+			<li><b>Strand: </b>Search only the selected strand(s).</li>
+			<li><b>Dataset type: </b>Select the type for this dataset, see
+				table below.</li>
+			<li><b>Region/distance: </b>For positive datasets (perfect and
+				partial match), select the region for this dataset, this can be a
+				range or a single position (indicating the center of the region).
+				This attribute is used to search for regions which should not be
+				perfectly aligned (default: 0, i.e. perfectly aligned detasets). For
+				negative datasets, indicate the minimum distance between positive
+						matches and regions from this dataset. See table below.</li>
+			<li><b>Details:</b> ((i) Processed by the SimSearch algorithm; (ii) Pre-processed by the
+				app)
+				<table>
+					<tr>
+						<th>Type</th>
+						<th>Description</th>
+						<th>Use case</th>
+						<th>Region/Distance</th>
+					</tr>
+					<tr>
+						<td>Perfect match (i)</td>
+						<td>A matching region SHOULD be present.</td>
+						<td>H3K4me3 has to be present when looking for the promoter
+							pattern.</td>
+						<td>This attribute is used to search for regions which should not be
+						perfectly aligned (default: 0, i.e. perfectly aligned detasets). Format: a single 
+						position (center of teh region) or a range if the lenght is important</td>
+					</tr>
+					<tr>
+						<td>Partial match (i)</td>
+						<td>Regions that might be missing in the results; candidate
+							patterns whose regions remain unmatched are negatively scored.</td>
+						<td>Co-factors</td>
+						<td>See perfect match.</td>
+					</tr>
+					<tr>
+						<td>Negative match (ii)</td>
+						<td>Regions that should not appear in the solution, candidate
+							patterns enclosing those regions are removed from the solution
+							search space.</td>
+						<td>H3K27ac in enhancer pattern. TSS for distant enhancer
+							pattern. The negative track can be associated with a distance
+							(the negative regions are extended on both sides to this
+							distance, for instance 1000 bp from TSS).</td>
+						<td>Indicate the minimum distance between positive
+						matches and regions from this dataset.</td>
+					</tr>
+					<tr>
+						<td>Valid area (ii)</td>
+						<td>This is the opposite of negative match: all regions out
+							of the valid area are removed.</td>
+						<td>TSS in the promoter pattern. TADs.</td>
+						<td>Distance allowed from the borders of the regions of this dataset.
+						For instance allow a distance of 1000bp from the TSS.</td>
+					</tr>
+					<tr>
+						<td>Loops (ii)</td>
+						<td>Interacting regions. Each region is associated to a
+							second region. All regions from other dataset that overlap are
+							copied to the interacting region.</td>
+						<td>DNA contact map inferred from Hi-C experiments: the loops
+							bring together physically a distal enhancer with its associated
+							TSS.</td>
+						<td>Distance allowed from the borders of the regions of this dataset.
+						For instance regions within a distance of 1000bp of a contact region will be transfer 
+						to the region attached.</td>
+					</tr>
+				</table> 
+				
+				<div>						
+				Loops are provided as a bed file, where each row contains two blocks that refer to two contact regions. e.g. 
+				<pre  class="prettyprint">14 24800000 24910000 . 1000 . 24800000 24910000 255,0,0 2 10000,10000 0,100000</pre>
+				</div>
+				
+				</li>
+		</ul>
+
+
+
+
+
 		<h2>Result panel</h2>
 		<h3>Pattern summary</h3>
-		<p>This panel shows a summary of each dataset selected and its type.
-		A color is associated randomly to each dataset, the same color will be used in the result table. 
-		</p>
-		
-		</li><li><h2>Result table</h2>
+		<p>This panel shows a summary of each dataset selected and its
+			type. A color is associated randomly to each dataset, the same color
+			will be used in the result table.</p>
+
+	</li>
+	<li id="result"><h2><a id="result">Result table</a></h2>
 		<p></p>
 		
 		
@@ -148,7 +258,8 @@ to use, and teh <b>Result panel</b>, form which it is possible to browse and ana
 		</li>
 		</ul>
 
-		</li><li><h2>Annotation of the results:</h2>
+	</li>
+	<li id="annotations"><h2>Annotation of the results:</h2>
 		<p>In order to to facilitate the analyses of the results, it is possible to annotate them automatically with different sets of information:</p>
 		<table>
 		<tr><th>Type</th><th>Description</th></tr>
