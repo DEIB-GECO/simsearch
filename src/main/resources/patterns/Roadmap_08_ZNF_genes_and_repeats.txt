@@ -1,0 +1,4 @@
+NEGATIVE H3K4me1
+PERFECT H3K36me3	chr1	0	0	.	JaccardIndex "1.0";
+PERFECT H3K9me3	chr1	0	0	.	JaccardIndex "1.0";
+NEGATIVE H3K27me3

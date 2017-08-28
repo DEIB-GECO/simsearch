@@ -1,0 +1,8 @@
+PERFECT	H3K4me1	chr1	0	0	*	JaccardIndex "1.0";
+PERFECT	H3K27ac	chr1	0	0	*	JaccardIndex "1.0";
+PARTIAL	DHS	chr1	0	0	*	JaccardIndex "1.0";
+PARTIAL	P300	chr1	0	0	*	JaccardIndex "1.0";
+PARTIAL	CTCF	chr1	0	0	*	JaccardIndex "1.0";
+PARTIAL	PolR2A	chr1	0	0	*	JaccardIndex "1.0";
+NEGATIVE	H3K4me3
+NEGATIVE	TSS

@@ -1,0 +1,5 @@
+USE_EARLY_ABANDONING = true;
+USE_SIGMOID = true;
+USE_DIVERSITY = true;
+USE_WINDOW = true;
+DEBUG = false;
