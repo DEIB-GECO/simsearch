@@ -1,10 +1,10 @@
 title: SimSearch
 description: An IGB plugin to identify and compare occurrences of (epi)genomics feature patterns in multiple genome browser tracks.
 show_downloads: false
-#google_analytics: [Your Google Analytics tracking ID]
+google_analytics: UA-55459434-6
 paginate: 10
 paginate_path: "blog/page:num"
-
+baseurl: /simsearch
 
 plugins:
   - jekyll-feed
