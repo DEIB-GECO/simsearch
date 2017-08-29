@@ -14,7 +14,7 @@ title: Home
 <div class="newsfeed">
 <b>News:</b><br/>
 {% for post in site.posts %}	
-   <div style="margin-bottom: 15px; margin-top:15px"><b>{{ post.date | date: "%B %e, %Y" }}</b><br/><a href="{{ post.url }}">{{ post.description }}</a></div>			
+   <div style="margin-bottom: 15px; margin-top:15px"><b>{{ post.date | date: "%B %e, %Y" }}</b><br/><a href="{{ site.baseurl }}/{{ post.url }}">{{ post.description }}</a></div>			
 {% endfor %}	
 </div>
 
