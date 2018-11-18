@@ -64,6 +64,7 @@ public class AnnotationsWorker extends SwingWorker<ArrayList<String>, String> {
 		this.sourceButton = sourceButton;
 		genesFileName = resultsDirectory + File.separator + label.toLowerCase() + "-genes.txt";
 		annotsFileName = resultsDirectory + File.separator + label.toLowerCase() + "-annotations.txt";
+		logger.severe("Result dir: " + resultsDirectory);
 	}
 
 	@Override

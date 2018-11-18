@@ -90,7 +90,7 @@ public class TrackAnnotationsWorker extends SwingWorker<ArrayList<String>, Strin
 
 				annotator.process(track, results);
 
-				String[] columnNames = { "Name", "p-value", "num. regions", "num annotations" };
+				String[] columnNames = { "Name", "p-value", "matching regions", "annotations covered", "all annotations" };
 
 				logger.info("Write local resource: " + annotsFile);
 				Writer annotationsWriter = new BufferedWriter(
@@ -105,6 +105,7 @@ public class TrackAnnotationsWorker extends SwingWorker<ArrayList<String>, Strin
 					double probability = annotator.getProbability(annotation);
 
 					annotationsWriter.write(annotation + "\t" + format.format(probability) + "\t"
+							+ annotator.getNumberOfMatchings(annotation) + "\t"
 							+ annotator.getNumberOfAnnotationsMapped(annotation) + "\t"
 							+ annotator.getNumberOfAnnotations(annotation) + System.getProperty("line.separator"));
 				}
