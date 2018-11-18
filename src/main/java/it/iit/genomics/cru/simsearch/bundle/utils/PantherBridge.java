@@ -25,11 +25,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 
+import com.google.common.collect.ArrayListMultimap;
+
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.MultipartPostMethod;
 import org.apache.commons.httpclient.methods.multipart.FilePart;
-
-import com.google.common.collect.ArrayListMultimap;
 
 /**
  * Use panther webservice to get GO enrichment of a list of genes.
@@ -56,12 +56,11 @@ public class PantherBridge {
 
 				HttpClient client = new HttpClient();
 				MultipartPostMethod method = new MultipartPostMethod(
-						"http://pantherdb.org/webservices/garuda/enrichment.jsp?");
+						"http://pantherdb.org/webservices/garuda/tools/enrichment/VER_2/enrichment.jsp?");
 
 				// Define name-value pairs to set into the QueryString
 				method.addParameter("organism", organism);
 				method.addParameter("type", "enrichment");
-
 				method.addParameter("enrichmentType", enrichmentType); // "function",
 																		// "process",
 																		// "cellular_location",
@@ -86,7 +85,7 @@ public class PantherBridge {
 							// header
 							continue;
 						}
-
+// if (row.length > 1) {
 						String name = row[1];
 
 						String gene = row[2];
@@ -100,6 +99,9 @@ public class PantherBridge {
 							}
 							genes.put(name, gene);
 						}
+					// } else {
+					// 	System.out.println("oups: " + row[0]);
+					// }
 					}
 				}
 
