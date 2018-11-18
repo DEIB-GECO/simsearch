@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.lorainelab.igb</groupId>
 		<artifactId>igb-project</artifactId>
-		<version>9.0.0</version>
+		<version>9.0.1</version>
 	</parent>
 
 	<artifactId>simsearch-bundle</artifactId>
@@ -216,6 +216,25 @@
 										<ignore></ignore>
 									</action>
 								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-install-plugin
+										</artifactId>
+										<versionRange>
+											[3.0.0-M1,)
+										</versionRange>
+										<goals>
+											<goal>install-file</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
@@ -223,6 +242,7 @@
 				<plugin>
 					<groupId>com.lorainelab</groupId>
 					<artifactId>bundle-markdown-encoder</artifactId>
+<version>1.0.0</version>
 					<executions>
 						<execution>
 							<goals>
