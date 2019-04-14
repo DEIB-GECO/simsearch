@@ -10,14 +10,14 @@ overview: true
 
 		<h2>Distal enhancer:</h2>
 		
-		<p>In this example, we will look for distal enhancers (enhancers distant from the TSS), based on a pattern 
+		<p>In this example, we will look for distal enhancers (enhancers distant from a TSS), based on a pattern 
 		inferred from the results of Segway. We have already installed IGB, the SimSearch plugin and the SimSearch 
-		Quicklod server (see the installation page if you haven't yet).</p>
+		Quicklod server (see the installation page if you  have not done it yet).</p>
 
 <ol>		
 	<li><h3>Select the right genome</h3>
 		<a data-fancybox="gallery"  href="images/ex1-genome.PNG"><img src="images/ex1-genome.PNG"/></a>
- 		<p>The data we will use has been aligned on the human genome build hg19, also called NCBI17, or Feb 2009. We select 
+ 		<p>The data we will use has been aligned on the human genome build hg19, also called NCBI37, or Feb 2009. We select 
  		the species Homo sapiens and the genome version H_sapiens_Feb_2019 in the right panel of IGB.</p>
 
 		</li><li><h3>Load tracks</h3>
@@ -40,7 +40,7 @@ overview: true
 		<img src="images/ex1-rm-tss-edit.PNG"/>
  		<p>We can edit this dataset: first we specify that we want it to be a negative dataset (we don't want the results
  		to contain a TSS), second we change the distance to 20000, to ensure that the results will be distant at least
- 		20000 bases from the TSS.</p>
+ 		20000 bases from a TSS.</p>
  
  
 		</li><li><h3>Browsing the results</h3>
@@ -58,7 +58,7 @@ overview: true
 		<a data-fancybox="gallery"  href="images/ex1-chmmannots.PNG"><img src="images/ex1-chmmannots.PNG"/></a>
  		<p>We choose to compare our results to those of the original ChromHMM annotations. We load the results from ChromHMM 
  		from the SimSearch Quickload server, in the annotation section of the K562 section. From the result panel, we select 
- 		this track and press the "annotations from track" button.</p>
+ 		this track and press the "Track annotation" button.</p>
  		<img src="images/ex1-chromhmm-annotations.PNG"/>
  		<p>The result table shows, as expected, an enrichment for enhancer regions.</p> 		
 		<a data-fancybox="gallery"  href="images/ex1-enhancer-vs-chromhmm-browse.PNG"><img src="images/ex1-enhancer-vs-chromhmm-browse.PNG"/></a>
