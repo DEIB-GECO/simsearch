@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 import it.unibo.disi.simsearch.core.model.Region;
 
 /**
@@ -106,17 +107,29 @@ public class LoopsManager {
 		
 		int i = 0;
 		
+if (r.getLeft() > r.getRight()) {
+	System.out.println("ERROR: x > y");
+}
+
 		for (Loop cr: regions.get(r.getChromosome())) {
 			if (r.getCentroid() >= cr.x1 && r.getCentroid() <= cr.y1) {
-				int distance = cr.x2 - cr.x1;
+				
+				int centroidTox1 = r.getCentroid() - cr.x1;
+				int newY = cr.y2 - centroidTox1 + r.getLength() /2;
+				int newX = newY - r.getLength(); 
+
 				i++;
-				Region tr = new Region(r.getChromosome(), r.getLeft() + distance, r.getRight() + distance, r.getStrand(), r.getId() + "-c" + i, r.getLeft(), r.getRight());
+				Region tr = new Region(r.getChromosome(), newX, newY, r.getStrand(), r.getId() + "-c" + i, r.getLeft(), r.getRight());
 				transferredRegions.add(tr);
 			} 
 			else if (r.getCentroid() >= cr.x2 && r.getCentroid() <= cr.y2) {
-				int distance = cr.x2 - cr.x1;
+				int centroidTox2 = r.getCentroid() - cr.x2;
+				int newY = cr.y1 - centroidTox2 + r.getLength() /2;
+				int newX = newY - r.getLength(); 
+			
+				// int distance = cr.x2 - cr.x1;
 				i++;
-				Region tr = new Region(r.getChromosome(), r.getLeft() - distance, r.getRight() - distance, r.getStrand(), r.getId() + "-c" + i, r.getLeft(), r.getRight());
+				Region tr = new Region(r.getChromosome(), newX, newY, r.getStrand(), r.getId() + "-c" + i, r.getLeft(), r.getRight());
 				transferredRegions.add(tr);
 			} 
 		}
