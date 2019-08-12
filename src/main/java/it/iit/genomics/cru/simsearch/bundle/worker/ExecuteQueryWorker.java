@@ -23,6 +23,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -61,6 +63,7 @@ import it.iit.genomics.cru.simsearch.bundle.view.MainPanel;
 import it.iit.genomics.cru.simsearch.bundle.view.pattern.TargetDatasetsSelectionPanel;
 import it.iit.genomics.cru.simsearch.bundle.view.results.ResultTab;
 import it.unibo.disi.simsearch.core.business.TopKSimilaritySearch;
+import it.unibo.disi.simsearch.core.business.regionComparator.RegionsComparatorCentroidAttribute;
 import it.unibo.disi.simsearch.core.model.Dataset;
 import it.unibo.disi.simsearch.core.model.InputData;
 import it.unibo.disi.simsearch.core.model.Pattern;
@@ -522,6 +525,7 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																	}
 																}
 
+
 																regions.addAll(splitRegions);
 
 																// Only transfer regions from positive dataset
@@ -536,21 +540,23 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																				.equals("TSS (RefGene)")) {
 
 																	// Transfer from composites
-																	ArrayList<Region> trasferedRegions = new ArrayList<>();
+																	// ArrayList<Region> trasferedRegions = new ArrayList<>();
 																	for (Region region : splitRegions) {
-
-																		addRegionLength(patternDatasetId,
-																				region.getLength());
-
 																		for (Region tr : loops
 																				.transferedRegions(region)) {
-																			trasferedRegions.add(tr);
+																			// addRegionLength(patternDatasetId,
+																			// 	tr.getLength());
+																			regions.add(tr);
 																		}
 																	}
 
-																	regions.addAll(trasferedRegions);
+																	// regions.addAll(trasferedRegions);
 																}
 
+																
+
+
+																
 															}
 														});
 											} catch (Exception ex) {
@@ -565,6 +571,9 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 
 			}
 
+			// Comparator<Region> comp = new RegionsComparatorCentroidAttribute();
+			// Collections.sort(regions, comp);
+			// Collections.sort(regions);
 			publish(regions.size() + " regions.");
 
 			if (regions.isEmpty()) {

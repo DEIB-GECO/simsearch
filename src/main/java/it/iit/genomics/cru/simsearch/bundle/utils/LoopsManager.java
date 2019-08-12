@@ -19,9 +19,13 @@ package it.iit.genomics.cru.simsearch.bundle.utils;
  * @author Arnaud Ceol
  */
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
+import it.unibo.disi.simsearch.core.business.regionComparator.RegionsComparatorCentroidAttribute;
 import it.unibo.disi.simsearch.core.model.Region;
 
 /**
@@ -45,6 +49,9 @@ public class LoopsManager {
 	public int getNumRegions() {
 		return numRegions;
 	}
+
+
+
 
 	public void addLoop(String chromosome, int left1, int right1, int left2, int right2) {
 		Loop region = new Loop(left1, right1, left2, right2);
@@ -107,22 +114,101 @@ public class LoopsManager {
 		int i = 0;
 		
 		for (Loop cr: regions.get(r.getChromosome())) {
+
+			int sourceLoopX = 0;
+			int sourceLoopY = 0;
+			int sourceCentroid = 0;
+
+			int targetLoopX = 0;
+			int targetLoopY = 0;
+			int targetCentroid = 0;
+
 			if (r.getCentroid() >= cr.x1 && r.getCentroid() <= cr.y1) {
-				int distance = cr.x2 - cr.x1;
-				i++;
-				Region tr = new Region(r.getChromosome(), r.getLeft() + distance, r.getRight() + distance, r.getStrand(), r.getId() + "-c" + i, r.getLeft(), r.getRight());
-				transferredRegions.add(tr);
+				 sourceLoopX = cr.x1;
+			 sourceLoopY = cr.y1;
+
+			 targetLoopX = cr.x2;
+			 targetLoopY = cr.y2;
 			} 
 			else if (r.getCentroid() >= cr.x2 && r.getCentroid() <= cr.y2) {
-				int distance = cr.x2 - cr.x1;
-				i++;
-				Region tr = new Region(r.getChromosome(), r.getLeft() - distance, r.getRight() - distance, r.getStrand(), r.getId() + "-c" + i, r.getLeft(), r.getRight());
-				transferredRegions.add(tr);
-			} 
+				sourceLoopX = cr.x2;
+				sourceLoopY = cr.y2;
+   
+				targetLoopX = cr.x1;
+				targetLoopY = cr.y1;
+			} else {
+				continue;
+			}
+
+			sourceCentroid = sourceLoopY - (sourceLoopY - sourceLoopX) /2;	
+			targetCentroid = targetLoopY - (targetLoopY - targetLoopX) /2;
+
+			// System.out.println(sourceLoopX);
+			// System.out.println(sourceLoopY);
+			// System.out.println(sourceCentroid);
+			// System.out.println(targetLoopX);
+			// System.out.println(targetLoopY);
+			// System.out.println(targetCentroid);
+
+			// Distance between the centers of the two loops, 
+			int vector = targetCentroid - sourceCentroid;
+
+			// Distance between the centroid of the region 
+			// and the one of the DNA contact region: when 
+			// transfering the region, we should "mirror" it,
+			// i.e. move it to the other side of the center.
+			int relativeDistance = r.getCentroid() - sourceCentroid;
+
+			int transferLength = vector - 2* relativeDistance;
+
+			// System.out.println(vector);
+			// System.out.println(relativeDistance);
+			// System.out.println(transferLength);
+			// int centroidTox1 = r.getCentroid() - cr.x1;
+			// int newY = cr.y2 - centroidTox1 + r.getLength() /2;
+			// int newX = newY - r.getLength(); 
+
+			i++;
+			Region tr = new Region(r.getChromosome(), r.getLeft() + transferLength, r.getRight() + transferLength, r.getStrand(), r.getId() + "-c" + i, r.getLeft(), r.getRight());
+			transferredRegions.add(tr);
+
 		}
 		
 		return transferredRegions;
 	}
 	
-	
+	public static void main(String[] args) {
+		LoopsManager l = new LoopsManager();
+
+		l.addLoop("chr1", 3, 5, 9, 11);
+
+		ArrayList<Region> regions = new ArrayList<>();
+		regions.add(new Region("chr1", 8, 10, ".", "1"));
+		regions.add(new Region("chr1", 4, 6, ".", "1"));
+
+		ArrayList<Region> transferred = new ArrayList<>();
+
+		for (Region r :  regions) {
+			transferred.addAll(l.transferedRegions(r));
+		}	
+
+		regions.addAll(transferred);
+
+		for (Region r :  regions) {	
+			System.out.println("Before sort: " + r.toString());
+		}
+		// Collections.sort(regions);
+
+		for (Region r :  regions) {	
+			System.out.println("After sort: " + r.toString());
+		}
+		Comparator<Region> comp = new RegionsComparatorCentroidAttribute();
+			Collections.sort(regions, comp);
+
+			
+		for (Region r :  regions) {	
+			System.out.println("After sort 2: " + r.toString());
+		}
+	}
+
 }
