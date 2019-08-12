@@ -78,12 +78,12 @@ import com.affymetrix.genometry.symmetry.SymWithProps;
 import com.affymetrix.genometry.symmetry.impl.SeqSymmetry;
 import com.google.common.io.Files;
 
+import it.iit.genomics.cru.simsearch.bundle.model.SimSearchParameters;
 import it.iit.genomics.cru.simsearch.bundle.model.SourcePattern;
 import it.iit.genomics.cru.simsearch.bundle.utils.ServiceManager;
 import it.iit.genomics.cru.simsearch.bundle.worker.ExecuteQueryWorker;
 import it.unibo.disi.simsearch.core.business.ResultImagesGenerator;
 import it.unibo.disi.simsearch.core.model.Dataset;
-import it.unibo.disi.simsearch.core.model.Parameters;
 import it.unibo.disi.simsearch.core.model.Pattern;
 import it.unibo.disi.simsearch.core.model.QueryRegion;
 import it.unibo.disi.simsearch.core.model.Region;
@@ -432,7 +432,7 @@ public class TargetDatasetsSelectionPanel extends JPanel
 			}
 			File resultsDirectory = Files.createTempDir();
 			logger.info("Create directory for results: " + resultsDirectory.getPath());
-			Parameters parameters = ParametersPanel.getInstance().getParameters(SourcePattern.getInstance());
+			SimSearchParameters parameters = ParametersPanel.getInstance().getParameters(SourcePattern.getInstance());
 
 			parameters.setLabel(labelEditor.getText());
 			parameters.setTrackColor(trackColour.getBackground());

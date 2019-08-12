@@ -29,12 +29,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import it.iit.genomics.cru.simsearch.bundle.model.SimSearchParameters;
 import it.unibo.disi.simsearch.core.business.distances.RegionsDistanceCalculatorCentroidAttribute;
 import it.unibo.disi.simsearch.core.business.distances.RegionsDistanceCalculatorCentroidAttributeNormalized;
 import it.unibo.disi.simsearch.core.business.distances.RegionsDistanceCalculatorRightLeftAttributes;
 import it.unibo.disi.simsearch.core.business.regionComparator.RegionsComparatorCentroidAttribute;
 import it.unibo.disi.simsearch.core.business.regionComparator.RegionsComparatorLeftAttribute;
-import it.unibo.disi.simsearch.core.model.Parameters;
+
 import it.unibo.disi.simsearch.core.model.Pattern;
 
 /**
@@ -57,6 +58,8 @@ public class ParametersPanel extends JPanel implements ActionListener {
 
 	private JTextField midpoint;
 	private JTextField slope;
+
+	private JTextField maxPeakLength;
 
 	// private JCheckBox isRegionSimilarityRelevant;
 
@@ -148,16 +151,17 @@ public class ParametersPanel extends JPanel implements ActionListener {
 		c.gridwidth = GridBagConstraints.REMAINDER;
 		add(distanceMismatchStrategyComboBox, c);
 
-		JMultilineLabel param_midpoint_label = new JMultilineLabel("Alignment score sigmoid mid-point"); // (i.e.,
-																											// the
-																											// distance
-																											// mismatch
-																											// yielding
-																											// a
-																											// 0.5
-																											// alignment
-																											// score)
-																											// ");
+		JMultilineLabel param_midpoint_label = new JMultilineLabel("Alignment score sigmoid mid-point");
+		// (i.e.,
+		// the
+		// distance
+		// mismatch
+		// yielding
+		// a
+		// 0.5
+		// alignment
+		// score)
+		// ");
 		midpoint = new JTextField();
 		midpoint.setText("1000");
 		midpoint.setColumns(10);
@@ -234,6 +238,22 @@ public class ParametersPanel extends JPanel implements ActionListener {
 		regionLengthExpectedMax.setEnabled(false);
 
 		c.gridheight = GridBagConstraints.REMAINDER;
+
+
+		
+		JMultilineLabel param_maxpeakLength_label = new JMultilineLabel("Max peak length (regions larger will be splitted)");// (i.e.,
+	
+		maxPeakLength = new JTextField();
+		maxPeakLength.setText("0");
+		maxPeakLength.setColumns(10);
+		c.gridwidth = GridBagConstraints.RELATIVE;
+		c.weightx = 2.0;
+		add(param_maxpeakLength_label, c);
+		c.gridwidth = GridBagConstraints.REMAINDER;
+		add(maxPeakLength, c);
+
+		c.gridheight = GridBagConstraints.REMAINDER;
+
 		add(new JPanel(), c);
 
 	}
@@ -301,32 +321,19 @@ public class ParametersPanel extends JPanel implements ActionListener {
 
 	}
 
-	public void setIsSimilarityRelevant(boolean isSimilarityRelevant) {		
+	public void setIsSimilarityRelevant(boolean isSimilarityRelevant) {
 		this.isRegionSimilarityRelevant = isSimilarityRelevant;
 		isRegionLengthRelevant.setEnabled(isSimilarityRelevant);
 		regionLengthWeightLabel.setEnabled(isSimilarityRelevant);
 		regionLengthExpectedMaxLabel.setEnabled(isSimilarityRelevant);
-				
+
 		regionLengthWeight.setEnabled(isSimilarityRelevant);
 		regionLengthExpectedMax.setEnabled(isSimilarityRelevant);
 	}
 
-	public Parameters getParameters(Pattern pattern) {
-		Parameters parameters = new Parameters();
-		// parameters.setTrackColor( trackColour.getBackground());
-
-		// try {
-		// if (Integer.parseInt(k.getText()) <= 0) {
-		// throw new NumberFormatException();
-		// }
-		// parameters.setK(Integer.parseInt(k.getText()));
-		// } catch (NumberFormatException exc) {
-		// JOptionPane.showMessageDialog(this, "Please set a valid value for the
-		// parameter k. It must be a positive integer value.");
-		// k.requestFocus();
-		// return null;
-		// }
-		//
+	public SimSearchParameters getParameters(Pattern pattern) {
+		SimSearchParameters parameters = new SimSearchParameters();
+		
 		try {
 			double param_threshold = Double.parseDouble(kScoreThreshold.getText());
 			if (param_threshold < 0 || param_threshold > 1) {
@@ -377,8 +384,8 @@ public class ParametersPanel extends JPanel implements ActionListener {
 			// parameters.setPartialMatchScores(datasetId,
 			// pattern.getPartialMatchScore(datasetId));
 			/**
-			 * TODO: we use the default one, latter we will restore the
-			 * possibility to have one per dataset.
+			 * TODO: we use the default one, latter we will restore the possibility to have
+			 * one per dataset.
 			 */
 			parameters.setPartialMatchScores(datasetId, parameters.getPartialMatchdefaultScore());
 		}
@@ -393,7 +400,7 @@ public class ParametersPanel extends JPanel implements ActionListener {
 																		// {
 			parameters.setNegativeMatchLegalDistances(datasetId, pattern.getNegativeMatchDistance(datasetId));
 		}
-		
+
 		for (String datasetId : pattern.getValidAreaDatasetIds()) { // int
 			// negativeMatchDatasetIndex
 			// = 0;
@@ -404,8 +411,7 @@ public class ParametersPanel extends JPanel implements ActionListener {
 			// {
 			parameters.setValidAreaAllowedDistancesDistances(datasetId, pattern.getValidAreaDistance(datasetId));
 		}
-		
-		
+
 		if (distanceMismatchStrategyComboBox.getSelectedItem().toString().compareTo("L1") == 0) {
 			parameters.setAlignmentScoreBasedOnL1();
 		}
@@ -490,7 +496,17 @@ public class ParametersPanel extends JPanel implements ActionListener {
 				parameters.setExpectedRegionLengthMaxValue(param_expected_region_length_max_value);
 			}
 		}
-		// }
+
+
+		try {
+			parameters.setMaxPeakLength(Integer.parseInt(maxPeakLength.getText()));
+		} catch (NumberFormatException exc) {
+			JOptionPane.showMessageDialog(this,
+					"Please set a valid value for the parameter max peak length. It must be a positive integer value.");
+			slope.requestFocus();
+			return null;
+		}
+
 		return parameters;
 	}
 

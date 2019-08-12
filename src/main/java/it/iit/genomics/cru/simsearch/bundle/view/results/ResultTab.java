@@ -78,12 +78,12 @@ import com.google.common.io.Files;
 
 import it.iit.genomics.cru.simsearch.bundle.model.ColorPalette;
 import it.iit.genomics.cru.simsearch.bundle.model.ResultStatistics;
+import it.iit.genomics.cru.simsearch.bundle.model.SimSearchParameters;
 import it.iit.genomics.cru.simsearch.bundle.model.SourcePattern;
 import it.iit.genomics.cru.simsearch.bundle.utils.ServiceManager;
 import it.iit.genomics.cru.simsearch.bundle.worker.AnnotationsWorker;
 import it.iit.genomics.cru.simsearch.bundle.worker.TrackAnnotationsWorker;
 import it.unibo.disi.simsearch.core.business.ResultImagesGenerator;
-import it.unibo.disi.simsearch.core.model.Parameters;
 import it.unibo.disi.simsearch.core.model.Pattern;
 import it.unibo.disi.simsearch.core.model.Region;
 import it.unibo.disi.simsearch.core.model.TopkResult;
@@ -223,7 +223,7 @@ public final class ResultTab extends JPanel {
 		add(headerPanel, BorderLayout.NORTH);
 	}
 
-	public void done(List<TopkResult> results, String resultsDirectory, Parameters parameters) {
+	public void done(List<TopkResult> results, String resultsDirectory, SimSearchParameters parameters) {
 
 		String bedFileName = resultsDirectory + File.separator + label.toLowerCase() + ".bed";
 		String resultsFileName = resultsDirectory + File.separator + label.toLowerCase() + "-results.txt";

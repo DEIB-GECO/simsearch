@@ -54,6 +54,7 @@ import com.affymetrix.genometry.symmetry.SymWithProps;
 import com.affymetrix.genometry.symmetry.impl.SeqSymmetry;
 import com.affymetrix.genometry.util.ServerUtils;
 
+import it.iit.genomics.cru.simsearch.bundle.model.SimSearchParameters;
 import it.iit.genomics.cru.simsearch.bundle.utils.EditDistance;
 import it.iit.genomics.cru.simsearch.bundle.utils.LoopsManager;
 import it.iit.genomics.cru.simsearch.bundle.view.MainPanel;
@@ -62,7 +63,6 @@ import it.iit.genomics.cru.simsearch.bundle.view.results.ResultTab;
 import it.unibo.disi.simsearch.core.business.TopKSimilaritySearch;
 import it.unibo.disi.simsearch.core.model.Dataset;
 import it.unibo.disi.simsearch.core.model.InputData;
-import it.unibo.disi.simsearch.core.model.Parameters;
 import it.unibo.disi.simsearch.core.model.Pattern;
 import it.unibo.disi.simsearch.core.model.Region;
 import it.unibo.disi.simsearch.core.model.TopkResult;
@@ -76,13 +76,13 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 	
 	private Pattern pattern;
 	private HashMap<String, String> datasetToTrack;
-	private Parameters parameters;
+	private SimSearchParameters parameters;
 	private String resultsDirectory;
 	// private HashMap<String, String> inputDatasetsSources;
 	private ArrayList<String> noStrandDatasets;
 
 	public ExecuteQueryWorker(Pattern pattern, HashMap<String, String> datasetToTrack,
-			ArrayList<String> noStrandDatasets, Parameters parameters, String resultsDirectory) {
+			ArrayList<String> noStrandDatasets, SimSearchParameters parameters, String resultsDirectory) {
 		this.pattern = pattern;
 		this.datasetToTrack = datasetToTrack;
 		this.parameters = parameters;
@@ -290,10 +290,16 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 
 											int distanceAllowed = pattern.getLoopDistance(patternDatasetId);
 
-											logger.info("Distance allowed for loops :  " + distanceAllowed);
+											// logger.info("Distance allowed for loops :  " + distanceAllowed);
 
-											if (symLoader.getChromosome(bioSeq) != null
+											String chrPattern = "chr[0-9]+";
+
+											// Create a Pattern object
+											java.util.regex.Pattern r = java.util.regex.Pattern.compile(chrPattern);
+											java.util.regex.Matcher matcher = r.matcher(bioSeq.getId());
+											if (matcher.matches() && symLoader.getChromosome(bioSeq) != null
 													&& symLoader.getChromosome(bioSeq).size() > 0) {
+														logger.info("Get Loop data: " + bioSeq.getId());
 												symLoader.getChromosome(bioSeq).stream()
 														.filter(seqSym -> seqSym.getSpanCount() > 0).forEach(seqSym -> {
 															SeqSpan span = seqSym.getSpan(0);
@@ -322,6 +328,7 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 
 															if (seqSym.getChildCount() >= 2) {
 																loops.addLoop(span.getBioSeq().getId(), x1, y1, x2, y2);
+																// logger.info("loop: " + span.getBioSeq().getId() + " : " + x1 + "-" + y1 + " -> " + x2 + "-" + y2);
 															}
 
 														});
@@ -329,7 +336,9 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 											}
 
 										} catch (Exception ex) {
-
+											logger.severe("BioSeq: " + bioSeq.getId());
+											logger.severe("Exception while getting loop data");ex.printStackTrace();
+											logger.severe(ex.getMessage());
 										}
 									});
 								});
@@ -435,7 +444,9 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																 */
 																ArrayList<Region> splitRegions = new ArrayList<>();
 
-																if (span.getLength() <= parameters.getMaxPeakLength()) {
+
+																// If max peak length is defined and the region is larger, split it.
+																if (parameters.getMaxPeakLength() <= 0 || span.getLength() <= parameters.getMaxPeakLength()) {
 
 																	Region regionS = new Region(
 																			span.getBioSeq().getId(), span.getMin(),
@@ -446,6 +457,7 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																			seqSym.getID());
 
 																	splitRegions.add(regionS);
+																	
 																} else {
 																	int min = span.getMin();
 																	int length = parameters.getMaxPeakLength();
@@ -744,5 +756,8 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 			workingIcon.setText("...");
 		}
 	}
+		public static void main(String[] args) {
+			System.out.println("Hello universe");
+		}
 
 }
