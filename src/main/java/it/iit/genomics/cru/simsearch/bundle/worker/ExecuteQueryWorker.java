@@ -71,9 +71,9 @@ import it.unibo.disi.simsearch.core.model.TopkResult;
  * @author Arnaud Ceol
  */
 public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
-	
-	private static Logger logger = Logger.getLogger(ExecuteQueryWorker.class.getName());	
-	
+
+	private static Logger logger = Logger.getLogger(ExecuteQueryWorker.class.getName());
+
 	private Pattern pattern;
 	private HashMap<String, String> datasetToTrack;
 	private SimSearchParameters parameters;
@@ -185,12 +185,9 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 	 * Adds a component to a JTabbedPane with a little “close tab" button on the
 	 * right side of the tab.
 	 *
-	 * @param tabbedPane
-	 *            the JTabbedPane
-	 * @param c
-	 *            any JComponent
-	 * @param title
-	 *            the title for the tab
+	 * @param tabbedPane the JTabbedPane
+	 * @param c          any JComponent
+	 * @param title      the title for the tab
 	 */
 	public static void addClosableTab(final JTabbedPane tabbedPane, final JComponent c, final String title) {
 		// Add the tab to the pane without any label
@@ -290,8 +287,6 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 
 											int distanceAllowed = pattern.getLoopDistance(patternDatasetId);
 
-											// logger.info("Distance allowed for loops :  " + distanceAllowed);
-
 											String chrPattern = "chr[0-9]+";
 
 											// Create a Pattern object
@@ -299,7 +294,7 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 											java.util.regex.Matcher matcher = r.matcher(bioSeq.getId());
 											if (matcher.matches() && symLoader.getChromosome(bioSeq) != null
 													&& symLoader.getChromosome(bioSeq).size() > 0) {
-														logger.info("Get Loop data: " + bioSeq.getId());
+												logger.info("Get Loop data: " + bioSeq.getId());
 												symLoader.getChromosome(bioSeq).stream()
 														.filter(seqSym -> seqSym.getSpanCount() > 0).forEach(seqSym -> {
 															SeqSpan span = seqSym.getSpan(0);
@@ -328,7 +323,6 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 
 															if (seqSym.getChildCount() >= 2) {
 																loops.addLoop(span.getBioSeq().getId(), x1, y1, x2, y2);
-																// logger.info("loop: " + span.getBioSeq().getId() + " : " + x1 + "-" + y1 + " -> " + x2 + "-" + y2);
 															}
 
 														});
@@ -336,8 +330,7 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 											}
 
 										} catch (Exception ex) {
-											logger.severe("BioSeq: " + bioSeq.getId());
-											logger.severe("Exception while getting loop data");ex.printStackTrace();
+											logger.severe("Exception while getting loop data: " + bioSeq.getId());
 											logger.severe(ex.getMessage());
 										}
 									});
@@ -370,8 +363,7 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 							selectedGenomeVersion.getSeqList().stream().forEach(bioSeq -> {
 								if (false == bioSeq.getId().contains("_") && false == "genome".equals(bioSeq.getId())) {
 
-									logger
-											.info("Search motif " + patternDatasetId + " in " + bioSeq.getId());
+									logger.info("Search motif " + patternDatasetId + " in " + bioSeq.getId());
 									try {
 										Collection<Region> regionsChr = searchForRegexInResidues(true, pattern, bioSeq);
 										logger.info("num regions: " + regionsChr.size());
@@ -430,9 +422,8 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																	}
 
 																} catch (Exception e) {
-																	logger
-																			.info("No working: get strand for "
-																					+ patternDatasetId);
+																	logger.info("No working: get strand for "
+																			+ patternDatasetId);
 																	e.printStackTrace();
 																}
 															}
@@ -444,9 +435,10 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																 */
 																ArrayList<Region> splitRegions = new ArrayList<>();
 
-
-																// If max peak length is defined and the region is larger, split it.
-																if (parameters.getMaxPeakLength() <= 0 || span.getLength() <= parameters.getMaxPeakLength()) {
+																// If max peak length is defined and the region is
+																// larger, split it.
+																if (parameters.getMaxPeakLength() <= 0 || span
+																		.getLength() <= parameters.getMaxPeakLength()) {
 
 																	Region regionS = new Region(
 																			span.getBioSeq().getId(), span.getMin(),
@@ -457,7 +449,7 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																			seqSym.getID());
 
 																	splitRegions.add(regionS);
-																	
+
 																} else {
 																	int min = span.getMin();
 																	int length = parameters.getMaxPeakLength();
@@ -466,8 +458,7 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																					/ parameters.getMaxPeakLength());
 
 																	if (numRegions == 0) {
-																		logger.info(
-																				"Problem: region divided in 0!!!");
+																		logger.info("Problem: region divided in 0!!!");
 																	}
 
 																	for (int i = 0; i < numRegions; i++) {
@@ -504,9 +495,8 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																		Object value = symWithProps.getProperties()
 																				.get(targetAttribute);
 																		if (null == value) {
-																			logger
-																					.info("No value for attribute: "
-																							+ targetAttribute);
+																			logger.info("No value for attribute: "
+																					+ targetAttribute);
 																		} else if (String.class.isInstance(value)) {
 																			// double?
 																			try {
@@ -534,19 +524,32 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 
 																regions.addAll(splitRegions);
 
-																// Transfer from composites
-																ArrayList<Region> trasferedRegions = new ArrayList<>();
-																for (Region region : splitRegions) {
+																// Only transfer regions from positive dataset
+																// (not from negative of valied areas)
+																// do not transfer TSS.
+																/**
+																 * TODO: find a better way to skip TSS
+																 */
+																if (pattern.getPositiveMatchDatasetIds()
+																		.contains(patternDatasetId)
+																		&& false == patternDatasetId
+																				.equals("TSS (RefGene)")) {
 
-																	addRegionLength(patternDatasetId,
-																			region.getLength());
+																	// Transfer from composites
+																	ArrayList<Region> trasferedRegions = new ArrayList<>();
+																	for (Region region : splitRegions) {
 
-																	for (Region tr : loops.transferedRegions(region)) {
-																		trasferedRegions.add(tr);
+																		addRegionLength(patternDatasetId,
+																				region.getLength());
+
+																		for (Region tr : loops
+																				.transferedRegions(region)) {
+																			trasferedRegions.add(tr);
+																		}
 																	}
-																}
 
-																regions.addAll(trasferedRegions);
+																	regions.addAll(trasferedRegions);
+																}
 
 															}
 														});
@@ -683,9 +686,8 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																	}
 
 																} catch (Exception e) {
-																	logger
-																			.info("No working: get strand for "
-																					+ strandPattern);
+																	logger.info("No working: get strand for "
+																			+ strandPattern);
 																	e.printStackTrace();
 																}
 
@@ -756,8 +758,5 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 			workingIcon.setText("...");
 		}
 	}
-		public static void main(String[] args) {
-			System.out.println("Hello universe");
-		}
 
 }
