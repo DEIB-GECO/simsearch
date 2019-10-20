@@ -56,7 +56,12 @@ public class ResultStatistics {
 
 	private HashMap<String, Integer> count = new HashMap<>(); 
 	
-	
+	/**
+	 * Get all subset of the pattern, for instance for pattern a,b,c: 
+	 * returns a, b, c, ab, ac, bc, abc.
+	 * @param trackNames Labels of all datasets in this mathcing
+	 * @param length Length of the region. Used to calculate p values.
+	 */
 	public void addResult(List<String> trackNames, int length) {
 
 		/* Count each single dataset */
@@ -72,7 +77,7 @@ public class ResultStatistics {
 		BooleanCounter counter = new BooleanCounter(trackNames.size());
 
 		// init
-		counter.next();
+		// counter.next();
 
 		while (counter.hasNext()) {
 

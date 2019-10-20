@@ -20,8 +20,10 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,7 +51,7 @@ public class StatisticsGraphicalPanel extends JPanel {
 
 	Dimension dimension = new Dimension(20, 20);
 	
-	public StatisticsGraphicalPanel(Collection<String> datasetIds, Collection<String> partialMatchDatasetIds, ResultStatistics statistics) {
+	public StatisticsGraphicalPanel(Collection<String> datasetIds, ResultStatistics statistics) {
 
 		super();
 		
@@ -177,7 +179,19 @@ public class StatisticsGraphicalPanel extends JPanel {
 		String[][] results = { { "a", "b", "c" }, { "a", "b", "d" }, { "a", "b", "c", "d" }, { "a", "b", "c" },
 				{ "a", "b", "d" }, { "a", "b", "c" }, { "a", "b" }, { "a" }, };
 
+
+		ArrayList<String[]> shuffled = new ArrayList<>();
 		for (String[] result : results) {
+		shuffled.add(result);
+		}
+		Collections.shuffle(shuffled);
+		for (String[] s: shuffled) {
+			for (String s1: s) {
+			System.out.print(s1);
+			}
+			System.out.println(",");
+		}
+		for (String[] result : shuffled) {
 			statistics.addResult(Arrays.stream(result).collect(Collectors.toList()), 1);
 		}
 
@@ -185,7 +199,7 @@ public class StatisticsGraphicalPanel extends JPanel {
 
 		final JFrame frame = new JFrame("Test stats");
 
-		JPanel statsPanel = new StatisticsGraphicalPanel(null, Arrays.stream(datasetIds).collect(Collectors.toList()),
+		JPanel statsPanel = new StatisticsGraphicalPanel(Arrays.stream(datasetIds).collect(Collectors.toList()),
 				statistics);
 
 		frame.add(statsPanel);

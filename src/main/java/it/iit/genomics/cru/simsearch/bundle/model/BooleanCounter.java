@@ -77,7 +77,8 @@ public class BooleanCounter {
 		BooleanCounter counter = new BooleanCounter(5);
 
 		System.out.println(counter.toString());
-		for (int i = 0; i< 5; i++) {
+		// for (int i = 0; i< 5; i++) {
+		while (counter.hasNext()){
 			counter.next();
 			System.out.println(counter.toString());
 		}

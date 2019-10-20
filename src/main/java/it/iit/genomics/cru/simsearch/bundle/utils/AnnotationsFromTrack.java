@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import org.apache.commons.math3.distribution.HypergeometricDistribution;
 import com.affymetrix.genometry.GenometryModel;
 import com.affymetrix.genometry.SeqSpan;
 import com.affymetrix.genometry.general.DataSet;
@@ -212,7 +211,7 @@ public class AnnotationsFromTrack {
 			e.printStackTrace();
 		}
 
-		logger.info("Regions ordered");
+		logger.info("Regions ordered. Coumt annotations.");
 
 		Optional.ofNullable(GenometryModel.getInstance().getSelectedGenomeVersion())
 				.ifPresent(selectedGenomeVersion -> {
@@ -226,17 +225,9 @@ public class AnnotationsFromTrack {
 								selectedGenomeVersion.getSeqList().stream().forEach(bioSeq -> {
 
 									String chromosome = bioSeq.getId();
-									if (chromosome.startsWith("chr") && false == chromosome.contains("_")) {
-										logger.severe("chromosome: " + chromosome);
-									}
 									ArrayList<Region> regions = orderedRegions.get(chromosome);
 
 									if (regions != null) {
-
-										// Iterator<Region> regionIt = regions.iterator();
-
-										// Region currentResult = regionIt.next();
-										// SeqSpan span = null;
 
 										try {
 
@@ -297,9 +288,7 @@ public class AnnotationsFromTrack {
 								selectedGenomeVersion.getSeqList().stream().forEach(bioSeq -> {
 
 									String chromosome = bioSeq.getId();
-									if (chromosome.startsWith("chr") && false == chromosome.contains("_")) {
-										logger.severe("chromosome: " + chromosome);
-									}
+
 									ArrayList<Region> regions = orderedRegions.get(chromosome);
 
 									if (regions != null) {
@@ -320,21 +309,12 @@ public class AnnotationsFromTrack {
 												Iterator<? extends SeqSymmetry> annotationSymIterator = symmetries
 														.iterator();
 
-												// logger.info("Iterator
-												// ready");
-
 												boolean nextResult = false;
-												boolean nextAnnotation = true;
+												boolean nextAnnotation = annotationSymIterator.hasNext();
 
 												while (nextResult || nextAnnotation) {
 
 													if (nextAnnotation) {
-														// if (false == annotationSymIterator.hasNext()) {
-														// /**
-														// * Finish to read the matchings
-														// */
-														// break;
-														// }
 
 														SeqSymmetry seqSym = annotationSymIterator.next();
 
@@ -390,8 +370,15 @@ public class AnnotationsFromTrack {
 
 													if (overlap(span, currentResult)) {
 														increase(annotationsMappedCount, annotation);
-														matchingMappedByAnnotationType.put(annotation,
-																currentResult.toString());
+
+														/**
+														 * Warning: in the original model, tostring returns null. We
+														 * should create a id
+														 */
+														String resultLabel = currentResult.getChromosome() + ":"
+																+ currentResult.getLeft() + "-"
+																+ currentResult.getRight();
+														matchingMappedByAnnotationType.put(annotation, resultLabel);
 														// next annotation
 														nextAnnotation = true;
 														nextResult = false;
@@ -400,7 +387,7 @@ public class AnnotationsFromTrack {
 														nextAnnotation = false;
 													} else {
 														nextResult = false;
-														nextAnnotation = true;
+														nextAnnotation = annotationSymIterator.hasNext();
 														// nextResult =
 														// true;
 													}
@@ -414,62 +401,7 @@ public class AnnotationsFromTrack {
 											ex.printStackTrace();
 										}
 									}
-									// else {
-									// GCount annotations anyway
-									/**
-									 * Finish to read the annotations
-									 */
-									// try{
-									// if (symLoader != null && bioSeq != null) {
-									// List<? extends SeqSymmetry> symmetries = symLoader.getChromosome(bioSeq);
-									// if (chromosome.startsWith("chr") && false == chromosome.contains("_")
-									// && symmetries != null && symmetries.size() > 0) {
 
-									// Iterator<? extends SeqSymmetry> annotationSymIterator = symmetries
-									// .iterator();
-
-									// while (annotationSymIterator.hasNext()) {
-									// SeqSymmetry seqSym = annotationSymIterator.next();
-
-									// if (seqSym.getSpanCount() == 0) {
-									// continue;
-									// }
-
-									// if (false == SymWithProps.class.isInstance(seqSym)) {
-									// continue;
-									// }
-
-									// SeqSpan span = seqSym.getSpan(0);
-									// String annotation = null;
-									// if (null != ((SymWithProps) seqSym).getProperty("name")) {
-									// annotation = ((SymWithProps) seqSym).getProperty("name")
-									// .toString();
-									// } else {
-									// // find the first text annotation
-									// for (Object propertyValue : ((SymWithProps) seqSym)
-									// .getProperties().values()) {
-									// String s = propertyValue.toString();
-									// if (s.matches("[A-Za-z]")) {
-									// annotation = s;
-									// break;
-									// }
-									// }
-									// }
-
-									// if (null != annotation) {
-									// increase(annotationsCount, annotation);
-									// }
-									// }}
-									// /**
-									// * FINISHED READ ALL ANNOTATIONS
-									// */
-									// }
-									// } catch (Exception ex) {
-									// logger.severe(ex.getMessage() + ". Feature3 " + symLoader.getFeatureName()
-									// + ", " + bioSeq.getId());
-									// // ex.printStackTrace();
-									// }
-									// }
 								});
 							});
 				});

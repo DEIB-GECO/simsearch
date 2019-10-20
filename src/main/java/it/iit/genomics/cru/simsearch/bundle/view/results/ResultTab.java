@@ -339,7 +339,7 @@ public final class ResultTab extends JPanel {
 				final JFrame frame = new JFrame("summary " + label);
 
 				JPanel statsPanel = new StatisticsGraphicalPanel(pattern.getPositiveMatchDatasetIds(),
-						pattern.getPartialMatchDatasetIds(), summary);
+					 summary);
 
 				frame.add(statsPanel);
 
