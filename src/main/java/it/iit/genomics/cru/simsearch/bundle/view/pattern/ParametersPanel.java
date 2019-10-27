@@ -109,7 +109,7 @@ public class ParametersPanel extends JPanel implements ActionListener {
 		add(kScoreThreshold, c);
 
 		perfectMatchThreshold = new JTextField();
-		perfectMatchThreshold.setText("0.1");
+		perfectMatchThreshold.setText("0.5");
 		perfectMatchThreshold.setColumns(4);
 		c.gridwidth = GridBagConstraints.RELATIVE;
 		c.weightx = 2.0;
