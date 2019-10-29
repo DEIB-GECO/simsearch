@@ -9,7 +9,7 @@ The SimSearch algorithm has been developed through a collaboration between Unive
 
 The SimSearch App for IGB is developped by @arnaudceol for the Istituto Italiano di Tecnologia.
 
-For more information, documentation and example, look at the [**SimSearch project URL**](https://arnaudceol.github.io/simsearch/), or this [WIKI](https://github.com/arnaudceol/simsearch/wiki) for a quick installation guide. 
+For more information, documentation and example, look at the [**SimSearch project URL**](https://deib-geco.github.io/simsearch/), or this [WIKI](https://github.com/DEIB-GECO/simsearch/wiki) for a quick installation guide. 
 
 
 ** Quickstart: **
