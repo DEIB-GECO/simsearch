@@ -191,8 +191,11 @@ Normalized centroid distance = 9 / (6 + 4) = 0.9 ; Low distance (the regions ove
 				
 				For instance, if region 1-13 interaccts with region 24-33:
 				<pre>
-				...|--------|..........|--------|.......
-				   4        13         24       33
+								                                                4        13
+							                                                 ...|--------|.....
+						...|--------|...........|--------|.......    <-                       .
+						4        13         25       34                  .......|--------|.....
+							                                                 	34       25
 				</pre>
 				<pre  class="prettyprint" style="border: 0">chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCount blockSizes blockStarts</pre>
 				<pre  class="prettyprint" style="border: 0">14 4 33 . 1000 . 4 33 255,0,0 2 10,10 0,20</pre>
@@ -216,7 +219,9 @@ Normalized centroid distance = 9 / (6 + 4) = 0.9 ; Low distance (the regions ove
 		<h3>Pattern summary</h3>
 		<p>This panel shows a summary of each dataset selected and its
 			type. Each row in the table represents a pattern matching found. A color is associated randomly with each dataset, the same color
-			will be used in the result table.</p>
+			will be used in the result table. For instance: histon marks found more often at the same TSS:
+			<a data-fancybox="gallery"  href="images/summary-window.PNG"><img src="images/summary-window.PNG"/></a>
+		</p>
 
 	</li>
 	<li id="result"><h2><a id="result">Result table</a></h2>
