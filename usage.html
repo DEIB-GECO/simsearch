@@ -12,7 +12,6 @@ overview: true
 to use, how to <b><a href="#edit">edit</a></b> the pattern, and the <b><a href="#result">Result panel</a></b>, form which it is possible 
 to browse and analyse the results. We also list the 
 <b><a href="#annotations">annotations</a></b> available directly from this plugin.</p>
-
 <ol>
 	<li id="main"><h2>Main panel</h2>
 		<h3>Build pattern</h3> <a data-fancybox="gallery" href="images/menu.png"><img
@@ -25,13 +24,13 @@ to browse and analyse the results. We also list the
 			<li><b>Dataset type:</b> Select wether the datasets added should
 				be of type perfect matching, partial matching, negative matching or any other
 				type. This can be changed later in the pattern table.</li>
-			<li><b>Align:</b> put all regions from the pattern at the same position.</li>
+			<li><b>Align:</b> Put all regions from the pattern at the same position.</li>
 			<li><b>Motif:</b> Search for DNA motif, for instance a known
 				transcription factor motif such as the E-box. The motif should be
 				entered as a string (only nucleotide letter: A, C, G ant T). Note
 				that this will only work if the DNA sequence has already been loaded
 				in the browser. Example: search for the E-box, canonical motif = CACGTG</li>
-			<li><b>TSS:</b> add the transcription start sites as a dataset.
+			<li><b>TSS:</b> Add the transcription start sites as a dataset.
 			</li>
 			<li><b>Clear:</b> Remove all datasets from the pattern.</li>
 			<li><b>All tracks:</b> Add all tracks loaded in the browser to the pattern.
@@ -42,51 +41,53 @@ to browse and analyse the results. We also list the
 
 		<h3>Misc.</h3>
 		<ul>
-			<li><b>Load pre-defined pattern:</b> load a predefined pattern
+			<li><b>Load pre-defined pattern:</b> Load a predefined pattern
 				(chromatine states inferred from the results of ChromHMM). The plugin associates each track in the chosen predefined pattern 
 				to a track loaded in the browser based on track names. The user 
 				should verify that the mapping is
 				correct. <a data-fancybox="gallery"
 				href="images/igb-enhancer-searchtab.png"><img
 					src="images/igb-enhancer-searchtab.png" /></a></li>
-			<li><b>Use attributes:</b> use attributes of the target tracks
+			<li><b>Use attributes:</b> Use attributes of the target tracks
 				when searching for the best match. The attributes are selected
 				individually for each track (see below: edit button).</li>
 			<li><b>Advanced parameters: </b>
 				<ul>
-					<li><b>Minimum similarity score of results:</b> results with a 
+					<li><b>Minimum similarity score of results:</b> Results with a 
 						score lower than this threshold will be discarded</li>
 					<li><b>Minimum alignment score for perfect matching:</b>
-						individual dataset region alignments with a score below this threshold
+						Individual dataset region alignments with a score below this threshold
 						will be discarded. We usually select a low threshold (e.g. 0.01),
 						to avoid matching regions too distant ones from the others.</li>
 					<li><b>Score for missing partial matching:</b> Score assigned
 						when a matching region in a partial matching dataset is missing. The lower the score, the more
 						penalyzed will be the result for the absence of the dataset region.</li>
-					<li><b>Distance between regions based on: </b> used to decide
+					<li><b>Distance between regions based on: </b> Used to decide
 						whether to take into consideration the distance between the
 						centers of the regions, or the distance between the right end of
 						the first region and the start of the second region. The normalized
-						centroid distance is equals to the centroid distance divided
+						centroid distance is equal to the centroid distance divided
 						by half the length of the matching region. It permits to avoid
-						loosing information with large regions which may overlap although
+						loosing information with large regions that may overlap although
 						their centers are distant. 
 					
 						<br/>
 						<pre>Example:
 Region 1 (length = 12) ------|------   
 Region 2 (length =  8)             ----|----
-Centroid distance = 9, the algorihtm may give it a low score. 
-Normalized centroid distance = 6 / (6 + 4) = 0.6 : low distance (the regions ovelap althoug their centers are not close one from the other). 					
-</pre>					
+</pre>
+Centroid distance = 9, the algorihtm may give it a low score. <br/>
+Normalized centroid distance = 9 / (6 + 4) = 0.9 ; Low distance (the regions ovelap although
+ their centers are not close one to the other). 					
+					
 					</li>
-					<li><b>Distance mismatch computed using:</b> choose between L1
+					<li><b>Distance mismatch computed using:</b> Choose between L1
 						(Manhattan distance) and
 						L2 (Euclidian distance).</li>
 					<li><b>Alignment score sigmoid midpoint:</b> The sigmoid is
 						the function used to calculate a similarity score between 0 (big
-						distance) and 1 (distance = 0). The midpoint sets for which
-						distance the similarity is equals to 0.5.</li>
+						distance) and 1 (distance = 0). The midpoint sets the
+						distance for which the similarity is equals to 0.5.</li>
 					<li><b>Aligment score sigmoid slope:</b></li>
 					<li><b>Use diversity:</b> when calculating the similarity; it
 						is possible to take in consideration the attributes of the genomic
@@ -100,14 +101,14 @@ Normalized centroid distance = 6 / (6 + 4) = 0.6 : low distance (the regions ove
 
 		<h3>Output</h3>
 		<ul>
-			<li><b>Label:</b> name given to the tab and the new track.</li>
-			<li><b>Track color:</b> color for the new track created.</li>
-			<li><b>Max results:</b> number of regions found with top matching pattern.</li>
+			<li><b>Label:</b> Name given to the tab and the new track.</li>
+			<li><b>Track color:</b> Color for the new track created.</li>
+			<li><b>Max results:</b> Number of regions found with top matching pattern.</li>
 		</ul>
 
 		<h3>Submit</h3>
 		<ul>
-			<li><b>View pattern:</b> display a graphical representation of
+			<li><b>View pattern:</b> Display a graphical representation of
 				the pattern.</li>
 			<li><b>Submit:</b> Submit the query.</li>
 		</ul>
@@ -137,8 +138,8 @@ Normalized centroid distance = 6 / (6 + 4) = 0.6 : low distance (the regions ove
 						<td>A matching region SHOULD be present.</td>
 						<td>H3K4me3 has to be present when looking for the promoter
 							pattern.</td>
-						<td>This attribute is used to search for regions which should not be
-						perfectly aligned (default: 0, i.e. perfectly aligned detasets). Format: a single 
+						<td>This attribute is used to search for regions that should not be
+						perfectly aligned (default: 0, i.e. perfectly aligned detasets). Format: A single 
 						position (center of the region) or a range if the lenght is important</td>
 					</tr>
 					<tr>
@@ -162,22 +163,22 @@ Normalized centroid distance = 6 / (6 + 4) = 0.6 : low distance (the regions ove
 					</tr>
 					<tr>
 						<td>Valid area</td>
-						<td>This is the opposite of negative matching: all regions out
+						<td>This is the opposite of negative matching: All regions out
 							of the valid area are removed.</td>
 						<td>TSS in the promoter pattern. TADs.</td>
 						<td>Distance allowed from the borders of the regions of this dataset.
-						For instance allow a distance of 1000bp from the TSS.</td>
+						For instance allow a distance of 1000 bp from the TSS.</td>
 					</tr>
 					<tr>
 						<td>Loops</td>
-						<td>Interacting regions. Each region is associated to a
+						<td>Interacting regions. Each region is associated with a
 							second region. All regions from other dataset that overlap are
 							copied to the interacting region.</td>
 						<td>DNA contact map inferred from Hi-C experiments: the loops
 							bring together a physically distal enhancer with its associated
 							TSS.</td>
 						<td>Distance allowed from the borders of the regions of this dataset.
-						For instance regions within a distance of 1000bp of a contact region will be transfer 
+						For instance regions within a distance of 1000 bp of a contact region will be transfer 
 						to the region attached.</td>
 					</tr>
 				</table> 
@@ -186,14 +187,24 @@ Normalized centroid distance = 6 / (6 + 4) = 0.6 : low distance (the regions ove
 				Loops are provided as a BED file, where each row contains two blocks that refer to two contact regions. e.g. 
 				<pre  class="prettyprint" style="border: 0">chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCount blockSizes blockStarts</pre>
 				<pre  class="prettyprint" style="border: 0">14 24800000 24910000 . 1000 . 24800000 24910000 255,0,0 2 10000,10000 0,100000</pre>
-				(see <a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format1">https://genome.ucsc.edu/FAQ/FAQformat.html#format1</a> for more details about the bed format)
+				The important columns are blockCount=2 (2 regions),  blockSizes (size of each interacting region), blockStarts (starting position of each interactint region). 
+				
+				For instance, if region 1-13 interaccts with region 24-33:
+				<pre>
+				...|--------|..........|--------|.......
+				   4        13         24       33
+				</pre>
+				<pre  class="prettyprint" style="border: 0">chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCount blockSizes blockStarts</pre>
+				<pre  class="prettyprint" style="border: 0">14 4 33 . 1000 . 4 33 255,0,0 2 10,10 0,20</pre>
+				
+				For more details about the BED format <a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format1">https://genome.ucsc.edu/FAQ/FAQformat.html#format1</a>.
 			
 				</div>
 				
 				</li>
 				<li><b>Distance/Range: </b>Perfect and
-					partial matching: position of the region in the pattern. Negative matching: distance from this region bellow which 
-					any matching will be rejected. See table below.</li>
+					partial matching: Position of the region in the pattern. Negative matching: distance from this region below which 
+					any matching will be rejected. See table above.</li>
 				<li><b>Strand: </b>Search only the selected strand(s).</li>
 		</ul>
 
@@ -204,7 +215,7 @@ Normalized centroid distance = 6 / (6 + 4) = 0.6 : low distance (the regions ove
 		<h2>Result panel</h2>
 		<h3>Pattern summary</h3>
 		<p>This panel shows a summary of each dataset selected and its
-			type. Each row in the table represents a pattern matching found. A color is associated randomly to each dataset, the same color
+			type. Each row in the table represents a pattern matching found. A color is associated randomly with each dataset, the same color
 			will be used in the result table.</p>
 
 	</li>
@@ -217,7 +228,7 @@ Normalized centroid distance = 6 / (6 + 4) = 0.6 : low distance (the regions ove
 		<ul>
 		<li><b>Result:</b> ID of the result.</li>
 		<li><b>Score:</b> Similarity score for the matching.</li>
-		<li><b>Position:</b> Position of the match, desscibed as  chromosome: center of the lefter region - center of the righter region.
+		<li><b>Position:</b> Position of the match, described as  chromosome: center of the lefter region - center of the righter region.
 		<pre>Example:
 chromosome 1:
        1000  1004 1008
@@ -235,12 +246,12 @@ Position = chr1:1004-1008
 		<li><b>Nearest gene:</b> Gene whose TSS is the nearest to the center of the matching region of the first perfect matching dataset.
 			If a TSS track is present, then the gene of the TSS in the pattern matching found is selected.</li>
 		<li><b>Distance:</b> Distance between the center of the root dataset region and the related TSS.</li>
-		<li><b>Up/down stream:</b> Indicate if the matching is up- or down-stream of the closest gene.</li>
+		<li><b>Up/down stream:</b> Indicate if the matching is up- or down-stream of the nearest gene.</li>
 		<li><b>Similarity scores:</b> Each dataset is represented by a colored square, whose height is 
-		proportional to the score: a perfect matching with a score of 1 is represented by a perfect square,
+		proportional to the score: A perfect matching with a score of 1 is represented by a perfect square,
 		 while a matching with a score of 0.5 is half its height, and an empty space indicates that no
 		 matching was found.</li>
-		<li><b>Alignment snapshot:</b> a graphical representation of the pattern matching is displayed. 
+		<li><b>Alignment snapshot:</b> A graphical representation of the pattern matching is displayed. 
 		The regions of the query pattern are displayed in red, the matching regions in blue. 
 		This allows an immediate understanding of which regions are present or missing,
 		 and whether the regions are well aligned to the query pattern. </li>
@@ -249,7 +260,7 @@ Position = chr1:1004-1008
 		<h3>Actions:</h3> 
 		
 		<ul>
-		<li><b>Save:</b> save the results in a tab delimited file.</li>
+		<li><b>Save:</b> Save the results in a tab delimited file.</li>
 		<li><b>Functional annotations:</b>
 			<p>Query <a href="http://pantherdb.org/">Pantherdb</a> to see if the genes 
 			identified in the results (closest genes) are enriched in a 
@@ -259,21 +270,21 @@ Position = chr1:1004-1008
 			<li><b>Name:</b> Name of the pathway or biological process.</li>
 			<li><b>p-value:</b> P-value assigned to this enrichment.</li>
 			<li><b>Number of genes:</b> Number of genes from the results
-			associated to this term.</li>
-			<li><b>Genes:</b> List of genes in the results associated to this term.</li>
+			associated with this term.</li>
+			<li><b>Genes:</b> List of genes in the results associated with this term.</li>
 			</ul>
 			
 		</li>
 		<li><b>Track annotations:</b> It is possible to select the annotations from one of the 
 		tracks loaded in the browser (for instance chromatine states identified by ChrommHMM or Segway,
-		available from the SimSearch quickload server). The plugin counts the annotations that overlap with the results,
+		available from the SimSearch Quickload server). The plugin counts the annotations that overlap with the results,
 		and performs a Fisher exact test to assess the significance of this association (the total number of annotations
 		of the same type is used as background).
 		
 		</li>
 		<li><b>Summary:</b>
-			Show a summary of the results, i.e. the different "partial matching" datasets which match together, and how many
-			time they match together. Each individual combination can be selected to automatically
+			Show a summary of the results, i.e. the different "partial matching" datasets that match together, and how many
+			times they match together. Each individual combination can be selected to automatically
 			create a new pattern that can be searched and analyzed. For a matter of clarity, smaller
 			 combinations are only displayed if they are found more often than more complex ones (for instance, if 100 instances of A + B + C and 100 instances of A + B are found, only A+ B + C is displayed).
 		</li>
@@ -284,9 +295,9 @@ Position = chr1:1004-1008
 		<p>In order to to facilitate the analyses of the results, it is possible to annotate them automatically with different sets of information:</p>
 		<table>
 		<tr><th>Type</th><th>Description</th></tr>
-		<tr><td>Closest gene</td><td>Gene whose TSS is closer to the center of the match region of the first perfect matching dataset, or to the TSS in the pattern matching count if a TSS track has been selected. </td></tr>
+		<tr><td>Closest gene</td><td>Gene whose TSS is closer to the center of the matching region of the first perfect matching dataset, or to the gene of the TSS in the pattern matching found if a TSS track has been selected. </td></tr>
 		<tr><td>Functional annotations</td><td>Use Pantherdb web service to see if the genes identified in the results (closest genes) are enriched in a particular pathway or biological process. </td></tr>
-		<tr><td>Annotation from tracks</td><td>Use annotations from a track loaded in IGB and see if the regions that overlap with the results are enriched in a particular annotation. For instance, it is possible to load the genome segmentation from ChromHMM or Segway to see if the results are associated to a particular chromatin state.</td></tr>
+		<tr><td>Annotation from tracks</td><td>Use annotations from a track loaded in IGB and see if the regions that overlap with the results are enriched in a particular annotation. For instance, it is possible to load the genome segmentation from ChromHMM or Segway to see if the results are associated with a particular chromatin state.</td></tr>
 		<tr><td>Pattern combinations</td><td>When a search involved several partial matchings, retrieve the tracks whose regions are found more often together.</td></tr>
 		</table>
 
