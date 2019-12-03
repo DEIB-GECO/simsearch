@@ -338,6 +338,9 @@ public final class ResultTab extends JPanel {
 
 				final JFrame frame = new JFrame("summary " + label);
 
+				// Merge results if not already done
+				summary.collapse();
+				
 				JPanel statsPanel = new StatisticsGraphicalPanel(pattern.getPositiveMatchDatasetIds(),
 					 summary);
 
@@ -529,7 +532,7 @@ public final class ResultTab extends JPanel {
 			}
 
 			logger.info("Process summary");
-			summary.collapse();
+			// summary.collapse();
 			// summary.calculatePValues();
 			logger.info("Process summary done");
 

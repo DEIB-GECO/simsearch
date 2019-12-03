@@ -36,6 +36,9 @@ public class ResultStatistics {
 	private static Logger logger = Logger.getLogger(ResultStatistics.class.getName());	
 	
 	public final static int MAX_DISPLAY = 100;
+
+	// Set to true if the data has already been collapsed.
+	private boolean isCollapsed = false;
 	
 	private HashMap<String, Integer> trackCombinationCount = new HashMap<>();
 
@@ -116,6 +119,9 @@ public class ResultStatistics {
 	 */
 	public void collapse() {
 		
+		if (isCollapsed) {
+			return;
+		}
 		logger.info("Filter out non informative combinations: " + scoreTracks.values().size());
 		
 		ArrayList<Integer> sizes = new ArrayList<>();
@@ -143,6 +149,8 @@ public class ResultStatistics {
 		for (String key : removeKeys) {
 			trackCombinationCount.remove(key);
 		}
+
+		this.isCollapsed = true;
 	}
 
 //	public void calculatePValues() {
