@@ -1,0 +1,163 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SimSearch APP &#8212; SimSearch App 1.4.3 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.4.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="install.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="install.html" title="Installation"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">SimSearch App 1.4.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="simsearch-app">
+<h1>SimSearch APP<a class="headerlink" href="#simsearch-app" title="Permalink to this headline">¶</a></h1>
+<a class="reference internal image-reference" href="_images/figure1.png"><img alt="_images/figure1.png" class="align-right" src="_images/figure1.png" style="width: 540px;" /></a>
+<p><strong>SimSearch</strong> is a pattern-search algorithm that provides biologists
+with the ability, once they identify an interesting genomic pattern, to
+look for similar occurrences in the data, thus facilitating genomic
+data access and use.</p>
+<p>For example, such patterns can describe <strong>gene
+expression regulatory DNA areas</strong> including heterogeneous (epi)genomic
+features (e.g. <strong>histone modification</strong> and/or different <strong>transcription
+factor binding regions</strong>).</p>
+<p>It is possible to define complex patterns
+based on <strong>perfect matching</strong> in genome tracks (regions that must
+match), <strong>partial matching</strong> (regions that are allowed to be absent),
+and <strong>negative matchings</strong> (for instance to search for regions distant
+from transcription start sites).</p>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#install-the-integrated-genome-browser-igb">Install the Integrated Genome Browser (IGB)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#add-the-simsearch-app">Add the SimSearch app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#add-the-simsearch-quickload-server-facultative">Add the SimSearch Quickload server (facultative)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#main-panel">Main panel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#edit-the-pattern">Edit the pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#result-panel">Result panel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#annotation-of-the-results">Annotation of the results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Example: Distal enhancer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="example.html#select-the-right-genome">Select the right genome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example.html#load-tracks">Load tracks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example.html#select-the-enhancer-pattern">Select the enhancer pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example.html#add-tss">Add TSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example.html#browsing-the-results">Browsing the results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example.html#analyzing-the-results">Analyzing the results</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="video">
+<h2>Video<a class="headerlink" href="#video" title="Permalink to this headline">¶</a></h2>
+<p>Have a look at <a class="reference external" href="https://www.youtube.com/watch?v=jW65ope1h1o">https://www.youtube.com/watch?v=jW65ope1h1o</a>
+to see the SimSearch plugin in action:</p>
+<div><iframe width="560" height="315" src="https://www.youtube.com/embed/jW65ope1h1o" frameborder="0" allowfullscreen></iframe></div></div>
+<div class="section" id="acknowlegments">
+<h2>Acknowlegments:<a class="headerlink" href="#acknowlegments" title="Permalink to this headline">¶</a></h2>
+<p>The SimSearch algorithm has been developed as a collaboration between
+<a class="reference external" href="https://www.unibo.it/en&quot;">University of Bologna</a> and the <a class="reference external" href="https://www.polimi.it/en/">Politecnico di Milano</a>.</p>
+<p>The <strong>SimSearch App</strong> for <a class="reference external" href="http://bioviz.org/igb/">IGB</a>, based on the <a href="#id1"><span class="problematic" id="id2">**</span></a>SimSearch algorithm*,
+has been developped by <a class="reference external" href="https://github.com/arnaudceol">Arnaud Ceol</a> from the</p>
+<blockquote>
+<div><a class="reference external" href="http://iit.it/centers/cgs-semm">Istituto Italiano di Tecnologia</a>.</div></blockquote>
+<p><strong>SimSearch</strong> is part of the <a class="reference external" href="http://www.bioinformatics.deib.polimi.it/geco/">DATA-DRIVEN GENOMIC COMPUTING(GeCo)</a> project.</p>
+<a class="reference internal image-reference" href="http://www.bioinformatics.deib.polimi.it/geco/imgs/logo-geco.png"><img alt="http://www.bioinformatics.deib.polimi.it/geco/imgs/logo-geco.png" src="http://www.bioinformatics.deib.polimi.it/geco/imgs/logo-geco.png" style="width: 150px;" /></a>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Issue Tracker: github.com/DEIB-GECO/simsearch/issues</li>
+<li>Source Code: github.com/DEIB-GECO/simsearch</li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>SimSearch IGB plugin and its documentation are freely available for
+non-commercial use as open source project under Apache License 2.0 in
+the GitHub platform at <a class="reference external" href="https://github.com/DEIB-GECO/simsearch/">https://github.com/DEIB-GECO/simsearch/</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><img src="_images/logo.PNG"/>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="next chapter">Installation</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="install.html" title="Installation"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">SimSearch App 1.4.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Arnaud Ceol.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,429 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Usage &#8212; SimSearch App 1.4.3 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.4.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Example: Distal enhancer" href="example.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="example.html" title="Example: Distal enhancer"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">SimSearch App 1.4.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>We describe here the <strong>Main Panel</strong>, used to define a pattern to
+search and choose the options and parameters
+to use, how to <strong>edit</strong> the pattern, and the <strong>Result panel</strong>,
+form which it is possible to browse and analyse the results. We also list the
+<strong>annotations</strong> available directly from this plugin.</p>
+<div class="section" id="main-panel">
+<h2>Main panel<a class="headerlink" href="#main-panel" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="build-pattern">
+<h3>Build pattern<a class="headerlink" href="#build-pattern" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/menu.png" src="_images/menu.png" />
+<ul class="simple">
+<li><strong>+ Selection:</strong>  Add selected elements to the pattern. It
+can be one or more regions selected in the browser, or one or more
+tracks (select the track name on the left of the browser).</li>
+<li><strong>Dataset type:</strong> Select wether the datasets added should
+be of type perfect matching, partial matching, negative matching or any other
+type. This can be changed later in the pattern table.</li>
+<li><strong>Align:</strong> Put all regions from the pattern at the same position.</li>
+<li><strong>Motif:</strong> Search for DNA motif, for instance a known
+transcription factor motif such as the E-box. The motif should be
+entered as a string (only nucleotide letter: A, C, G ant T). Note
+that this will only work if the DNA sequence has already been loaded
+in the browser. Example: search for the E-box, canonical motif = CACGTG</li>
+<li><strong>TSS:</strong> Add the transcription start sites as a dataset.</li>
+<li><strong>Clear:</strong> Remove all datasets from the pattern.</li>
+<li><strong>All tracks:</strong> Add all tracks loaded in the browser to the pattern.
+For instance
+if all the histone marks ChIP-seq tracks have been loaded. The pattern
+tracks can be individually edited or removed from the pattern later.</li>
+</ul>
+</div>
+<div class="section" id="misc">
+<h3>Misc.<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first"><strong>Load pre-defined pattern:</strong> Load a predefined pattern
+(chromatine states inferred from the results of ChromHMM). The plugin associates each track in the chosen predefined pattern
+to a track loaded in the browser based on track names. The user
+should verify that the mapping is
+correct.
+.. image:: images/igb-enhancer-searchtab.png</p>
+</li>
+<li><p class="first"><strong>Use attributes:</strong> Use attributes of the target tracks
+when searching for the best match. The attributes are selected
+individually for each track (see below: edit button).</p>
+</li>
+<li><p class="first"><strong>Advanced parameters:</strong></p>
+<ul>
+<li><p class="first"><strong>Minimum similarity score of results:</strong> Results with a
+score lower than this threshold will be discarded</p>
+</li>
+<li><p class="first"><strong>Minimum alignment score for perfect matching:</strong>
+Individual dataset region alignments with a score below this threshold
+will be discarded. We usually select a low threshold (e.g. 0.01),
+to avoid matching regions too distant ones from the others.</p>
+</li>
+<li><p class="first"><strong>Score for missing partial matching:</strong> Score assigned
+when a matching region in a partial matching dataset is missing.
+The lower the score, the more penalyzed will be the result
+for the absence of the dataset region.</p>
+</li>
+<li><p class="first"><strong>Distance between regions based on:</strong> Used to decide
+whether to take into consideration the distance between the
+centers of the regions, or the distance between the right end of
+the first region and the start of the second region. The normalized
+centroid distance is equal to the centroid distance divided
+by half the length of the matching region. It permits to avoid
+loosing information with large regions that may overlap although
+their centers are distant.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Region</span> <span class="mi">1</span> <span class="p">(</span><span class="n">length</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span> <span class="o">------|------</span>
+<span class="n">Region</span> <span class="mi">2</span> <span class="p">(</span><span class="n">length</span> <span class="o">=</span>  <span class="mi">8</span><span class="p">)</span>            <span class="o">----|----</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Centroid distance = 9, the algorihtm may give it a low score.</li>
+<li>Normalized centroid distance = 9 / (6 + 4) = 0.9 ; Low distance
+(the regions ovelap although
+their centers are not close one to the other).</li>
+</ul>
+</li>
+<li><p class="first"><strong>Distance mismatch computed using:</strong> Choose between L1
+(Manhattan distance) and
+L2 (Euclidian distance).</p>
+</li>
+<li><p class="first"><strong>Alignment score sigmoid midpoint:</strong> The sigmoid is
+the function used to calculate a similarity score between 0 (big
+distance) and 1 (distance = 0). The midpoint sets the
+distance for which the similarity is equals to 0.5.</p>
+</li>
+<li><p class="first"><strong>Aligment score sigmoid slope:</strong></p>
+</li>
+<li><p class="first"><strong>Use diversity:</strong> when calculating the similarity; it
+is possible to take in consideration the attributes of the genomic
+regions (e.g. fold enrichment).</p>
+</li>
+<li><p class="first"><strong>Is region length relevant for computing region
+similarity:</strong> If true, the matching regions should have similar
+length to give a high score.</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="output">
+<h3>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>Label:</strong> Name given to the tab and the new track.</li>
+<li><strong>Track color:</strong> Color for the new track created.</li>
+<li><strong>Max results:</strong> Number of regions found with top matching pattern.</li>
+</ul>
+</div>
+<div class="section" id="submit">
+<h3>Submit<a class="headerlink" href="#submit" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>View pattern:</strong> Display a graphical representation of the pattern.</li>
+<li><strong>Submit:</strong> Submit the query.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="edit-the-pattern">
+<h2>Edit the pattern<a class="headerlink" href="#edit-the-pattern" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Dataset buttons:</strong> Remove the dataset, Edit the dataset
+attribute mapping (only if the option “Use attributes” is selected).</li>
+<li><strong>Dataset ID:</strong> It is possible to edit the name of the
+dataset.</li>
+<li><strong>Dataset type:</strong> Select the type for this dataset, see
+table below.</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="18%" />
+<col width="31%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Description</th>
+<th class="head">Example</th>
+<th class="head">Distance/Range</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Perfect matching</td>
+<td>A matching region SHOULD be present.</td>
+<td><dl class="first last docutils">
+<dt>H3K4me3 has to be present when looking for the promoter pattern.</dt>
+<dd>This attribute is used to search for regions that should not be
+perfectly aligned (default: 0, i.e. perfectly aligned detasets)</dd>
+</dl>
+</td>
+<td>Format: A single position (center of the region) or a range if the lenght is important</td>
+</tr>
+<tr class="row-odd"><td>Partial matching</td>
+<td>Regions that might be missing in the
+results; candidate patterns whose
+regions remain unmatched are
+negatively scored.</td>
+<td>Co-factors</td>
+<td>See perfect matching.</td>
+</tr>
+<tr class="row-even"><td>Negative matching</td>
+<td>Regions that should not appear in
+the solution, candidate patterns
+enclosing those regions are removed
+from the solution search space.</td>
+<td>H3K27ac in enhancer pattern. TSS for distant enhancer pattern.
+The negative track can be associated with a distance
+(the negative regions are extended on both sides to this
+distance, for instance 1000 bp from TSS)</td>
+<td>Indicate the minimum distance between positive
+matching and regions from this dataset.</td>
+</tr>
+<tr class="row-odd"><td>Valid area</td>
+<td>This is the opposite of negative
+matching: All regions out
+of the valid area are removed.</td>
+<td>TSS in the promoter pattern. TADs.</td>
+<td>Distance allowed from the borders of the regions of this dataset.
+For instance allow a distance of 1000 bp from the TSS.</td>
+</tr>
+<tr class="row-even"><td>Loops</td>
+<td>Interacting regions. Each region is
+associated with a second region. All
+regions from other dataset that
+overlap are copied to the
+interacting region.</td>
+<td>DNA contact map inferred from Hi-C experiments: the loops
+bring together a physically distal enhancer with its associated
+TSS.</td>
+<td>Distance allowed from the borders of the regions of this dataset.
+For instance regions within a distance of 1000 bp of a contact region will be
+transferred to the region attached.</td>
+</tr>
+</tbody>
+</table>
+<p>Loops are provided as a BED file, where each row contains two blocks that refer to two contact regions. e.gs.
+chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCount blockSizes blockStarts
+14 24800000 24910000 . 1000 . 24800000 24910000 255,0,0 2 10000,10000 0,100000
+The important columns are blockCount=2 (2 regions),  blockSizes (size of each interacting region), blockStarts (starting position of each interactint region).</p>
+<p>For instance, if region 1-13 interaccts with region 24-33:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>                                                   <span class="mi">4</span>       <span class="mi">13</span>
+                                                <span class="o">...|--------|.....</span>
+<span class="o">...|--------|...........|--------|.......</span>  <span class="o">&lt;-</span>                    <span class="o">.</span>
+   <span class="mi">4</span>       <span class="mi">13</span>          <span class="mi">25</span>       <span class="mi">34</span>          <span class="o">.......|--------|.....</span>
+                                                  <span class="mi">34</span>        <span class="mi">25</span>
+</pre></div>
+</div>
+<p>Bed file will look like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">chrom</span> <span class="n">chromStart</span> <span class="n">chromEnd</span> <span class="n">name</span> <span class="n">score</span> <span class="n">strand</span> <span class="n">thickStart</span> <span class="n">thickEnd</span> <span class="n">itemRgb</span> <span class="n">blockCount</span> <span class="n">blockSizes</span> <span class="n">blockStarts</span>
+<span class="mi">14</span> <span class="mi">4</span> <span class="mi">33</span> <span class="o">.</span> <span class="mi">1000</span> <span class="o">.</span> <span class="mi">4</span> <span class="mi">33</span> <span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="mi">2</span> <span class="mi">10</span><span class="p">,</span><span class="mi">10</span> <span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="o">&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>For more details about the BED format <a class="reference external" href="https://genome.ucsc.edu/FAQ/FAQformat.html#format1">https://genome.ucsc.edu/FAQ/FAQformat.html#format1</a>.</p>
+<ul class="simple">
+<li><strong>Distance/Range:</strong> Perfect and
+partial matching: Position of the region in the pattern.
+Negative matching: distance from this region below which
+any matching will be rejected. See table above.</li>
+<li><a href="#id1"><span class="problematic" id="id2">**</span></a>Strand: <a href="#id3"><span class="problematic" id="id4">**</span></a>Search only the selected strand(s).</li>
+</ul>
+</div>
+<div class="section" id="result-panel">
+<h2>Result panel<a class="headerlink" href="#result-panel" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pattern-summary">
+<h3>Pattern summary<a class="headerlink" href="#pattern-summary" title="Permalink to this headline">¶</a></h3>
+<p>This panel shows a summary of each dataset selected and its
+type. Each row in the table represents a pattern matching found. A color is associated
+randomly with each dataset, the same color
+will be used in the result table. For instance: histon marks found more often at the same TSS:</p>
+<img alt="_images/summary-window.PNG" src="_images/summary-window.PNG" />
+</div>
+<div class="section" id="result-table">
+<h3>Result table<a class="headerlink" href="#result-table" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/enhancer-results-table.png" src="_images/enhancer-results-table.png" />
+<ul class="simple">
+<li><strong>Result:</strong> ID of the result.</li>
+<li><strong>Score:</strong> Similarity score for the matching.</li>
+<li><strong>Position:</strong> Position of the match, described as
+chromosome: center of the lefter region - center of the righter region.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">chromosome</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="mi">1000</span> <span class="mi">1004</span> <span class="mi">1008</span>
+           <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>
+<span class="n">Region</span> <span class="mi">1</span><span class="p">:</span>   <span class="o">--------</span>
+<span class="n">Region</span> <span class="mi">2</span><span class="p">:</span>      <span class="o">----------</span>
+
+<span class="n">Position</span> <span class="o">=</span> <span class="n">chr1</span><span class="p">:</span><span class="mi">1004</span><span class="o">-</span><span class="mi">1008</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>Length:</strong> length of the matching, calculated as the maximum distance between the centers of the
+regions that match the pattern.</li>
+<li><strong>Nearest gene:</strong> Gene whose TSS is the nearest to the center of the matching region of the first perfect matching dataset.
+If a TSS track is present, then the gene of the TSS in the pattern matching found is selected.</li>
+<li><strong>Distance:</strong> Distance between the center of the root dataset region and the related TSS.</li>
+<li><strong>Up/down stream:</strong> Indicate if the matching is up- or down-stream of the nearest gene.</li>
+<li><strong>Similarity scores:</strong> Each dataset is represented by a colored square, whose height is
+proportional to the score: A perfect matching with a score of 1 is represented by a perfect square,
+while a matching with a score of 0.5 is half its height, and an empty space indicates that no
+matching was found.</li>
+<li><strong>Alignment snapshot:</strong> A graphical representation of the pattern matching is displayed.
+The regions of the query pattern are displayed in red, the matching regions in blue.
+This allows an immediate understanding of which regions are present or missing,
+and whether the regions are well aligned to the query pattern.</li>
+</ul>
+</div>
+<div class="section" id="actions">
+<h3>Actions<a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>Save:</strong> Save the results in a tab delimited file.</li>
+<li><strong>Functional annotations:</strong>
+Query <a class="reference external" href="http://pantherdb.org/">Pantherdb</a> to see if the genes
+identified in the results (closest genes) are enriched in a
+particular pathway or biological process.</li>
+<li><strong>Name:</strong> Name of the pathway or biological process.</li>
+<li><strong>p-value:</strong> P-value assigned to this enrichment.</li>
+<li><strong>Number of genes:</strong> Number of genes from the results
+associated with this term.</li>
+<li><strong>Genes:</strong> List of genes in the results associated with this term.</li>
+<li><strong>Track annotations:</strong> It is possible to select the annotations from one of the
+tracks loaded in the browser (for instance chromatine states identified by ChrommHMM or Segway,
+available from the SimSearch Quickload server). The plugin counts the annotations that overlap with the results,
+and performs a Fisher exact test to assess the significance of this association (the total number of annotations
+of the same type is used as background).</li>
+<li><strong>Summary:</strong>
+Show a summary of the results, i.e. the different “partial matching” datasets that match together, and how many
+times they match together. Each individual combination can be selected to automatically
+create a new pattern that can be searched and analyzed. For a matter of clarity, smaller
+combinations are only displayed if they are found more often than more complex ones (for instance, if 100 instances of A + B + C and 100 instances of A + B are found, only A+ B + C is displayed).</li>
+</ul>
+</div>
+</div>
+<div class="section" id="annotation-of-the-results">
+<h2>Annotation of the results<a class="headerlink" href="#annotation-of-the-results" title="Permalink to this headline">¶</a></h2>
+<p>In order to to facilitate the analyses of the results, it is possible to annotate them automatically with different sets of information:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Closest gene</td>
+<td>Gene whose TSS is closer to the center of the matching region of the first perfect matching dataset,
+or to the gene of the TSS in the pattern matching found if a TSS track has been selected.</td>
+</tr>
+<tr class="row-odd"><td>Functional annotations</td>
+<td>Use Pantherdb web service to see if the genes identified
+in the results (closest genes) are enriched in a particular pathway or biological process.</td>
+</tr>
+<tr class="row-even"><td>Annotation from tracks</td>
+<td>Use annotations from a track loaded in IGB and see if the regions that overlap with the results are
+enriched in a particular annotation. For instance, it is possible to load the genome segmentation from
+ChromHMM or Segway to see if the results are associated with a particular chromatin state.</td>
+</tr>
+<tr class="row-odd"><td>Pattern combinations</td>
+<td>When a search involved several partial matchings, retrieve the tracks whose regions are found more often together.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><img src="_images/logo.PNG"/>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="previous chapter">Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="example.html"
+                        title="next chapter">Example: Distal enhancer</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="example.html" title="Example: Distal enhancer"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">SimSearch App 1.4.3 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Arnaud Ceol.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>
