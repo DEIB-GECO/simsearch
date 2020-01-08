@@ -122,15 +122,15 @@
 
 	<pluginRepositories>
 		<pluginRepository>
-			<id>maven-releases</id>
-			<name>maven-releases</name>
+			<id>bioviz-releases</id>
+			<name>bioviz-releases</name>
 			<url>https://nexus.bioviz.org/repository/maven-releases</url>
 		</pluginRepository>
 	</pluginRepositories>
 	<repositories>
 		<repository>
-			<id>maven-releases</id>
-			<name>maven-releases</name>
+			<id>bioviz-releases</id>
+			<name>bioviz-releases</name>
 			<url>https://nexus.bioviz.org/repository/maven-releases</url>
 		</repository>
 	</repositories>
