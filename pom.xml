@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>org.lorainelab.igb</groupId>
 		<artifactId>igb-project</artifactId>
-		<version>9.0.2</version>
+		<version>9.1.0</version>
 	</parent>
 
 	<artifactId>simsearch-bundle</artifactId>
-	<version>1.4.3</version>
+	<version>1.5.0</version>
 	<packaging>bundle</packaging>
 
 	<name>SimSearch</name>
@@ -135,7 +135,6 @@
 		</repository>
 	</repositories>
 
-
 	<build>
 		<finalName>SimSearch-igb${parent.version}-${project.version}</finalName>
 		<plugins>
@@ -164,19 +163,31 @@
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
+				<version>3.0.0</version>
 				<extensions>true</extensions>
 				<executions>
 					<execution>
-						<id>build plugin repository</id>
+						<id>make OBR index file repository.xml</id>
 						<goals>
-							<goal>
-                                index
-                            </goal>
+							<goal>index</goal>
 						</goals>
 						<phase>package</phase>
 						<configuration>
 							<obrRepository>${project.build.directory}</obrRepository>
 							<mavenRepository>${project.build.directory}</mavenRepository>
+						</configuration>
+					</execution>
+					<execution>
+						<id>build obr plugin repository</id>
+						<goals>
+							<goal>
+								bundle
+							</goal>
+						</goals>
+						<configuration>
+							<instructions>
+								<Include-Resource>${project.build.directory}/repository.xml, {maven-resources}</Include-Resource>
+							</instructions>
 						</configuration>
 					</execution>
 				</executions>
