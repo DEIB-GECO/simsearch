@@ -69,8 +69,8 @@ The **SimSearch App** for `IGB <http://bioviz.org/igb/>`_, based on the **SimSea
 Support
 ----------
 
-- Issue Tracker: `<github.com/DEIB-GECO/simsearch-app/issues>`_
-- Source Code: `<github.com/DEIB-GECO/simsearch-app>`_
+- Issue Tracker: `<https://github.com/DEIB-GECO/simsearch-app/issues>`_
+- Source Code: `<ttps://github.com/DEIB-GECO/simsearch-app>`_
 
 
 License
