@@ -1,17 +1,17 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!doctype html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Example: Distal enhancer &#8212; SimSearch App 1.4.3 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <title>Example: Distal enhancer &#8212; SimSearch App 1.5.0 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.4.3',
+        VERSION:     '1.5.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -21,9 +21,14 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Usage" href="usage.html" /> 
+    <link rel="prev" title="Usage" href="usage.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -35,9 +40,26 @@
         <li class="right" >
           <a href="usage.html" title="Usage"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">SimSearch App 1.4.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">SimSearch App 1.5.0 documentation</a> &#187;</li> 
       </ul>
-    </div>  
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><img src="_images/logo.PNG"/>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="usage.html"
+                        title="previous chapter">Usage</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
 
     <div class="document">
       <div class="documentwrapper">
@@ -84,7 +106,7 @@ to contain a TSS), second we change the distance to 20000, to ensure that the re
 <h2>Browsing the results<a class="headerlink" href="#browsing-the-results" title="Permalink to this headline">¶</a></h2>
 <p>We are now ready to start the pattern search. The processing time depends on the number and complexity of the tracks,
 as well as the internet connection (you can also use local files or a local Quickload repository).</p>
-<img alt="_images/ex1-chromhmm-zoom.PNG" src="_images/ex1-chromhmm-zoom.PNG" />
+<a class="reference internal image-reference" href="_images/ex1-chromhmm-zoom.PNG"><img alt="_images/ex1-chromhmm-zoom.PNG" src="_images/ex1-chromhmm-zoom.PNG" style="width: 1024px;" /></a>
 <p>The results are displayed in a table. If we click on any row, the plugin will automatically
 zoom into the corresponding region in the browser, and display on the
 right the regions associated with each dataset (blue) and how they aligned to the original pattern (red).</p>
@@ -97,31 +119,14 @@ directly from the plugin.</p>
 <p>We choose to compare our results to those of the original ChromHMM annotations. We load the results from ChromHMM
 from the SimSearch Quickload server, in the annotation section of the K562 section. From the result panel, we select
 this track and press the “Track annotations” button.</p>
-<img alt="_images/ex1-chromhmm-annotations.PNG" src="_images/ex1-chromhmm-annotations.PNG" />
+<a class="reference internal image-reference" href="_images/ex1-chromhmm-annotations.PNG"><img alt="_images/ex1-chromhmm-annotations.PNG" src="_images/ex1-chromhmm-annotations.PNG" style="width: 540px;" /></a>
 <p>The result table shows, as expected, an enrichment for enhancer regions.</p>
-<img alt="_images/ex1-enhancer-vs-chromhmm-browse.PNG" src="_images/ex1-enhancer-vs-chromhmm-browse.PNG" />
+<a class="reference internal image-reference" href="_images/ex1-enhancer-vs-chromhmm-browse.PNG"><img alt="_images/ex1-enhancer-vs-chromhmm-browse.PNG" src="_images/ex1-enhancer-vs-chromhmm-browse.PNG" style="width: 1024px;" /></a>
 </div>
 </div>
 
 
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><img src="_images/logo.PNG"/>
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="usage.html"
-                        title="previous chapter">Usage</a></p>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -135,7 +140,7 @@ this track and press the “Track annotations” button.</p>
         <li class="right" >
           <a href="usage.html" title="Usage"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">SimSearch App 1.4.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">SimSearch App 1.5.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

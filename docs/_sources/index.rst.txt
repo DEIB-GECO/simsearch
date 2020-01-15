@@ -8,7 +8,7 @@ SimSearch APP
 
 
 .. image:: images/figure1.png
-    :width: 540px
+    :width: 900px
     :align: right
 
 **SimSearch** is a pattern-search algorithm that provides biologists 
@@ -57,9 +57,7 @@ Acknowlegments:
 The SimSearch algorithm has been developed as a collaboration between
 `University of Bologna <https://www.unibo.it/en">`_ and the `Politecnico di Milano <https://www.polimi.it/en/>`_.
 
-The **SimSearch App** for `IGB <http://bioviz.org/igb/>`_, based on the **SimSearch algorithm*, 
-has been developped by `Arnaud Ceol <https://github.com/arnaudceol>`_ from the
- `Istituto Italiano di Tecnologia <http://iit.it/centers/cgs-semm>`_.
+The **SimSearch App** for `IGB <http://bioviz.org/igb/>`_, based on the **SimSearch algorithm*, has been developped by `Arnaud Ceol <https://github.com/arnaudceol>`_ for the `Istituto Italiano di Tecnologia <http://iit.it/centers/cgs-semm>`_.
 
 **SimSearch** is part of the `DATA-DRIVEN GENOMIC COMPUTING(GeCo) <http://www.bioinformatics.deib.polimi.it/geco/>`_ project.
 
@@ -71,12 +69,12 @@ has been developped by `Arnaud Ceol <https://github.com/arnaudceol>`_ from the
 Support
 ----------
 
-- Issue Tracker: github.com/DEIB-GECO/simsearch/issues
-- Source Code: github.com/DEIB-GECO/simsearch
+- Issue Tracker: `<github.com/DEIB-GECO/simsearch-app/issues>`_
+- Source Code: `<github.com/DEIB-GECO/simsearch-app>`_
+
 
 License
 -------
 
-SimSearch IGB plugin and its documentation are freely available for 
-non-commercial use as open source project under Apache License 2.0 in 
-the GitHub platform at https://github.com/DEIB-GECO/simsearch/.
+The SimSearch IGB App and its documentation are freely available for 
+non-commercial use.

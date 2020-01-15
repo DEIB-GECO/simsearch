@@ -40,7 +40,8 @@ Misc.
 +++++
 
 * **Load pre-defined pattern:** Load a predefined pattern
-  (chromatine states inferred from the results of ChromHMM). The plugin associates each track in the chosen predefined pattern 
+  (chromatine states inferred from the results of ChromHMM). The plugin 
+  associates each track in the chosen predefined pattern 
   to a track loaded in the browser based on track names. The user 
   should verify that the mapping is
   correct. 
@@ -199,6 +200,7 @@ randomly with each dataset, the same color
 will be used in the result table. For instance: histon marks found more often at the same TSS:
 
 .. image:: images/summary-window.PNG
+    :width: 640px
 
 Result table
 ++++++++++++

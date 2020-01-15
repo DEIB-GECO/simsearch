@@ -54,6 +54,7 @@ We are now ready to start the pattern search. The processing time depends on the
 as well as the internet connection (you can also use local files or a local Quickload repository).
 
 .. image:: images/ex1-chromhmm-zoom.PNG
+    :width: 1024px
 
 The results are displayed in a table. If we click on any row, the plugin will automatically 
 zoom into the corresponding region in the browser, and display on the 
@@ -72,8 +73,10 @@ from the SimSearch Quickload server, in the annotation section of the K562 secti
 this track and press the "Track annotations" button.
 
 .. image:: images/ex1-chromhmm-annotations.PNG
+    :width: 540px
 
 The result table shows, as expected, an enrichment for enhancer regions.
 
 .. image:: images/ex1-enhancer-vs-chromhmm-browse.PNG
+    :width: 1024
  				
