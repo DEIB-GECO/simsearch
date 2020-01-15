@@ -5,10 +5,10 @@
 	<parent>
 		<groupId>org.lorainelab.igb</groupId>
 		<artifactId>igb-project</artifactId>
-		<version>9.1.0</version>
+		<version>9.1.2</version>
 	</parent>
 
-	<artifactId>simsearch-bundle</artifactId>
+	<artifactId>simsearch-app</artifactId>
 	<version>1.5.0</version>
 	<packaging>bundle</packaging>
 
@@ -134,6 +134,16 @@
 			<url>https://nexus.bioviz.org/repository/maven-releases</url>
 		</repository>
 	</repositories>
+
+	<distributionManagement>
+		<repository>
+		  <uniqueVersion>false</uniqueVersion>
+		  <id>github</id>
+		  <name>SimSearch Github Repository</name>
+		  <url>https://maven.pkg.github.com/DEIB-GECO</url>
+		  <layout>default</layout>
+		</repository>
+	</distributionManagement>
 
 	<build>
 		<finalName>SimSearch-igb${parent.version}-${project.version}</finalName>
