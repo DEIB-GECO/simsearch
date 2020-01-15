@@ -36,6 +36,6 @@ $(window).resize(function(){
         $("li.nav-item-0 a").text("Top");
     }
     else {
-        $("li.nav-item-0 a").text("SimSearch App 1.5.0 documentation");
+        $("li.nav-item-0 a").text("SimSearch App 1.5.1-igb9.1.2 documentation");
     }
 });
