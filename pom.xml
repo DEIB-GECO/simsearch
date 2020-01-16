@@ -156,11 +156,11 @@
 						<id>hack-binary</id>
 						<phase>initialize</phase>
 						<configuration>
-							<file>${basedir}/lib/simsearch-core-0.0.1-SNAPSHOT.jar</file>
+							<file>${basedir}/lib/simsearch-core.jar</file>
 							<repositoryLayout>default</repositoryLayout>
 							<groupId>it.unibo.disi.simsearch</groupId>
 							<artifactId>simsearch-core</artifactId>
-							<version>0.0.1-SNAPSHOT</version>
+							<version>1.0</version>
 							<packaging>jar</packaging>
 							<generatePom>true</generatePom>
 						</configuration>
@@ -276,7 +276,7 @@
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>com.lorainelab</groupId>
+					<groupId>org.lorainelab</groupId>
 					<artifactId>bundle-markdown-encoder</artifactId>
 					<version>1.0.0</version>
 					<executions>
