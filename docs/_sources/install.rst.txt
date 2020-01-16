@@ -20,7 +20,7 @@ that can be downloaded from `<http://bioviz.org/igb/>`_.
 Add the SimSearch app
 ---------------------
 
-Since IGB version 1.9.1 , apps are available from the App Store.
+The simSearch App is available from the IGB App Store: `<https://apps.bioviz.org/>`_.
  
 .. image:: images/app-manager.png
 

@@ -47,9 +47,7 @@ to see the SimSearch plugin in action:
 
 .. raw:: html
 
-    <div><iframe width="560" height="315" src="https://www.youtube.com/embed/jW65ope1h1o" frameborder="0" allowfullscreen></iframe></div>
-
-
+    <div><iframe width="560" height="315" src="https://www.youtube.com/embed/tiZ6af2StrU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
 Acknowlegments:
 ---------------
