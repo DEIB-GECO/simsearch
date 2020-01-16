@@ -70,7 +70,7 @@ Support
 ----------
 
 - Issue Tracker: `<https://github.com/DEIB-GECO/simsearch-app/issues>`_
-- Source Code: `<ttps://github.com/DEIB-GECO/simsearch-app>`_
+- Source Code: `<https://github.com/DEIB-GECO/simsearch-app>`_
 
 
 License
