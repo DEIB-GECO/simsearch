@@ -54,11 +54,11 @@ Misc.
 
   * **Minimum similarity score of results:** Results with a 
     score lower than this threshold will be discarded
-  * **Minimum alignment score for perfect matching:**
+  * **Minimum alignment score for perfect match:**
     Individual dataset region alignments with a score below this threshold
     will be discarded. We usually select a low threshold (e.g. 0.01),
     to avoid matching regions too distant ones from the others.
-  * **Score for missing partial matching:** Score assigned
+  * **Score for missing partial match:** Score assigned
     when a matching region in a partial matching dataset is missing. 
     The lower the score, the more penalyzed will be the result 
     for the absence of the dataset region.
@@ -67,7 +67,7 @@ Misc.
     centers of the regions, or the distance between the right end of
     the first region and the start of the second region. The normalized
     centroid distance is equal to the centroid distance divided
-    by half the length of the matching region. It permits to avoid
+    by half the sum of the lengths of the matching regions. It permits to avoid
     loosing information with large regions that may overlap although
     their centers are distant. 
 
@@ -89,8 +89,8 @@ Misc.
   * **Alignment score sigmoid midpoint:** The sigmoid is
     the function used to calculate a similarity score between 0 (big
     distance) and 1 (distance = 0). The midpoint sets the
-    distance for which the similarity is equals to 0.5.
-  * **Aligment score sigmoid slope:**
+    distance for which the similarity is equal to 0.5.
+  * **Aligment score sigmoid slope:** : slope of the function.
   * **Use diversity:** when calculating the similarity; it
     is possible to take in consideration the attributes of the genomic
     regions (e.g. fold enrichment).
@@ -246,7 +246,7 @@ Actions
 * **Save:** Save the results in a tab delimited file.
 * **Functional annotations:**
   Query `Pantherdb <http://pantherdb.org/>`_ to see if the genes 
-  identified in the results (closest genes) are enriched in a 
+  identified in the results (nearest genes) are enriched in a 
   particular pathway or biological process.
 
 * **Name:** Name of the pathway or biological process.
@@ -284,7 +284,7 @@ In order to to facilitate the analyses of the results, it is possible to annotat
 |                      |or to the gene of the TSS in the pattern matching found if a TSS track has been selected.                          |
 +----------------------+-------------------------------------------------------------------------------------------------------------------+
 |Functional annotations|Use Pantherdb web service to see if the genes identified                                                           |
-|                      |in the results (closest genes) are enriched in a particular pathway or biological process.                         |
+|                      |in the results (nearest genes) are enriched in a particular pathway or biological process.                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------+
 |Annotation from tracks|Use annotations from a track loaded in IGB and see if the regions that overlap with the results are                |
 |                      |enriched in a particular annotation. For instance, it is possible to load the genome segmentation from             |

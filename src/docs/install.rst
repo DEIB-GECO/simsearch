@@ -10,18 +10,15 @@ In order to use the SimSearch plugin, you should first install IGB, and load the
 it is possible to add the SimSearch Quickload server that contains useful data to start using SimSearch
 
 
-Install the Integrated Genome Browser (IGB)
--------------------------------------------
+Install the Integrated Genome Browser (IGB) and the SimSearch App
+-----------------------------------------------------------------
 
-The SimSearch plugin is an extension for the Integrated Genome Browser (IGB)
-that can be downloaded from `<http://bioviz.org/igb/>`_.
+The SimSearch App is available from the IGB App store at 
+`<https://apps.bioviz.org/apps/simsearch-app>`_ where you will find instructions 
+to download `IGB <http://bioviz.org/>`_.  if it was not already done.
 
+The App can also be downloaded directly from IGB:
 
-Add the SimSearch app
----------------------
-
-The simSearch App is available from the IGB App Store: `<https://apps.bioviz.org/>`_.
- 
 .. image:: images/app-manager.png
 
 

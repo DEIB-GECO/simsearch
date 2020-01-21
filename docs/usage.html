@@ -115,11 +115,11 @@ individually for each track (see below: edit button).</p></li>
 <ul>
 <li><p><strong>Minimum similarity score of results:</strong> Results with a
 score lower than this threshold will be discarded</p></li>
-<li><p><strong>Minimum alignment score for perfect matching:</strong>
+<li><p><strong>Minimum alignment score for perfect match:</strong>
 Individual dataset region alignments with a score below this threshold
 will be discarded. We usually select a low threshold (e.g. 0.01),
 to avoid matching regions too distant ones from the others.</p></li>
-<li><p><strong>Score for missing partial matching:</strong> Score assigned
+<li><p><strong>Score for missing partial match:</strong> Score assigned
 when a matching region in a partial matching dataset is missing.
 The lower the score, the more penalyzed will be the result
 for the absence of the dataset region.</p></li>
@@ -128,7 +128,7 @@ whether to take into consideration the distance between the
 centers of the regions, or the distance between the right end of
 the first region and the start of the second region. The normalized
 centroid distance is equal to the centroid distance divided
-by half the length of the matching region. It permits to avoid
+by half the sum of the lengths of the matching regions. It permits to avoid
 loosing information with large regions that may overlap although
 their centers are distant.</p>
 <p>Example:</p>
@@ -149,8 +149,8 @@ L2 (Euclidian distance).</p></li>
 <li><p><strong>Alignment score sigmoid midpoint:</strong> The sigmoid is
 the function used to calculate a similarity score between 0 (big
 distance) and 1 (distance = 0). The midpoint sets the
-distance for which the similarity is equals to 0.5.</p></li>
-<li><p><strong>Aligment score sigmoid slope:</strong></p></li>
+distance for which the similarity is equal to 0.5.</p></li>
+<li><p><strong>Aligment score sigmoid slope:</strong> : slope of the function.</p></li>
 <li><p><strong>Use diversity:</strong> when calculating the similarity; it
 is possible to take in consideration the attributes of the genomic
 regions (e.g. fold enrichment).</p></li>
@@ -333,7 +333,7 @@ and whether the regions are well aligned to the query pattern.</p></li>
 <li><p><strong>Save:</strong> Save the results in a tab delimited file.</p></li>
 <li><p><strong>Functional annotations:</strong>
 Query <a class="reference external" href="http://pantherdb.org/">Pantherdb</a> to see if the genes
-identified in the results (closest genes) are enriched in a
+identified in the results (nearest genes) are enriched in a
 particular pathway or biological process.</p></li>
 <li><p><strong>Name:</strong> Name of the pathway or biological process.</p></li>
 <li><p><strong>p-value:</strong> P-value assigned to this enrichment.</p></li>
@@ -373,7 +373,7 @@ or to the gene of the TSS in the pattern matching found if a TSS track has been 
 </tr>
 <tr class="row-odd"><td><p>Functional annotations</p></td>
 <td><p>Use Pantherdb web service to see if the genes identified
-in the results (closest genes) are enriched in a particular pathway or biological process.</p></td>
+in the results (nearest genes) are enriched in a particular pathway or biological process.</p></td>
 </tr>
 <tr class="row-even"><td><p>Annotation from tracks</p></td>
 <td><p>Use annotations from a track loaded in IGB and see if the regions that overlap with the results are
