@@ -25,7 +25,7 @@ factor binding regions**).
 It is possible to define complex patterns
 based on **perfect matching** in genome tracks (regions that must
 match), **partial matching** (regions that are allowed to be absent),
-and **negative matchings** (for instance to search for regions distant
+and **negative matching** (for instance to search for regions distant
 from transcription start sites).
 
 Index
@@ -42,7 +42,7 @@ Index
 Video
 -----
 
-Have a look at `https://www.youtube.com/watch?v=jW65ope1h1o <https://www.youtube.com/watch?v=jW65ope1h1o>`_
+Have a look at `https://youtu.be/tiZ6af2StrU <https://youtu.be/tiZ6af2StrU`_
 to see the SimSearch plugin in action:
 
 .. raw:: html
@@ -53,11 +53,12 @@ Acknowlegments:
 ---------------
 
 The SimSearch algorithm has been developed as a collaboration between
-`University of Bologna <https://www.unibo.it/en">`_ and the `Politecnico di Milano <https://www.polimi.it/en/>`_.
+`University of Bologna <https://www.unibo.it/en/homepage>`_ and the `Politecnico di Milano <https://www.polimi.it/en/>`_.
 
-The **SimSearch App** for `IGB <http://bioviz.org/igb/>`_, based on the **SimSearch algorithm*, has been developped by `Arnaud Ceol <https://github.com/arnaudceol>`_ for the `Istituto Italiano di Tecnologia <http://iit.it/centers/cgs-semm>`_.
+The **SimSearch App** for `IGB <http://bioviz.org/igb/>`_, based on the SimSearch algorithm, has 
+been developped by `Arnaud Ceol <https://github.com/arnaudceol>`_ for the `Istituto Italiano di Tecnologia <http://iit.it/centers/cgs-semm>`_.
 
-**SimSearch** is part of the `DATA-DRIVEN GENOMIC COMPUTING(GeCo) <http://www.bioinformatics.deib.polimi.it/geco/>`_ project.
+**SimSearch** is part of the `DATA-DRIVEN GENOMIC COMPUTING (GeCo) <http://www.bioinformatics.deib.polimi.it/geco/>`_ project.
 
 .. image:: http://www.bioinformatics.deib.polimi.it/geco/imgs/logo-geco.png
     :width: 150px

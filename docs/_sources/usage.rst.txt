@@ -16,7 +16,7 @@ Build pattern
 
 .. image:: images/menu.png
 
-* **+ Selection:**  Add selected elements to the pattern. It
+* **Selection:**  Add selected elements to the pattern. It
   can be one or more regions selected in the browser, or one or more
   tracks (select the track name on the left of the browser).
 * **Dataset type:** Select wether the datasets added should
@@ -25,7 +25,7 @@ Build pattern
 * **Align:** Put all regions from the pattern at the same position.
 * **Motif:** Search for DNA motif, for instance a known
   transcription factor motif such as the E-box. The motif should be
-  entered as a string (only nucleotide letter: A, C, G ant T). Note
+  entered as a string (only nucleotide letter: A, C, G and T). Note
   that this will only work if the DNA sequence has already been loaded
   in the browser. Example: search for the E-box, canonical motif = CACGTG
 * **TSS:** Add the transcription start sites as a dataset.
@@ -45,11 +45,12 @@ Misc.
   to a track loaded in the browser based on track names. The user 
   should verify that the mapping is
   correct. 
+
   .. image:: images/igb-enhancer-searchtab.png
   
 * **Use attributes:** Use attributes of the target tracks
   when searching for the best match. The attributes are selected
-  individually for each track (see below: edit button).
+  individually for each track.
 * **Advanced parameters:**
 
   * **Minimum similarity score of results:** Results with a 
@@ -65,7 +66,7 @@ Misc.
   * **Distance between regions based on:** Used to decide
     whether to take into consideration the distance between the
     centers of the regions, or the distance between the right end of
-    the first region and the start of the second region. The normalized
+    the first region and the left end of the second region. The normalized
     centroid distance is equal to the centroid distance divided
     by half the sum of the lengths of the matching regions. It permits to avoid
     loosing information with large regions that may overlap although
@@ -75,22 +76,24 @@ Misc.
     Example::
 
       Region 1 (length = 12) ------|------   
-      Region 2 (length =  8)            ----|----
+      Region 2 (length =  8)             ----|----
 
     - Centroid distance = 9, the algorihtm may give it a low score.
-    - Normalized centroid distance = 9 / (6 + 4) = 0.9 ; Low distance 
+    - Normalized centroid distance = 9 / (6 + 4) = 0.9; Low distance 
       (the regions ovelap although
       their centers are not close one to the other). 					
 
 
   * **Distance mismatch computed using:** Choose between L1
     (Manhattan distance) and
-    L2 (Euclidian distance).
-  * **Alignment score sigmoid midpoint:** The sigmoid is
+    L2 (Euclidean distance).
+  * **Alignment score sigmoid mid-point:** The sigmoid is
     the function used to calculate a similarity score between 0 (big
-    distance) and 1 (distance = 0). The midpoint sets the
+    distance) and 1 (distance = 0). The mid-point sets the
     distance for which the similarity is equal to 0.5.
-  * **Aligment score sigmoid slope:** : slope of the function.
+  * **Aligment score sigmoid slope:** : Slope of the sigmoid function used to mitigate 
+    the effect that single score (cost) components of the aligment might have on 
+    the overall score (cost) of a matching..
   * **Use diversity:** when calculating the similarity; it
     is possible to take in consideration the attributes of the genomic
     regions (e.g. fold enrichment).
@@ -128,12 +131,14 @@ Edit the pattern
 * **Dataset type:** Select the type for this dataset, see
   table below.
 
+* **Distance**  should not be perfectly aligned (default: 0, i.e. perfectly aligned detasets)|
+
 +-----------------+------------------------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------+
 |Type             |Description                         |Example                                                         |Distance/Range                                                                         |
 +=================+====================================+================================================================+=======================================================================================+
-|Perfect matching |A matching region SHOULD be present.|H3K4me3 has to be present when looking for the promoter pattern.|Format: A single position (center of the region) or a range if the lenght is important |
-|                 |                                    | This attribute is used to search for regions that should not be|                                                                                       |
-|                 |                                    | perfectly aligned (default: 0, i.e. perfectly aligned detasets)|                                                                                       |
+|Perfect matching |A matching region SHOULD be present.|H3K4me3 has to be present when looking for the promoter pattern.|Format: A single position (center of the region) or a range if the lenght is important.|
+|                 |                                    |                                                                |This attribute is used to search for regions that should not be perfectly              |
+|                 |                                    |                                                                |aligned (default: 0, i.e. perfectly aligned detasets)                                  |
 +-----------------+------------------------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------+
 |Partial matching |Regions that might be missing in the|Co-factors                                                      |See perfect matching.                                                                  |
 |                 |results; candidate patterns whose   |                                                                |                                                                                       |
@@ -149,20 +154,20 @@ Edit the pattern
 |                 |matching: All regions out           |                                                                |For instance allow a distance of 1000 bp from the TSS.                                 |
 |                 |of the valid area are removed.      |                                                                |                                                                                       |
 +-----------------+------------------------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------+
-|Loops            |Interacting regions. Each region is |DNA contact map inferred from Hi-C experiments: the loops       |Distance allowed from the borders of the regions of this dataset.                      |
-|                 |associated with a second region. All|bring together a physically distal enhancer with its associated |For instance regions within a distance of 1000 bp of a contact region will be          |
-|                 |regions from other dataset that     |TSS.                                                            |transferred to the region attached.                                                    |
+|Loop             |Interacting regions. Each region is |DNA contact map inferred from Hi-C experiments: the loops       |Extend the contact regions with the distance specified.                                |
+|                 |associated with a second region. All|bring together a physically distal enhancer with its associated |                                                                                       |
+|                 |regions from other dataset that     |TSS.                                                            |                                                                                       |
 |                 |overlap are copied to the           |                                                                |                                                                                       |
 |                 |interacting region.                 |                                                                |                                                                                       |
 +-----------------+------------------------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------+
  
 
-Loops are provided as a BED file, where each row contains two blocks that refer to two contact regions. e.gs. 
+Loops are provided as a BED file, where each row contains two blocks that refer to two contact regions. e.g. 
 chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCount blockSizes blockStarts
 14 24800000 24910000 . 1000 . 24800000 24910000 255,0,0 2 10000,10000 0,100000
 The important columns are blockCount=2 (2 regions),  blockSizes (size of each interacting region), blockStarts (starting position of each interactint region). 
 
-For instance, if region 1-13 interaccts with region 24-33::
+For instance, if region 4-13 interacts with region 25-33:
 
                                                        4       13
                                                     ...|--------|.....
@@ -184,23 +189,13 @@ For more details about the BED format `<https://genome.ucsc.edu/FAQ/FAQformat.ht
   partial matching: Position of the region in the pattern. 
   Negative matching: distance from this region below which 
   any matching will be rejected. See table above.
-* **Strand: **Search only the selected strand(s).
+* **Strand:** Search only the selected strand(s).
 
 
 
 Result panel
 ------------
 
-Pattern summary
-+++++++++++++++
-
-This panel shows a summary of each dataset selected and its
-type. Each row in the table represents a pattern matching found. A color is associated 
-randomly with each dataset, the same color
-will be used in the result table. For instance: histon marks found more often at the same TSS:
-
-.. image:: images/summary-window.PNG
-    :width: 640px
 
 Result table
 ++++++++++++
@@ -275,13 +270,13 @@ Actions
 Annotation of the results
 -------------------------
 
-In order to to facilitate the analyses of the results, it is possible to annotate them automatically with different sets of information:
+In order to facilitate the analyses of the results, it is possible to annotate them automatically with different sets of information:
 
 +----------------------+-------------------------------------------------------------------------------------------------------------------+
 |Type                  |Description                                                                                                        |
 +======================+===================================================================================================================+
-|Closest gene          |Gene whose TSS is closer to the center of the matching region of the first perfect matching dataset,               |
-|                      |or to the gene of the TSS in the pattern matching found if a TSS track has been selected.                          |
+|Nearest gene          |Gene whose TSS is nearer to the center of the matching region of the first perfect matching dataset,               |
+|                      |or the gene of the TSS in the pattern matching found if a TSS track has been selected.                          |
 +----------------------+-------------------------------------------------------------------------------------------------------------------+
 |Functional annotations|Use Pantherdb web service to see if the genes identified                                                           |
 |                      |in the results (nearest genes) are enriched in a particular pathway or biological process.                         |
@@ -293,3 +288,13 @@ In order to to facilitate the analyses of the results, it is possible to annotat
 |Pattern combinations  |When a search involved several partial matchings, retrieve the tracks whose regions are found more often together. |
 +----------------------+-------------------------------------------------------------------------------------------------------------------+
 
+Pattern summary
++++++++++++++++
+
+This panel shows a summary of each dataset selected and its
+type. Each row in the table represents a matching pattern found. A color is associated 
+randomly with each dataset, the same color
+will be used in the result table. For instance: histon marks found more often at the same TSS:
+
+.. image:: images/summary-window.PNG
+    :width: 640px

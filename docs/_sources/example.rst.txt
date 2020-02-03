@@ -12,7 +12,7 @@ Select the right genome
 .. image:: images/ex1-genome.PNG
 
 The data we will use has been aligned on the human genome build hg19, also called NCBI37, or Feb 2009. We select 
-    the species Homo sapiens and the genome version H_sapiens_Feb_2019 in the right panel of IGB.
+the species Homo sapiens and the genome version H_sapiens_Feb_2019 in the right panel of IGB.
 
 Load tracks
 -----------

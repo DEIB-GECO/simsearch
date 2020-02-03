@@ -17,6 +17,11 @@ The SimSearch App is available from the IGB App store at
 `<https://apps.bioviz.org/apps/simsearch-app>`_ where you will find instructions 
 to download `IGB <http://bioviz.org/>`_.  if it was not already done.
 
+To install the app, just press the button on the App page:
+
+.. image:: images/install-app.png
+
+
 The App can also be downloaded directly from IGB:
 
 .. image:: images/app-manager.png
