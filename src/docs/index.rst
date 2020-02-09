@@ -42,7 +42,7 @@ Index
 Video
 -----
 
-Have a look at `https://youtu.be/tiZ6af2StrU <https://youtu.be/tiZ6af2StrU`_
+Have a look at `https://youtu.be/tiZ6af2StrU <https://youtu.be/tiZ6af2StrU>`_
 to see the SimSearch plugin in action:
 
 .. raw:: html

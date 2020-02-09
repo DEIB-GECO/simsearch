@@ -151,7 +151,7 @@ L2 (Euclidean distance).</p></li>
 the function used to calculate a similarity score between 0 (big
 distance) and 1 (distance = 0). The mid-point sets the
 distance for which the similarity is equal to 0.5.</p></li>
-<li><p><strong>Aligment score sigmoid slope:</strong> : Slope of the sigmoid function used to mitigate
+<li><p><strong>Aligment score sigmoid slope:</strong> Slope of the sigmoid function used to mitigate
 the effect that single score (cost) components of the aligment might have on
 the overall score (cost) of a matching..</p></li>
 <li><p><strong>Use diversity:</strong> when calculating the similarity; it
@@ -169,7 +169,7 @@ length to give a high score.</p></li>
 <ul class="simple">
 <li><p><strong>Label:</strong> Name given to the tab and the new track.</p></li>
 <li><p><strong>Track color:</strong> Color for the new track created.</p></li>
-<li><p><strong>Max results:</strong> Number of regions found with top matching pattern.</p></li>
+<li><p><strong>Max results:</strong> Number of regions found with top pattern matching.</p></li>
 </ul>
 </div>
 <div class="section" id="submit">
@@ -189,7 +189,7 @@ attribute mapping (only if the option “Use attributes” is selected).</p></li
 dataset.</p></li>
 <li><p><strong>Dataset type:</strong> Select the type for this dataset, see
 table below.</p></li>
-<li><p><strong>Distance</strong>  should not be perfectly aligned (default: 0, i.e. perfectly aligned detasets)|</p></li>
+<li><p><strong>Distance</strong>  distance expected between regions from a pattern, or from a negative region (see table).</p></li>
 </ul>
 <table class="docutils align-default">
 <colgroup>
@@ -211,7 +211,7 @@ table below.</p></li>
 <td><p>H3K4me3 has to be present when looking for the promoter pattern.</p></td>
 <td><p>Format: A single position (center of the region) or a range if the lenght is important.
 This attribute is used to search for regions that should not be perfectly
-aligned (default: 0, i.e. perfectly aligned detasets)</p></td>
+aligned (default: 0, i.e. perfectly aligned datasets)</p></td>
 </tr>
 <tr class="row-odd"><td><p>Partial matching</p></td>
 <td><p>Regions that might be missing in the
@@ -258,22 +258,14 @@ TSS.</p></td>
 chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCount blockSizes blockStarts
 14 24800000 24910000 . 1000 . 24800000 24910000 255,0,0 2 10000,10000 0,100000
 The important columns are blockCount=2 (2 regions),  blockSizes (size of each interacting region), blockStarts (starting position of each interactint region).</p>
-<p>For instance, if region 4-13 interacts with region 25-33:</p>
-<blockquote>
-<div><blockquote>
-<div><blockquote>
-<div><p>4       13</p>
-</div></blockquote>
-<p>…|——–<a href="#id1"><span class="problematic" id="id2">|</span></a>…..</p>
-</div></blockquote>
-<dl class="simple">
-<dt>…|——–<a href="#id7"><span class="problematic" id="id8">|...........|</span></a>——–<a href="#id3"><span class="problematic" id="id4">|</span></a>…….  &lt;-                    .</dt><dd><dl class="simple">
-<dt>4       13          25       34          …….|——–<a href="#id5"><span class="problematic" id="id6">|</span></a>…..</dt><dd><p>34        25</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</div></blockquote>
+<p>For instance, if region 4-12 interacts with region 23-31:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                                                    <span class="mi">4</span>          <span class="mi">14</span>
+                                                <span class="o">...|----------|....</span>
+<span class="o">...|----------|.........|----------|.......</span>  <span class="o">&lt;-</span>                   <span class="o">.</span>
+   <span class="mi">4</span>         <span class="mi">14</span>        <span class="mi">23</span>          <span class="mi">33</span>          <span class="o">....|----------|....</span>
+                                                  <span class="mi">31</span>        <span class="mi">23</span>
+</pre></div>
+</div>
 <p>Bed file will look like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chrom</span> <span class="n">chromStart</span> <span class="n">chromEnd</span> <span class="n">name</span> <span class="n">score</span> <span class="n">strand</span> <span class="n">thickStart</span> <span class="n">thickEnd</span> <span class="n">itemRgb</span> <span class="n">blockCount</span> <span class="n">blockSizes</span> <span class="n">blockStarts</span>
 <span class="mi">14</span> <span class="mi">4</span> <span class="mi">33</span> <span class="o">.</span> <span class="mi">1000</span> <span class="o">.</span> <span class="mi">4</span> <span class="mi">33</span> <span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="mi">2</span> <span class="mi">10</span><span class="p">,</span><span class="mi">10</span> <span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="o">&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
@@ -355,10 +347,39 @@ combinations are only displayed if they are found more often than more complex o
 <div class="section" id="annotation-of-the-results">
 <h2>Annotation of the results<a class="headerlink" href="#annotation-of-the-results" title="Permalink to this headline">¶</a></h2>
 <p>In order to facilitate the analyses of the results, it is possible to annotate them automatically with different sets of information:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Nearest gene</p></td>
+<td><p>Gene whose TSS is nearer to the center of the matching region of the first perfect matching dataset,
+or the gene of the TSS in the pattern matching found if a TSS track has been selected.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Functional annotations</p></td>
+<td><p>Use Pantherdb web service to see if the genes identified
+in the results (nearest genes) are enriched in a particular pathway or biological process.</p></td>
+</tr>
+<tr class="row-even"><td><p>Annotation from tracks</p></td>
+<td><p>Use annotations from a track loaded in IGB and see if the regions that overlap with the results are
+enriched in a particular annotation. For instance, it is possible to load the genome segmentation from
+ChromHMM or Segway to see if the results are associated with a particular chromatin state.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pattern combinations</p></td>
+<td><p>When a search involved several partial matchings, retrieve the tracks whose regions are found more often together.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="pattern-summary">
 <h3>Pattern summary<a class="headerlink" href="#pattern-summary" title="Permalink to this headline">¶</a></h3>
 <p>This panel shows a summary of each dataset selected and its
-type. Each row in the table represents a matching pattern found. A color is associated
+type. Each row in the table represents a pattern matching found. A color is associated
 randomly with each dataset, the same color
 will be used in the result table. For instance: histon marks found more often at the same TSS:</p>
 <a class="reference internal image-reference" href="_images/summary-window.PNG"><img alt="_images/summary-window.PNG" src="_images/summary-window.PNG" style="width: 640px;" /></a>

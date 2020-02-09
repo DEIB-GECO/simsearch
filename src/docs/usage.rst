@@ -91,7 +91,7 @@ Misc.
     the function used to calculate a similarity score between 0 (big
     distance) and 1 (distance = 0). The mid-point sets the
     distance for which the similarity is equal to 0.5.
-  * **Aligment score sigmoid slope:** : Slope of the sigmoid function used to mitigate 
+  * **Aligment score sigmoid slope:** Slope of the sigmoid function used to mitigate 
     the effect that single score (cost) components of the aligment might have on 
     the overall score (cost) of a matching..
   * **Use diversity:** when calculating the similarity; it
@@ -108,7 +108,7 @@ Output
 
 * **Label:** Name given to the tab and the new track.
 * **Track color:** Color for the new track created.
-* **Max results:** Number of regions found with top matching pattern.
+* **Max results:** Number of regions found with top pattern matching.
 
 
 Submit
@@ -131,14 +131,14 @@ Edit the pattern
 * **Dataset type:** Select the type for this dataset, see
   table below.
 
-* **Distance**  should not be perfectly aligned (default: 0, i.e. perfectly aligned detasets)|
+* **Distance**  distance expected between regions from a pattern, or from a negative region (see table).
 
 +-----------------+------------------------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------+
 |Type             |Description                         |Example                                                         |Distance/Range                                                                         |
 +=================+====================================+================================================================+=======================================================================================+
 |Perfect matching |A matching region SHOULD be present.|H3K4me3 has to be present when looking for the promoter pattern.|Format: A single position (center of the region) or a range if the lenght is important.|
 |                 |                                    |                                                                |This attribute is used to search for regions that should not be perfectly              |
-|                 |                                    |                                                                |aligned (default: 0, i.e. perfectly aligned detasets)                                  |
+|                 |                                    |                                                                |aligned (default: 0, i.e. perfectly aligned datasets)                                  |
 +-----------------+------------------------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------+
 |Partial matching |Regions that might be missing in the|Co-factors                                                      |See perfect matching.                                                                  |
 |                 |results; candidate patterns whose   |                                                                |                                                                                       |
@@ -167,13 +167,13 @@ chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCou
 14 24800000 24910000 . 1000 . 24800000 24910000 255,0,0 2 10000,10000 0,100000
 The important columns are blockCount=2 (2 regions),  blockSizes (size of each interacting region), blockStarts (starting position of each interactint region). 
 
-For instance, if region 4-13 interacts with region 25-33:
+For instance, if region 4-12 interacts with region 23-31::
 
-                                                       4       13
-                                                    ...|--------|.....
-    ...|--------|...........|--------|.......  <-                    .
-       4       13          25       34          .......|--------|.....
-                                                      34        25
+                                                       4          14 
+                                                   ...|----------|....
+   ...|----------|.........|----------|.......  <-                   .
+      4         14        23          33          ....|----------|....
+                                                     31        23
 
 Bed file will look like::
 
@@ -272,11 +272,12 @@ Annotation of the results
 
 In order to facilitate the analyses of the results, it is possible to annotate them automatically with different sets of information:
 
+
 +----------------------+-------------------------------------------------------------------------------------------------------------------+
 |Type                  |Description                                                                                                        |
 +======================+===================================================================================================================+
 |Nearest gene          |Gene whose TSS is nearer to the center of the matching region of the first perfect matching dataset,               |
-|                      |or the gene of the TSS in the pattern matching found if a TSS track has been selected.                          |
+|                      |or the gene of the TSS in the pattern matching found if a TSS track has been selected.                             |
 +----------------------+-------------------------------------------------------------------------------------------------------------------+
 |Functional annotations|Use Pantherdb web service to see if the genes identified                                                           |
 |                      |in the results (nearest genes) are enriched in a particular pathway or biological process.                         |
@@ -292,7 +293,7 @@ Pattern summary
 +++++++++++++++
 
 This panel shows a summary of each dataset selected and its
-type. Each row in the table represents a matching pattern found. A color is associated 
+type. Each row in the table represents a pattern matching found. A color is associated 
 randomly with each dataset, the same color
 will be used in the result table. For instance: histon marks found more often at the same TSS:
 
