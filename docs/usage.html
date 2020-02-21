@@ -153,7 +153,7 @@ distance) and 1 (distance = 0). The mid-point sets the
 distance for which the similarity is equal to 0.5.</p></li>
 <li><p><strong>Aligment score sigmoid slope:</strong> Slope of the sigmoid function used to mitigate
 the effect that single score (cost) components of the aligment might have on
-the overall score (cost) of a matching..</p></li>
+the overall score (cost) of a matching.</p></li>
 <li><p><strong>Use diversity:</strong> when calculating the similarity; it
 is possible to take in consideration the attributes of the genomic
 regions (e.g. fold enrichment).</p></li>
@@ -211,7 +211,7 @@ table below.</p></li>
 <td><p>H3K4me3 has to be present when looking for the promoter pattern.</p></td>
 <td><p>Format: A single position (center of the region) or a range if the lenght is important.
 This attribute is used to search for regions that should not be perfectly
-aligned (default: 0, i.e. perfectly aligned datasets)</p></td>
+aligned (default: 0, i.e. perfectly aligned datasets).</p></td>
 </tr>
 <tr class="row-odd"><td><p>Partial matching</p></td>
 <td><p>Regions that might be missing in the
@@ -258,17 +258,11 @@ TSS.</p></td>
 chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCount blockSizes blockStarts
 14 24800000 24910000 . 1000 . 24800000 24910000 255,0,0 2 10000,10000 0,100000
 The important columns are blockCount=2 (2 regions),  blockSizes (size of each interacting region), blockStarts (starting position of each interactint region).</p>
-<p>For instance, if region 4-12 interacts with region 23-31:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                                                    <span class="mi">4</span>          <span class="mi">14</span>
-                                                <span class="o">...|----------|....</span>
-<span class="o">...|----------|.........|----------|.......</span>  <span class="o">&lt;-</span>                   <span class="o">.</span>
-   <span class="mi">4</span>         <span class="mi">14</span>        <span class="mi">23</span>          <span class="mi">33</span>          <span class="o">....|----------|....</span>
-                                                  <span class="mi">31</span>        <span class="mi">23</span>
-</pre></div>
-</div>
-<p>Bed file will look like:</p>
+<p>For instance, if region 4-14 interacts with region 23-33:</p>
+<img alt="_images/loop.png" src="_images/loop.png" />
+<p>BED file will look like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chrom</span> <span class="n">chromStart</span> <span class="n">chromEnd</span> <span class="n">name</span> <span class="n">score</span> <span class="n">strand</span> <span class="n">thickStart</span> <span class="n">thickEnd</span> <span class="n">itemRgb</span> <span class="n">blockCount</span> <span class="n">blockSizes</span> <span class="n">blockStarts</span>
-<span class="mi">14</span> <span class="mi">4</span> <span class="mi">33</span> <span class="o">.</span> <span class="mi">1000</span> <span class="o">.</span> <span class="mi">4</span> <span class="mi">33</span> <span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="mi">2</span> <span class="mi">10</span><span class="p">,</span><span class="mi">10</span> <span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="o">&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+<span class="mi">14</span> <span class="mi">4</span> <span class="mi">33</span> <span class="o">.</span> <span class="mi">1000</span> <span class="o">.</span> <span class="mi">4</span> <span class="mi">33</span> <span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="mi">2</span> <span class="mi">10</span><span class="p">,</span><span class="mi">10</span> <span class="mi">0</span><span class="p">,</span><span class="mi">20</span>
 </pre></div>
 </div>
 <p>For more details about the BED format <a class="reference external" href="https://genome.ucsc.edu/FAQ/FAQformat.html#format1">https://genome.ucsc.edu/FAQ/FAQformat.html#format1</a>.</p>

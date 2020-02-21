@@ -93,7 +93,7 @@ Misc.
     distance for which the similarity is equal to 0.5.
   * **Aligment score sigmoid slope:** Slope of the sigmoid function used to mitigate 
     the effect that single score (cost) components of the aligment might have on 
-    the overall score (cost) of a matching..
+    the overall score (cost) of a matching.
   * **Use diversity:** when calculating the similarity; it
     is possible to take in consideration the attributes of the genomic
     regions (e.g. fold enrichment).
@@ -138,7 +138,7 @@ Edit the pattern
 +=================+====================================+================================================================+=======================================================================================+
 |Perfect matching |A matching region SHOULD be present.|H3K4me3 has to be present when looking for the promoter pattern.|Format: A single position (center of the region) or a range if the lenght is important.|
 |                 |                                    |                                                                |This attribute is used to search for regions that should not be perfectly              |
-|                 |                                    |                                                                |aligned (default: 0, i.e. perfectly aligned datasets)                                  |
+|                 |                                    |                                                                |aligned (default: 0, i.e. perfectly aligned datasets).                                 |
 +-----------------+------------------------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------+
 |Partial matching |Regions that might be missing in the|Co-factors                                                      |See perfect matching.                                                                  |
 |                 |results; candidate patterns whose   |                                                                |                                                                                       |
@@ -167,18 +167,14 @@ chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCou
 14 24800000 24910000 . 1000 . 24800000 24910000 255,0,0 2 10000,10000 0,100000
 The important columns are blockCount=2 (2 regions),  blockSizes (size of each interacting region), blockStarts (starting position of each interactint region). 
 
-For instance, if region 4-12 interacts with region 23-31::
+For instance, if region 4-14 interacts with region 23-33:
 
-                                                       4          14 
-                                                   ...|----------|....
-   ...|----------|.........|----------|.......  <-                   .
-      4         14        23          33          ....|----------|....
-                                                     31        23
+.. image:: images/loop.png
 
-Bed file will look like::
+BED file will look like::
 
   chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCount blockSizes blockStarts
-  14 4 33 . 1000 . 4 33 255,0,0 2 10,10 0,20</pre>
+  14 4 33 . 1000 . 4 33 255,0,0 2 10,10 0,20
 
 For more details about the BED format `<https://genome.ucsc.edu/FAQ/FAQformat.html#format1>`_.
 
