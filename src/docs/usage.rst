@@ -162,9 +162,11 @@ Edit the pattern
 +-----------------+------------------------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------+
  
 
-Loops are provided as a BED file, where each row contains two blocks that refer to two contact regions. e.g. 
-chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCount blockSizes blockStarts
-14 24800000 24910000 . 1000 . 24800000 24910000 255,0,0 2 10000,10000 0,100000
+Loops are provided as a BED file, where each row contains two blocks that refer to two contact regions. e.g. ::
+
+  chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCount blockSizes blockStarts
+  14 24800000 24910000 . 1000 . 24800000 24910000 255,0,0 2 10000,10000 0,100000
+
 The important columns are blockCount=2 (2 regions),  blockSizes (size of each interacting region), blockStarts (starting position of each interactint region). 
 
 For instance, if region 4-14 interacts with region 23-33:
@@ -175,6 +177,7 @@ BED file will look like::
 
   chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCount blockSizes blockStarts
   14 4 33 . 1000 . 4 33 255,0,0 2 10,10 0,20
+
 
 For more details about the BED format `<https://genome.ucsc.edu/FAQ/FAQformat.html#format1>`_.
 

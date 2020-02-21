@@ -254,10 +254,12 @@ TSS.</p></td>
 </tr>
 </tbody>
 </table>
-<p>Loops are provided as a BED file, where each row contains two blocks that refer to two contact regions. e.g.
-chrom chromStart chromEnd name score strand thickStart thickEnd itemRgb blockCount blockSizes blockStarts
-14 24800000 24910000 . 1000 . 24800000 24910000 255,0,0 2 10000,10000 0,100000
-The important columns are blockCount=2 (2 regions),  blockSizes (size of each interacting region), blockStarts (starting position of each interactint region).</p>
+<p>Loops are provided as a BED file, where each row contains two blocks that refer to two contact regions. e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chrom</span> <span class="n">chromStart</span> <span class="n">chromEnd</span> <span class="n">name</span> <span class="n">score</span> <span class="n">strand</span> <span class="n">thickStart</span> <span class="n">thickEnd</span> <span class="n">itemRgb</span> <span class="n">blockCount</span> <span class="n">blockSizes</span> <span class="n">blockStarts</span>
+<span class="mi">14</span> <span class="mi">24800000</span> <span class="mi">24910000</span> <span class="o">.</span> <span class="mi">1000</span> <span class="o">.</span> <span class="mi">24800000</span> <span class="mi">24910000</span> <span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="mi">2</span> <span class="mi">10000</span><span class="p">,</span><span class="mi">10000</span> <span class="mi">0</span><span class="p">,</span><span class="mi">100000</span>
+</pre></div>
+</div>
+<p>The important columns are blockCount=2 (2 regions),  blockSizes (size of each interacting region), blockStarts (starting position of each interactint region).</p>
 <p>For instance, if region 4-14 interacts with region 23-33:</p>
 <img alt="_images/loop.png" src="_images/loop.png" />
 <p>BED file will look like:</p>
