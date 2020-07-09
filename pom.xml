@@ -110,7 +110,7 @@
 		<dependency>
 			<groupId>it.unibo.disi.simsearch</groupId>
 			<artifactId>simsearch-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0</version>
 			<!-- <scope>system</scope> <systemPath>${basedir}/lib/simsearch-core-0.0.1-SNAPSHOT.jar</systemPath> -->
 		</dependency>
 		<dependency>
