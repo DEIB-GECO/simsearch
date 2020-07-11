@@ -95,7 +95,7 @@ public class SourcePattern extends Pattern {
 				.ifPresent(selectedGenomeVersion -> {
 					selectedGenomeVersion.getAvailableDataContainers().stream().flatMap(dc -> dc.getDataSets().stream())
 							.filter(dataSet -> dataSet.isVisible())
-							.filter(dataSet -> false == "RefGene".equals(dataSet.getDataSetName())
+							.filter(dataSet -> false == "RefGene".equals(dataSet.getDataSetName()) && false == "RefSeq Curated".equals(dataSet.getDataSetName())
 									&& false == "Cytobands".equals(dataSet.getDataSetName()))
 							.forEach(dataSet -> {
 								datasets.put(dataSet.getDataSetName(), dataSet);

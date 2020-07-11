@@ -133,8 +133,8 @@ public class TargetDatasetsSelectionPanel extends JPanel
 	public static final boolean[] BOTH_STRANDS = { true, true };
 	private final static String NULL_PATTERN_LABEL = "-- load pre-defined pattern --";
 
-	public static final String TSS_IGB_TRACK = "TSS (RefGene)";
-	public static final String SPLICE_SITE_IGB_TRACK = "Splice Site (RefGene)";
+	public static final String TSS_IGB_TRACK = "TSS";
+	public static final String SPLICE_SITE_IGB_TRACK = "Splice Site";
 	public static final String MOTIF_TRACK = "MOTIF SEARCH";
 
 	PatternTable patternTable;
@@ -467,7 +467,6 @@ public class TargetDatasetsSelectionPanel extends JPanel
 		} else if (e.getSource() == btnAddTSS) {
 			this.addTSS();
 		} else if (e.getSource() == btnAddSpliceSites) {
-			logger.info("### Add Splice Sites" );
 			this.addSplicingSites();
 		} else if (e.getSource() == btnMotif) {
 			String motif = JOptionPane.showInputDialog("Please input a motif (e.g. CACGTG");
@@ -897,7 +896,7 @@ public class TargetDatasetsSelectionPanel extends JPanel
 		}
 		for (DataContainer dc : gmodel.getSelectedGenomeVersion().getAvailableDataContainers()) {
 			for (DataSet dataSet : dc.getDataSets()) {
-				if (dataSet.isVisible() && false == "RefGene".equals(dataSet.getDataSetName())
+				if (dataSet.isVisible() && false == "RefGene".equals(dataSet.getDataSetName()) && false == "RefSeq Curated".equals(dataSet.getDataSetName())
 						&& false == "Cytobands".equals(dataSet.getDataSetName())) {
 					String name = dataSet.getDataSetName();
 					if (false == perfectMatchDatasetIds.contains(name)) {

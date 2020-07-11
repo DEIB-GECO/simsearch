@@ -540,7 +540,7 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																if (pattern.getPositiveMatchDatasetIds()
 																		.contains(patternDatasetId)
 																		&& false == patternDatasetId
-																				.equals("TSS (RefGene)")) {
+																				.equals("TSS")) {
 
 																	// Transfer from composites
 																	// ArrayList<Region> trasferedRegions = new
@@ -664,7 +664,7 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 				.ifPresent(selectedGenomeVersion -> {
 					selectedGenomeVersion.getAvailableDataContainers().stream().flatMap(dc -> dc.getDataSets().stream())
 							.filter(dataSet -> dataSet.isVisible())
-							.filter(dataSet -> dataSet.getDataSetName().equals("RefGene"))
+							.filter(dataSet -> dataSet.getDataSetName().equals("RefGene") || dataSet.getDataSetName().equals("RefSeq Curated"))
 							.map(dataSet -> ServerUtils.determineLoader(SymLoader.getExtension(dataSet.getURI()),
 									dataSet.getURI(), Optional.empty(), DataSet.detemineFriendlyName(dataSet.getURI()),
 									selectedGenomeVersion))
@@ -728,7 +728,7 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 				.ifPresent(selectedGenomeVersion -> {
 					selectedGenomeVersion.getAvailableDataContainers().stream().flatMap(dc -> dc.getDataSets().stream())
 							.filter(dataSet -> dataSet.isVisible())
-							.filter(dataSet -> dataSet.getDataSetName().equals("RefGene"))
+							.filter(dataSet -> dataSet.getDataSetName().equals("RefGene") || dataSet.getDataSetName().equals("RefSeq Curated"))
 							.map(dataSet -> ServerUtils.determineLoader(SymLoader.getExtension(dataSet.getURI()),
 									dataSet.getURI(), Optional.empty(), DataSet.detemineFriendlyName(dataSet.getURI()),
 									selectedGenomeVersion))
