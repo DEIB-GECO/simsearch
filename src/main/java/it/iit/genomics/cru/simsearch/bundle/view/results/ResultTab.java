@@ -373,7 +373,7 @@ public final class ResultTab extends JPanel {
 			Writer resultWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultFile), "utf-8"));
 
 			resultWriter.write(
-					"Result\tScore\tPosition\tdistance between regions\tNearest gene\tDistance to nearest gene\tUp/Downstream"
+					"Result\tScore\tPosition\tdistance between regions\tNearest gene\tDistance to nearest gene\tUp/Downstream\tMatching tracks"
 							+ LINE_SEPARATOR);
 
 			int i = 0;
@@ -507,8 +507,21 @@ public final class ResultTab extends JPanel {
 				model.addRow(new Object[] { i, score, coordinate, length, geneName, Math.abs(distanceFromNearestGene),
 						matchPosititionReletedToGene, result });
 
+
+				ArrayList<String> similarities = new ArrayList<>();
+				
+				for (String dataset: result.getAlignmentScores().keySet()) {
+					for (Double d : result.getAlignmentScores().get(dataset)) {
+						if (null != d && d > 0) {
+							similarities.add(dataset + " ("+String.format("%.2f", d)+")");
+						}
+					}
+				}
+
+				String matchingTracks = String.join(",", similarities);
+
 				resultWriter.write(i + "\t" + score + "\t" + coordinate + "\t" + length + "\t" + geneName + "\t"
-						+ Math.abs(distanceFromNearestGene) + "\t" + matchPosititionReletedToGene + LINE_SEPARATOR);
+						+ Math.abs(distanceFromNearestGene) + "\t" + matchPosititionReletedToGene + "\t" + matchingTracks + LINE_SEPARATOR);
 
 				BioSeq seq = GenometryModel.getInstance().getSelectedGenomeVersion().getSeq(chromosome);
 				if (seq == null) {
