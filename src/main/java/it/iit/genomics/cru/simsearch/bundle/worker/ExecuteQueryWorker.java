@@ -351,6 +351,10 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 			if (TargetDatasetsSelectionPanel.TSS_IGB_TRACK.equals(trackId)) {
 				String strandPattern = pattern.getRegionsSpecificDataset(patternDatasetId).get(0).getStrand();
 				regions = this.getTSS(strandPattern);
+			} else if (TargetDatasetsSelectionPanel.SPLICE_SITE_IGB_TRACK.equals(trackId)) {
+				publish("Get splice sites.");
+				String strandPattern = pattern.getRegionsSpecificDataset(patternDatasetId).get(0).getStrand();
+				regions = this.getSpliceSite(strandPattern);
 			} else if (TargetDatasetsSelectionPanel.MOTIF_TRACK.equals(trackId)) {
 				// find pattern
 				// for each chromosome:
@@ -525,7 +529,6 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																	}
 																}
 
-
 																regions.addAll(splitRegions);
 
 																// Only transfer regions from positive dataset
@@ -537,15 +540,16 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																if (pattern.getPositiveMatchDatasetIds()
 																		.contains(patternDatasetId)
 																		&& false == patternDatasetId
-																				.equals("TSS (RefGene)")) {
+																				.equals("TSS")) {
 
 																	// Transfer from composites
-																	// ArrayList<Region> trasferedRegions = new ArrayList<>();
+																	// ArrayList<Region> trasferedRegions = new
+																	// ArrayList<>();
 																	for (Region region : splitRegions) {
 																		for (Region tr : loops
 																				.transferedRegions(region)) {
 																			// addRegionLength(patternDatasetId,
-																			// 	tr.getLength());
+																			// tr.getLength());
 																			regions.add(tr);
 																		}
 																	}
@@ -553,10 +557,6 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																	// regions.addAll(trasferedRegions);
 																}
 
-																
-
-
-																
 															}
 														});
 											} catch (Exception ex) {
@@ -664,7 +664,7 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 				.ifPresent(selectedGenomeVersion -> {
 					selectedGenomeVersion.getAvailableDataContainers().stream().flatMap(dc -> dc.getDataSets().stream())
 							.filter(dataSet -> dataSet.isVisible())
-							.filter(dataSet -> dataSet.getDataSetName().equals("RefGene"))
+							.filter(dataSet -> dataSet.getDataSetName().equals("RefGene") || dataSet.getDataSetName().equals("RefSeq Curated"))
 							.map(dataSet -> ServerUtils.determineLoader(SymLoader.getExtension(dataSet.getURI()),
 									dataSet.getURI(), Optional.empty(), DataSet.detemineFriendlyName(dataSet.getURI()),
 									selectedGenomeVersion))
@@ -708,6 +708,96 @@ public class ExecuteQueryWorker extends SwingWorker<ArrayList<String>, String> {
 																			geneSpan.isForward() ? "+" : "-",
 																			seqSym.getID());
 																	regions.add(region);
+																}
+															});
+												}
+											} catch (Exception ex) {
+												logger.severe(ex.getMessage() + ". Feature1 "
+														+ symLoader.getFeatureName() + ", " + bioSeq.getId());
+											}
+										});
+							});
+				});
+		return regions;
+	}
+
+	private List<Region> getSpliceSite(String strandPattern) {
+		ArrayList<Region> regions = new ArrayList<>();
+
+		Optional.ofNullable(GenometryModel.getInstance().getSelectedGenomeVersion())
+				.ifPresent(selectedGenomeVersion -> {
+					selectedGenomeVersion.getAvailableDataContainers().stream().flatMap(dc -> dc.getDataSets().stream())
+							.filter(dataSet -> dataSet.isVisible())
+							.filter(dataSet -> dataSet.getDataSetName().equals("RefGene") || dataSet.getDataSetName().equals("RefSeq Curated"))
+							.map(dataSet -> ServerUtils.determineLoader(SymLoader.getExtension(dataSet.getURI()),
+									dataSet.getURI(), Optional.empty(), DataSet.detemineFriendlyName(dataSet.getURI()),
+									selectedGenomeVersion))
+
+							.forEach(symLoader -> {
+								selectedGenomeVersion.getSeqList().stream()
+										// .filter(bioSeq ->
+										// bioSeq.getId().length() < 6)
+										.forEach(bioSeq -> {
+											try {
+												if (symLoader.getChromosome(bioSeq) != null
+														&& symLoader.getChromosome(bioSeq).size() > 0) {
+													symLoader.getChromosome(bioSeq).stream()
+															.filter(seqSym -> seqSym.getSpanCount() > 0)
+															.forEach(seqSym -> {
+
+																SeqSpan geneSpan = seqSym.getSpan(bioSeq);
+
+																boolean correctStrand = true;
+																String strandRegion = geneSpan.isForward() ? "+" : "-";
+																try {
+
+																	if (false == strandPattern.equals(".")
+																			&& false == strandPattern.equals("*")
+																			&& false == strandPattern
+																					.equals(strandRegion)) {
+																		correctStrand = false;
+																	}
+
+																} catch (Exception e) {
+																	logger.info("No working: get strand for "
+																			+ strandPattern);
+																	e.printStackTrace();
+																}
+
+																if (correctStrand) {
+																	ArrayList<Region> exons = new ArrayList<>();
+																	for (int i = 0; i < seqSym.getChildCount(); i++) {
+																		SeqSymmetry exon = seqSym.getChild(i);
+																		SeqSpan exonSpan = exon.getSpan(bioSeq);
+																		Region exonStart = new Region(
+																				exonSpan.getBioSeq().getId(),
+																				exonSpan.getStart(),
+																				exonSpan.getStart() + 1,
+																				exonSpan.isForward() ? "+" : "-",
+																				seqSym.getID());
+
+																		Region exonEnd = new Region(
+																				exonSpan.getBioSeq().getId(),
+																				exonSpan.getEnd(),
+																				exonSpan.getEnd() + 1,
+																				exonSpan.isForward() ? "+" : "-",
+																				seqSym.getID());
+
+																		// Order is important, because later we want to
+																		// remove the extreme ones.
+																		if (exonSpan.isForward()) {
+																			exons.add(exonStart);
+																			exons.add(exonEnd);
+																		} else {
+																			exons.add(exonEnd);
+																			exons.add(exonStart);
+																		}
+																	}
+																	if (false == exons.isEmpty()) {
+																		exons.remove(0);
+																		exons.remove(exons.size()-1);
+																		regions.addAll(exons);
+																	}
 																}
 															});
 												}

@@ -114,6 +114,7 @@ public class TargetDatasetsSelectionPanel extends JPanel
 	private JButton btnAlign;
 	private JButton btnAddAll;
 	private JButton btnAddTSS;
+	private JButton btnAddSpliceSites;
 	private JButton btnMotif;
 	private JButton btnConfirm;
 	private JButton btnShow;
@@ -132,7 +133,8 @@ public class TargetDatasetsSelectionPanel extends JPanel
 	public static final boolean[] BOTH_STRANDS = { true, true };
 	private final static String NULL_PATTERN_LABEL = "-- load pre-defined pattern --";
 
-	public static final String TSS_IGB_TRACK = "TSS (RefGene)";
+	public static final String TSS_IGB_TRACK = "TSS";
+	public static final String SPLICE_SITE_IGB_TRACK = "Splice Site";
 	public static final String MOTIF_TRACK = "MOTIF SEARCH";
 
 	PatternTable patternTable;
@@ -185,6 +187,10 @@ public class TargetDatasetsSelectionPanel extends JPanel
 		btnAddTSS.addActionListener(this);
 		btnAddTSS.setIcon(CommonUtils.getInstance().getIcon("16x16/actions/list-add.png"));
 
+		btnAddSpliceSites = new JButton("Splice Sites");
+		btnAddSpliceSites.addActionListener(this);
+		btnAddSpliceSites.setIcon(CommonUtils.getInstance().getIcon("16x16/actions/list-add.png"));
+
 		btnAddAll = new JButton("All tracks");
 		btnAddAll.addActionListener(this);
 		btnAddAll.setIcon(CommonUtils.getInstance().getIcon("16x16/actions/list-add.png"));
@@ -222,6 +228,9 @@ public class TargetDatasetsSelectionPanel extends JPanel
 		btnAddTSS.setPreferredSize(buttonDimension2);
 		btnAddTSS.setMaximumSize(buttonDimension2);
 
+		btnAddSpliceSites.setPreferredSize(buttonDimension2);
+		btnAddSpliceSites.setMaximumSize(buttonDimension2);
+
 		btnMotif.setPreferredSize(buttonDimension2);
 		btnMotif.setMaximumSize(buttonDimension2);
 
@@ -255,6 +264,7 @@ public class TargetDatasetsSelectionPanel extends JPanel
 		buildPanel.add(btnAdd);
 		buildPanel.add(selectionTypeList);
 		buildPanel.add(btnAddTSS);
+		buildPanel.add(btnAddSpliceSites);
 		buildPanel.add(btnAlign);
 		buildPanel.add(btnMotif);
 		buildPanel.add(btnClear);
@@ -456,6 +466,8 @@ public class TargetDatasetsSelectionPanel extends JPanel
 			executeQueryThread.execute();
 		} else if (e.getSource() == btnAddTSS) {
 			this.addTSS();
+		} else if (e.getSource() == btnAddSpliceSites) {
+			this.addSplicingSites();
 		} else if (e.getSource() == btnMotif) {
 			String motif = JOptionPane.showInputDialog("Please input a motif (e.g. CACGTG");
 			/**
@@ -722,6 +734,33 @@ public class TargetDatasetsSelectionPanel extends JPanel
 		// loadPattern(SourcePattern.getInstance());
 	}
 
+	public void addSplicingSites() {
+		// region: average of all other ones
+		int min = 0;
+		int max = 0;
+		int numRanges = 0;
+		for (String datasetId : SourcePattern.getInstance().getAllDatasetIds()) {
+			if (null != SourcePattern.getInstance().getRegionsSpecificDataset(datasetId)) {
+				for (Region region : SourcePattern.getInstance().getRegionsSpecificDataset(datasetId)) {
+					min += region.getLeft();
+					max += region.getRight();
+					numRanges++;
+				}
+			}
+		}
+		if (numRanges > 0) {
+			min = min + (max - min) / numRanges;
+			max = min;
+		}
+		SourcePattern.getInstance().getPerfectMatchDatasetIds().add(SPLICE_SITE_IGB_TRACK);
+		QueryRegion region = new QueryRegion(SPLICE_SITE_IGB_TRACK, min, max, getStrand(BOTH_STRANDS), null);
+		ArrayList<QueryRegion> ranges = new ArrayList<>();
+		ranges.add(region);
+		SourcePattern.getInstance().setRegionsSpecificDataset(SPLICE_SITE_IGB_TRACK, ranges);
+		patternTable.updateTable();
+		// loadPattern(SourcePattern.getInstance());
+	}
+
 	/**
 	 * 
 	 * Add selected tracks or symmetries
@@ -857,7 +896,7 @@ public class TargetDatasetsSelectionPanel extends JPanel
 		}
 		for (DataContainer dc : gmodel.getSelectedGenomeVersion().getAvailableDataContainers()) {
 			for (DataSet dataSet : dc.getDataSets()) {
-				if (dataSet.isVisible() && false == "RefGene".equals(dataSet.getDataSetName())
+				if (dataSet.isVisible() && false == "RefGene".equals(dataSet.getDataSetName()) && false == "RefSeq Curated".equals(dataSet.getDataSetName())
 						&& false == "Cytobands".equals(dataSet.getDataSetName())) {
 					String name = dataSet.getDataSetName();
 					if (false == perfectMatchDatasetIds.contains(name)) {

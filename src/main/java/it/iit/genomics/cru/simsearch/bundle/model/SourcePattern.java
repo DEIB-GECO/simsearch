@@ -46,7 +46,7 @@ public class SourcePattern extends Pattern {
 	public static final String COMMAND_TRACK_VALID_AREA = "valid area";
 	public static final String COMMAND_TRACK_LOOP = "loops";
 
-	public final static String[] defaultDatasets = { TargetDatasetsSelectionPanel.MOTIF_TRACK, TargetDatasetsSelectionPanel.TSS_IGB_TRACK};
+	public final static String[] defaultDatasets = { TargetDatasetsSelectionPanel.MOTIF_TRACK, TargetDatasetsSelectionPanel.TSS_IGB_TRACK, TargetDatasetsSelectionPanel.SPLICE_SITE_IGB_TRACK};
 	
 	
 	private PropertyChangeSupport changes = new PropertyChangeSupport(this);
@@ -95,7 +95,7 @@ public class SourcePattern extends Pattern {
 				.ifPresent(selectedGenomeVersion -> {
 					selectedGenomeVersion.getAvailableDataContainers().stream().flatMap(dc -> dc.getDataSets().stream())
 							.filter(dataSet -> dataSet.isVisible())
-							.filter(dataSet -> false == "RefGene".equals(dataSet.getDataSetName())
+							.filter(dataSet -> false == "RefGene".equals(dataSet.getDataSetName()) && false == "RefSeq Curated".equals(dataSet.getDataSetName())
 									&& false == "Cytobands".equals(dataSet.getDataSetName()))
 							.forEach(dataSet -> {
 								datasets.put(dataSet.getDataSetName(), dataSet);
@@ -112,6 +112,8 @@ public class SourcePattern extends Pattern {
 				});
 
 		datasets.put(TargetDatasetsSelectionPanel.TSS_IGB_TRACK, null);
+
+		datasets.put(TargetDatasetsSelectionPanel.SPLICE_SITE_IGB_TRACK, null);
 		
 		datasets.put(TargetDatasetsSelectionPanel.MOTIF_TRACK, null);
 
